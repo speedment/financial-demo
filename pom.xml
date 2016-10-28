@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.extspeeder.example</groupId>
+    <artifactId>financialdemo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <name>Financial Demo</name>
+    <description>Demo project Ext Speeder showing Financial Trading Data.</description>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.1.RELEASE</version>
+        <relativePath/>
+        <!-- lookup parent from repository -->
+    </parent>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <start-class>com.extspeeder.example.financialdemo.MainApp</start-class>
+        <java.version>1.8</java.version>
+        
+        <extspeeder.version>1.0.8</extspeeder.version>
+        <db.groupId>mysql</db.groupId>
+        <db.artifactId>mysql-connector-java</db.artifactId>
+        <db.version>5.1.39</db.version>
+    </properties>
+    
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.speedment</groupId>
+            <artifactId>extspeeder-runtime</artifactId>
+            <version>${extspeeder.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>${db.groupId}</groupId>
+            <artifactId>${db.artifactId}</artifactId>
+            <version>${db.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>extspeeder-maven-plugin</artifactId>
+                <version>${extspeeder.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>${db.groupId}</groupId>
+                        <artifactId>${db.artifactId}</artifactId>
+                        <version>${db.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <repositories>
+        <repository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>speedment-enterprise-snapshots</id>
+            <name>Speedment Enterprise Snapshot Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>speedment-enterprise-snapshots</id>
+            <name>Speedment Enterprise Snapshot Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
