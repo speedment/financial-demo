@@ -19,12 +19,14 @@ public class DemoConfig {
     
     private @Value("${dbms.username}") String username;
     private @Value("${dbms.password}") String password;
+    private @Value("${dbms.schema}") String schema;
 
     @Bean
     public Speedment getSpeedment() {
         return new FinancialdemoApplication()
             .withUsername(username)
             .withPassword(password)
+            .withSchema(schema)
             .with(OffHeapReadOnlyCacheComponent::createOffHeap)
             .build();
     }
