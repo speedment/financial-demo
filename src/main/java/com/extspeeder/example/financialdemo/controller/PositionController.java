@@ -52,13 +52,16 @@ public class PositionController {
             .parallel().filter(RawPosition.VALUE_DATE.between(iFrom, iTo));
         
         final Function<RawPosition, String> classifier;
+        final int usedGroups;
         final boolean leaf;
         
         if (aKeys == null || "root".equals(aKeys)) {
             classifier = classifier(groups[0]);
+            usedGroups = 1;
             leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
+            usedGroups = Math.max(groups.length, keys.length + 1);
             
             for (int i = 0; i < keys.length; i++) {
                 positions = positions.filter(filter(groups[i], keys[i]));
@@ -74,7 +77,7 @@ public class PositionController {
         }
         
         final ResultFactory factory = new ResultFactory(
-            identifier(groups), 
+            identifier(groups, usedGroups), 
             classifier == null
                 ? pos -> null
                 : classifier,
@@ -92,8 +95,9 @@ public class PositionController {
         }
     }
     
-    private static Function<RawPosition, String> identifier(String[] groups) {
+    private static Function<RawPosition, String> identifier(String[] groups, int limit) {
         return pos -> Stream.of(groups)
+                .limit(limit)
                 .map(PositionController::classifier)
                 .map(c -> c.apply(pos))
                 .collect(joining(SEPARATOR));
