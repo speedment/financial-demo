@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toConcurrentMap;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,8 +35,9 @@ public class PositionController {
     
     private @Autowired RawPositionManager rawPositions;
 
-    @RequestMapping(method = GET)
+    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public Collection<Result> handleGet(
+            @RequestParam(name="callback") String callback,
             @RequestParam(name="startDate") String startDate, 
             @RequestParam(name="endDate") String endDate,
             @RequestParam(name="drillDownPath") String aGroups,
