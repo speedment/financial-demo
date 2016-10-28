@@ -13,5 +13,9 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.ge
  */
 public abstract class RawPositionImpl extends GeneratedRawPositionImpl implements RawPosition {
     
+    @Override
+    public String getInstrumentNameUnwrapped() {
+        return instrumentName;
+    }
     
 }

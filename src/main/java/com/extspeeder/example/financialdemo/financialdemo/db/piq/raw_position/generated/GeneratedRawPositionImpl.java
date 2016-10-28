@@ -2,7 +2,6 @@ package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.g
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.position_identifier.PositionIdentifier;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
-import com.speedment.Speedment;
 import com.speedment.exception.SpeedmentException;
 import com.speedment.internal.core.code.AbstractBaseEntity;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     private String traderGroup;
     private String traderGroupType;
     private Long instrumentId;
-    private String instrumentName;
+    protected String instrumentName;
     private String instrumentSymbol;
     private String instrumentSector;
     private String instrumentIndustry;

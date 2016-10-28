@@ -2,6 +2,7 @@ package com.extspeeder.example.financialdemo.controller;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
+import com.speedment.internal.util.testing.Stopwatch;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +44,7 @@ public class PositionController {
             @RequestParam(name="drillDownPath") String aGroups,
             @RequestParam(name="drillDownKey", required=false) String aKeys
     ) throws ParseException {
-        
+        final Stopwatch sw = Stopwatch.createStarted();
         final int iFrom = (int) (FORMAT.parse(startDate).getTime() / 1000);
         final int iTo   = (int) (FORMAT.parse(endDate).getTime() / 1000);
         final String[] groups = aGroups.split(SEPARATOR);
@@ -84,23 +85,49 @@ public class PositionController {
 //            leaf
         );
         
-        if (classifier == null) {
-            return positions.map(factory::createFrom).collect(toList());
-        } else {
-            return positions.collect(toConcurrentMap(
-                classifier, 
-                factory::createFrom, 
-                Result::aggregate
-            )).values();
+        try {
+            if (classifier == null) {
+                return positions.map(factory::createFrom).collect(toList());
+            } else {
+                return positions.collect(toConcurrentMap(
+                    classifier, 
+                    factory::createFrom, 
+                    Result::aggregate
+                )).values();
+            }
+        } finally {
+            System.out.println("Finished in: " + sw.stop());
         }
     }
     
     private static Function<RawPosition, String> identifier(String[] groups, int limit) {
-        return pos -> Stream.of(groups)
+        switch (limit) {
+            case 0 : return pos -> "";
+            case 1 : return classifier(groups[0]);
+            case 2 : return pos -> 
+                classifier(groups[0]).apply(pos) + SEPARATOR + 
+                classifier(groups[1]).apply(pos);
+            case 3 : return pos -> 
+                classifier(groups[0]).apply(pos) + SEPARATOR + 
+                classifier(groups[1]).apply(pos) + SEPARATOR +
+                classifier(groups[2]).apply(pos);
+            case 4 : return pos -> 
+                classifier(groups[0]).apply(pos) + SEPARATOR + 
+                classifier(groups[1]).apply(pos) + SEPARATOR +
+                classifier(groups[2]).apply(pos) + SEPARATOR +
+                classifier(groups[3]).apply(pos);
+            case 5 : return pos -> 
+                classifier(groups[0]).apply(pos) + SEPARATOR + 
+                classifier(groups[1]).apply(pos) + SEPARATOR +
+                classifier(groups[2]).apply(pos) + SEPARATOR +
+                classifier(groups[3]).apply(pos) + SEPARATOR +
+                classifier(groups[4]).apply(pos);
+            default : return pos -> Stream.of(groups)
                 .limit(limit)
                 .map(PositionController::classifier)
                 .map(c -> c.apply(pos))
                 .collect(joining(SEPARATOR));
+        }
     }
     
     private static Function<RawPosition, String> classifier(String group) {

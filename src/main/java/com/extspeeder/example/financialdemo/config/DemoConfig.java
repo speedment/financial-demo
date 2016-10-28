@@ -27,7 +27,7 @@ public class DemoConfig {
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
-            .with(OffHeapReadOnlyCacheComponent::createOffHeap)
+            .with(OffHeapReadOnlyCacheComponent::createOnHeap)
             .build();
     }
     
