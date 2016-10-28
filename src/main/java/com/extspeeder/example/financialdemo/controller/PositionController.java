@@ -50,12 +50,10 @@ public class PositionController {
             .parallel().filter(RawPosition.VALUE_DATE.between(iFrom, iTo));
         
         final Function<RawPosition, String> classifier;
-        final String group;
         final boolean leaf;
         
         if (aKeys == null || "root".equals(aKeys)) {
-            group      = groups[0];
-            classifier = classifier(group);
+            classifier = classifier(groups[0]);
             leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
@@ -65,11 +63,9 @@ public class PositionController {
             }
             
             if (groups.length > keys.length) {
-                group      = groups[keys.length];
-                classifier = classifier(group);
+                classifier = classifier(groups[keys.length]);
                 leaf       = false;
             } else {
-                group      = groups[groups.length - 1];
                 classifier = null;
                 leaf       = true;
             }
@@ -77,7 +73,9 @@ public class PositionController {
         
         final ResultFactory factory = new ResultFactory(
             identifier(groups), 
-            group,
+            classifier == null
+                ? pos -> null
+                : classifier,
             leaf
         );
         
@@ -132,23 +130,23 @@ public class PositionController {
     private final static class ResultFactory {
         
         private final Function<RawPosition, String> getId;
-        private final String name;
+        private final Function<RawPosition, String> getName;
         private final boolean leaf;
 
         public ResultFactory(
-                Function<RawPosition, String> getId, 
-                String name,
+                Function<RawPosition, String> getId,
+                Function<RawPosition, String> getName,
                 boolean leaf) {
             
-            this.getId  = requireNonNull(getId);
-            this.name   = requireNonNull(name);
-            this.leaf   = leaf;
+            this.getId   = requireNonNull(getId);
+            this.getName = requireNonNull(getName);
+            this.leaf    = leaf;
         }
         
         public Result createFrom(RawPosition pos) {
             return new Result(
                 getId.apply(pos),
-                name,
+                getName.apply(pos),
                 leaf,
                 pos.getInitiateTradingMktVal(),
                 pos.getLiquidateTradingMktVal(),
