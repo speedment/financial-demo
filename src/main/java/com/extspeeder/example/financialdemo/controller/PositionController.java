@@ -54,12 +54,10 @@ public class PositionController {
         
         final Function<RawPosition, String> classifier;
         final int usedGroups;
-//        final boolean leaf;
         
         if (aKeys == null || "root".equals(aKeys)) {
             classifier = classifier(groups[0]);
             usedGroups = 1;
-//            leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
             usedGroups = Math.min(groups.length, keys.length + 1);
@@ -70,19 +68,13 @@ public class PositionController {
             
             if (groups.length > keys.length) {
                 classifier = classifier(groups[keys.length]);
-//                leaf       = false;
             } else {
                 classifier = null;
-//                leaf       = true;
             }
         }
         
         final ResultFactory factory = new ResultFactory(
-            identifier(groups, usedGroups)//, 
-//            classifier == null
-//                ? pos -> null
-//                : classifier,
-//            leaf
+            identifier(groups, usedGroups)
         );
         
         try {
