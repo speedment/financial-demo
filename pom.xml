@@ -58,7 +58,7 @@
         </dependency>
     </dependencies>
     
-    <build>
+<!--    <build>
         <plugins>
             <plugin>
                 <groupId>com.speedment</groupId>
@@ -73,7 +73,7 @@
                 </dependencies>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
     
     <repositories>
         <repository>
