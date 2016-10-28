@@ -101,13 +101,13 @@ public class PositionController {
     
     private static Function<RawPosition, String> classifier(String group) {
         switch (group) {
-            case "trader_name"         : return RawPosition::getTraderName;
-            case "trader_group"        : return RawPosition::getTraderGroup;
-            case "trader_group_type"   : return RawPosition::getTraderGroupType;
-            case "instrument_name"     : return RawPosition::getInstrumentNameUnwrapped;
-            case "instrument_symbol"   : return RawPosition::getInstrumentSymbol;
-            case "instrument_sector"   : return RawPosition::getInstrumentSectorUnwrapped;
-            case "instrument_industry" : return RawPosition::getInstrumentIndustryUnwrapped;
+            case "traderName"         : return RawPosition::getTraderName;
+            case "traderGroup"        : return RawPosition::getTraderGroup;
+            case "traderGroupType"    : return RawPosition::getTraderGroupType;
+            case "instrumentName"     : return RawPosition::getInstrumentNameUnwrapped;
+            case "instrumentSymbol"   : return RawPosition::getInstrumentSymbol;
+            case "instrumentSector"   : return RawPosition::getInstrumentSectorUnwrapped;
+            case "instrumentIndustry" : return RawPosition::getInstrumentIndustryUnwrapped;
             default : throw new IllegalArgumentException(
                 "Unknown group '" + group + "'."
             );
@@ -116,13 +116,13 @@ public class PositionController {
     
     private static Predicate<RawPosition> filter(String group, String key) {
         switch (group) {
-            case "trader_name"         : return RawPosition.TRADER_NAME.equal(key);
-            case "trader_group"        : return RawPosition.TRADER_GROUP.equal(key);
-            case "trader_group_type"   : return RawPosition.TRADER_GROUP_TYPE.equal(key);
-            case "instrument_name"     : return RawPosition.INSTRUMENT_NAME.equal(key);
-            case "instrument_symbol"   : return RawPosition.INSTRUMENT_SYMBOL.equal(key);
-            case "instrument_sector"   : return RawPosition.INSTRUMENT_SECTOR.equal(key);
-            case "instrument_industry" : return RawPosition.INSTRUMENT_INDUSTRY.equal(key);
+            case "traderName"         : return RawPosition.TRADER_NAME.equal(key);
+            case "traderGroup"        : return RawPosition.TRADER_GROUP.equal(key);
+            case "traderGroupType"    : return RawPosition.TRADER_GROUP_TYPE.equal(key);
+            case "instrumentName"     : return RawPosition.INSTRUMENT_NAME.equal(key);
+            case "instrumentSymbol"   : return RawPosition.INSTRUMENT_SYMBOL.equal(key);
+            case "instrumentSector"   : return RawPosition.INSTRUMENT_SECTOR.equal(key);
+            case "instrumentIndustry" : return RawPosition.INSTRUMENT_INDUSTRY.equal(key);
             default : throw new IllegalArgumentException(
                 "Unknown group '" + group + "'."
             );
