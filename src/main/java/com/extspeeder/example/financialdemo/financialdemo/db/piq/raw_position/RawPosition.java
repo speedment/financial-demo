@@ -13,16 +13,12 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.ge
  */
 public interface RawPosition extends GeneratedRawPosition {
     
-    default String getInstrumentNameUnwrapped() {
-        return getInstrumentName().orElse(null);
-    }
+    String getInstrumentNameUnwrapped();
     
-    default String getInstrumentSectorUnwrapped() {
-        return getInstrumentSector().orElse(null);
-    }
+    String getInstrumentNameOrEmpty();
     
-    default String getInstrumentIndustryUnwrapped() {
-        return getInstrumentIndustry().orElse(null);
-    }
+    String getInstrumentSectorOrEmpty();
+    
+    String getInstrumentIndustryOrEmpty();
     
 }

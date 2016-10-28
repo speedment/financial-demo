@@ -135,10 +135,10 @@ public class PositionController {
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;
-            case "instrumentName"     : return RawPosition::getInstrumentNameUnwrapped;
+            case "instrumentName"     : return RawPosition::getInstrumentNameOrEmpty;
             case "instrumentSymbol"   : return RawPosition::getInstrumentSymbol;
-            case "instrumentSector"   : return RawPosition::getInstrumentSectorUnwrapped;
-            case "instrumentIndustry" : return RawPosition::getInstrumentIndustryUnwrapped;
+            case "instrumentSector"   : return RawPosition::getInstrumentSectorOrEmpty;
+            case "instrumentIndustry" : return RawPosition::getInstrumentIndustryOrEmpty;
             default : throw new IllegalArgumentException(
                 "Unknown group '" + group + "'."
             );

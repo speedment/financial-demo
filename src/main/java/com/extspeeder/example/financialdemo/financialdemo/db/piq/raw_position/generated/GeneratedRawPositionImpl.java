@@ -28,8 +28,8 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     private Long instrumentId;
     protected String instrumentName;
     private String instrumentSymbol;
-    private String instrumentSector;
-    private String instrumentIndustry;
+    protected String instrumentSector;
+    protected String instrumentIndustry;
     private Integer startDate;
     private Integer endDate;
     private Long id;

@@ -17,5 +17,19 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
     public String getInstrumentNameUnwrapped() {
         return instrumentName;
     }
+
+    @Override
+    public String getInstrumentSectorOrEmpty() {
+        return instrumentSector == null ? "" : instrumentSector;
+    }
+
+    @Override
+    public String getInstrumentNameOrEmpty() {
+        return instrumentName == null ? "" : instrumentName;
+    }
     
+    @Override
+    public String getInstrumentIndustryOrEmpty() {
+        return instrumentIndustry == null ? "" : instrumentIndustry;
+    }
 }
