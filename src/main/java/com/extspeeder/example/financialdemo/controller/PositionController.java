@@ -61,7 +61,7 @@ public class PositionController {
             leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
-            usedGroups = Math.max(groups.length, keys.length + 1);
+            usedGroups = Math.min(groups.length, keys.length + 1);
             
             for (int i = 0; i < keys.length; i++) {
                 positions = positions.filter(filter(groups[i], keys[i]));
