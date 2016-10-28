@@ -207,6 +207,58 @@ public class PositionController {
             this.instrumentSector         = instrumentSector;
             this.instrumentIndustry       = instrumentIndustry;
         }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public boolean isLeaf() {
+            return leaf;
+        }
+
+        public double getInitiateTradingMktValue() {
+            return initiateTradingMktValue;
+        }
+
+        public double getLiquidateTradingMktValue() {
+            return liquidateTradingMktValue;
+        }
+
+        public double getPnl() {
+            return pnl;
+        }
+
+        public String getTraderName() {
+            return traderName;
+        }
+
+        public String getTraderGroup() {
+            return traderGroup;
+        }
+
+        public String getTraderGroupType() {
+            return traderGroupType;
+        }
+
+        public String getInstrumentName() {
+            return instrumentName;
+        }
+
+        public String getInstrumentSymbol() {
+            return instrumentSymbol;
+        }
+
+        public String getInstrumentSector() {
+            return instrumentSector;
+        }
+
+        public String getInstrumentIndustry() {
+            return instrumentIndustry;
+        }
         
         public Result aggregate(Result other) {
             initiateTradingMktValue  += other.initiateTradingMktValue;
