@@ -5,7 +5,9 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.Ra
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.Date;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -48,11 +50,13 @@ public class PositionController {
             .parallel().filter(RawPosition.VALUE_DATE.between(iFrom, iTo));
         
         final Function<RawPosition, String> classifier;
+        final String group;
         final boolean leaf;
         
         if (aKeys == null || "root".equals(aKeys)) {
-            classifier = classifier(groups[0]);
-            leaf = false;
+            group      = groups[0];
+            classifier = classifier(group);
+            leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
             
@@ -61,18 +65,20 @@ public class PositionController {
             }
             
             if (groups.length > keys.length) {
-                classifier = classifier(groups[keys.length]);
-                leaf = false;
+                group      = groups[keys.length];
+                classifier = classifier(group);
+                leaf       = false;
             } else {
+                group      = groups[groups.length - 1];
                 classifier = null;
-                leaf = true;
+                leaf       = true;
             }
         }
         
         final ResultFactory factory = new ResultFactory(
             identifier(groups), 
-            groups[groups.length - 1],
-            FORMAT, leaf
+            group,
+            leaf
         );
         
         if (classifier == null) {
@@ -89,7 +95,7 @@ public class PositionController {
     private static Function<RawPosition, String> identifier(String[] groups) {
         return pos -> Stream.of(groups)
                 .map(PositionController::classifier)
-                .map(f -> f.apply(pos))
+                .map(c -> c.apply(pos))
                 .collect(joining(SEPARATOR));
     }
     
@@ -127,18 +133,15 @@ public class PositionController {
         
         private final Function<RawPosition, String> getId;
         private final String name;
-        private final DateFormat format;
         private final boolean leaf;
 
         public ResultFactory(
                 Function<RawPosition, String> getId, 
-                String name, 
-                DateFormat format, 
+                String name,
                 boolean leaf) {
             
             this.getId  = requireNonNull(getId);
             this.name   = requireNonNull(name);
-            this.format = requireNonNull(format);
             this.leaf   = leaf;
         }
         
@@ -156,7 +159,8 @@ public class PositionController {
                 pos.getInstrumentNameUnwrapped(),
                 pos.getInstrumentSymbol(),
                 pos.getInstrumentSectorUnwrapped(),
-                pos.getInstrumentIndustryUnwrapped()
+                pos.getInstrumentIndustryUnwrapped(),
+                pos.getValueDate()
             );
         }
     }
@@ -178,6 +182,9 @@ public class PositionController {
         private String instrumentSymbol;
         private String instrumentSector;
         private String instrumentIndustry;
+        
+        private int minDate;
+        private int maxDate;
 
         public Result(String id, 
                       String name, 
@@ -191,7 +198,8 @@ public class PositionController {
                       String instrumentName, 
                       String instrumentSymbol, 
                       String instrumentSector, 
-                      String instrumentIndustry) {
+                      String instrumentIndustry,
+                      int valueDate) {
             
             this.id                       = id;
             this.name                     = name;
@@ -206,6 +214,9 @@ public class PositionController {
             this.instrumentSymbol         = instrumentSymbol;
             this.instrumentSector         = instrumentSector;
             this.instrumentIndustry       = instrumentIndustry;
+            
+            this.minDate = valueDate;
+            this.maxDate = valueDate;
         }
 
         public String getId() {
@@ -260,6 +271,14 @@ public class PositionController {
             return instrumentIndustry;
         }
         
+        public String getMinDate() {
+            return FORMAT.format(Date.from(Instant.ofEpochSecond(minDate)));
+        }
+        
+        public String getMaxDate() {
+            return FORMAT.format(Date.from(Instant.ofEpochSecond(maxDate)));
+        }
+        
         public Result aggregate(Result other) {
             initiateTradingMktValue  += other.initiateTradingMktValue;
             liquidateTradingMktValue += other.liquidateTradingMktValue;
@@ -272,6 +291,9 @@ public class PositionController {
             instrumentSymbol   = aggregate(instrumentSymbol,   other.instrumentSymbol);
             instrumentSector   = aggregate(instrumentSector,   other.instrumentSector);
             instrumentIndustry = aggregate(instrumentIndustry, other.instrumentIndustry);
+            
+            minDate = Math.min(minDate, other.minDate);
+            maxDate = Math.max(maxDate, other.maxDate);
             
             return this;
         }
