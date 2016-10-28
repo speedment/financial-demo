@@ -53,12 +53,12 @@ public class PositionController {
         
         final Function<RawPosition, String> classifier;
         final int usedGroups;
-        final boolean leaf;
+//        final boolean leaf;
         
         if (aKeys == null || "root".equals(aKeys)) {
             classifier = classifier(groups[0]);
             usedGroups = 1;
-            leaf       = false;
+//            leaf       = false;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
             usedGroups = Math.min(groups.length, keys.length + 1);
@@ -69,19 +69,19 @@ public class PositionController {
             
             if (groups.length > keys.length) {
                 classifier = classifier(groups[keys.length]);
-                leaf       = false;
+//                leaf       = false;
             } else {
                 classifier = null;
-                leaf       = true;
+//                leaf       = true;
             }
         }
         
         final ResultFactory factory = new ResultFactory(
-            identifier(groups, usedGroups), 
-            classifier == null
-                ? pos -> null
-                : classifier,
-            leaf
+            identifier(groups, usedGroups)//, 
+//            classifier == null
+//                ? pos -> null
+//                : classifier,
+//            leaf
         );
         
         if (classifier == null) {
@@ -136,34 +136,35 @@ public class PositionController {
     private final static class ResultFactory {
         
         private final Function<RawPosition, String> getId;
-        private final Function<RawPosition, String> getName;
-        private final boolean leaf;
+//        private final Function<RawPosition, String> getName;
+//        private final boolean leaf;
 
         public ResultFactory(
-                Function<RawPosition, String> getId,
-                Function<RawPosition, String> getName,
-                boolean leaf) {
+                Function<RawPosition, String> getId//,
+//                Function<RawPosition, String> getName,
+//                boolean leaf
+        ) {
             
             this.getId   = requireNonNull(getId);
-            this.getName = requireNonNull(getName);
-            this.leaf    = leaf;
+//            this.getName = requireNonNull(getName);
+//            this.leaf    = leaf;
         }
         
         public Result createFrom(RawPosition pos) {
             return new Result(
                 getId.apply(pos),
-                getName.apply(pos),
-                leaf,
+//                getName.apply(pos),
+//                leaf,
                 pos.getInitiateTradingMktVal(),
                 pos.getLiquidateTradingMktVal(),
                 pos.getPnl(),
-                pos.getTraderName(),
-                pos.getTraderGroup(),
-                pos.getTraderGroupType(),
+//                pos.getTraderName(),
+//                pos.getTraderGroup(),
+//                pos.getTraderGroupType(),
                 pos.getInstrumentNameUnwrapped(),
-                pos.getInstrumentSymbol(),
-                pos.getInstrumentSectorUnwrapped(),
-                pos.getInstrumentIndustryUnwrapped(),
+//                pos.getInstrumentSymbol(),
+//                pos.getInstrumentSectorUnwrapped(),
+//                pos.getInstrumentIndustryUnwrapped(),
                 pos.getValueDate()
             );
         }
@@ -172,52 +173,52 @@ public class PositionController {
     public final static class Result {
         
         private final String id;
-        private final String name;
-        private final boolean leaf;
+//        private final String name;
+//        private final boolean leaf;
         
         private double initiateTradingMktValue;
         private double liquidateTradingMktValue;
         private double pnl;
         
-        private String traderName;
-        private String traderGroup;
-        private String traderGroupType;
+//        private String traderName;
+//        private String traderGroup;
+//        private String traderGroupType;
         private String instrumentName;
-        private String instrumentSymbol;
-        private String instrumentSector;
-        private String instrumentIndustry;
+//        private String instrumentSymbol;
+//        private String instrumentSector;
+//        private String instrumentIndustry;
         
         private int minDate;
         private int maxDate;
 
         public Result(String id, 
-                      String name, 
-                      boolean leaf, 
+//                      String name, 
+//                      boolean leaf, 
                       double initiateTradingMktValue, 
                       double liquidateTradingMktValue, 
                       double pnl, 
-                      String traderName, 
-                      String traderGroup, 
-                      String traderGroupType, 
+//                      String traderName, 
+//                      String traderGroup, 
+//                      String traderGroupType, 
                       String instrumentName, 
-                      String instrumentSymbol, 
-                      String instrumentSector, 
-                      String instrumentIndustry,
+//                      String instrumentSymbol, 
+//                      String instrumentSector, 
+//                      String instrumentIndustry,
                       int valueDate) {
             
             this.id                       = id;
-            this.name                     = name;
-            this.leaf                     = leaf;
+//            this.name                     = name;
+//            this.leaf                     = leaf;
             this.initiateTradingMktValue  = initiateTradingMktValue;
             this.liquidateTradingMktValue = liquidateTradingMktValue;
             this.pnl                      = pnl;
-            this.traderName               = traderName;
-            this.traderGroup              = traderGroup;
-            this.traderGroupType          = traderGroupType;
+//            this.traderName               = traderName;
+//            this.traderGroup              = traderGroup;
+//            this.traderGroupType          = traderGroupType;
             this.instrumentName           = instrumentName;
-            this.instrumentSymbol         = instrumentSymbol;
-            this.instrumentSector         = instrumentSector;
-            this.instrumentIndustry       = instrumentIndustry;
+//            this.instrumentSymbol         = instrumentSymbol;
+//            this.instrumentSector         = instrumentSector;
+//            this.instrumentIndustry       = instrumentIndustry;
             
             this.minDate = valueDate;
             this.maxDate = valueDate;
@@ -227,13 +228,13 @@ public class PositionController {
             return id;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public boolean isLeaf() {
-            return leaf;
-        }
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public boolean isLeaf() {
+//            return leaf;
+//        }
 
         public double getInitiateTradingMktValue() {
             return initiateTradingMktValue;
@@ -247,33 +248,33 @@ public class PositionController {
             return pnl;
         }
 
-        public String getTraderName() {
-            return traderName;
-        }
-
-        public String getTraderGroup() {
-            return traderGroup;
-        }
-
-        public String getTraderGroupType() {
-            return traderGroupType;
-        }
+//        public String getTraderName() {
+//            return traderName;
+//        }
+//
+//        public String getTraderGroup() {
+//            return traderGroup;
+//        }
+//
+//        public String getTraderGroupType() {
+//            return traderGroupType;
+//        }
 
         public String getInstrumentName() {
             return instrumentName;
         }
 
-        public String getInstrumentSymbol() {
-            return instrumentSymbol;
-        }
-
-        public String getInstrumentSector() {
-            return instrumentSector;
-        }
-
-        public String getInstrumentIndustry() {
-            return instrumentIndustry;
-        }
+//        public String getInstrumentSymbol() {
+//            return instrumentSymbol;
+//        }
+//
+//        public String getInstrumentSector() {
+//            return instrumentSector;
+//        }
+//
+//        public String getInstrumentIndustry() {
+//            return instrumentIndustry;
+//        }
         
         public String getMinDate() {
             return FORMAT.format(Date.from(Instant.ofEpochSecond(minDate)));
@@ -288,13 +289,13 @@ public class PositionController {
             liquidateTradingMktValue += other.liquidateTradingMktValue;
             pnl                      += other.pnl;
             
-            traderName         = aggregate(traderName,         other.traderName);
-            traderGroup        = aggregate(traderGroup,        other.traderGroup);
-            traderGroupType    = aggregate(traderGroupType,    other.traderGroupType);
+//            traderName         = aggregate(traderName,         other.traderName);
+//            traderGroup        = aggregate(traderGroup,        other.traderGroup);
+//            traderGroupType    = aggregate(traderGroupType,    other.traderGroupType);
             instrumentName     = aggregate(instrumentName,     other.instrumentName);
-            instrumentSymbol   = aggregate(instrumentSymbol,   other.instrumentSymbol);
-            instrumentSector   = aggregate(instrumentSector,   other.instrumentSector);
-            instrumentIndustry = aggregate(instrumentIndustry, other.instrumentIndustry);
+//            instrumentSymbol   = aggregate(instrumentSymbol,   other.instrumentSymbol);
+//            instrumentSector   = aggregate(instrumentSector,   other.instrumentSector);
+//            instrumentIndustry = aggregate(instrumentIndustry, other.instrumentIndustry);
             
             minDate = Math.min(minDate, other.minDate);
             maxDate = Math.max(maxDate, other.maxDate);
