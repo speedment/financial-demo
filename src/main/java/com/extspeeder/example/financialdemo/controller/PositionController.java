@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toConcurrentMap;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,8 +43,10 @@ public class PositionController {
             @RequestParam(name="startDate") String startDate, 
             @RequestParam(name="endDate") String endDate,
             @RequestParam(name="drillDownPath") String aGroups,
-            @RequestParam(name="drillDownKey", required=false) String aKeys
+            @RequestParam(name="drillDownKey", required=false) String aKeys,
+            HttpServletResponse response
     ) throws ParseException {
+        
         final Stopwatch sw = Stopwatch.createStarted();
         final int iFrom = (int) (FORMAT.parse(startDate).getTime() / 1000);
         final int iTo   = (int) (FORMAT.parse(endDate).getTime() / 1000);
@@ -88,6 +91,9 @@ public class PositionController {
                 )).values();
             }
         } finally {
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Request-Method", "*");
+            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
             System.out.println("Finished in: " + sw.stop());
         }
     }
@@ -124,6 +130,7 @@ public class PositionController {
     
     private static Function<RawPosition, String> classifier(String group) {
         switch (group) {
+//            case "valueDate"          : return RawPosition::getValueDate;
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;

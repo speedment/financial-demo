@@ -3,7 +3,9 @@ package com.extspeeder.example.financialdemo.financialdemo.generated;
 import com.extspeeder.example.financialdemo.financialdemo.FinancialdemoApplication;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.cohort.CohortManagerImpl;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.instrument.InstrumentManagerImpl;
+import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.OrderManagerImpl;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.position_identifier.PositionIdentifierManagerImpl;
+import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStoreManagerImpl;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManagerImpl;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.trader.TraderManagerImpl;
 import com.speedment.internal.core.runtime.SpeedmentApplicationLifecycle;
@@ -33,7 +35,9 @@ public abstract class GeneratedFinancialdemoApplication extends SpeedmentApplica
         applyAndPut(CohortManagerImpl::new);
         applyAndPut(RawPositionManagerImpl::new);
         applyAndPut(InstrumentManagerImpl::new);
+        applyAndPut(OrderManagerImpl::new);
         applyAndPut(PositionIdentifierManagerImpl::new);
+        applyAndPut(PriceStoreManagerImpl::new);
         applyAndPut(TraderManagerImpl::new);
         loadCustomManagers();
     }
