@@ -23,6 +23,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DemoConfig {
     
+    public final static String 
+        ORDERS      = "financialdemo.db0.piq.orders",
+        PRICE_STORE = "financialdemo.db0.piq.price_store",
+        POSITIONS   = "financialdemo.db0.piq.daily_position_performance";
+    
     private @Value("${dbms.username}") String username;
     private @Value("${dbms.password}") String password;
     private @Value("${dbms.schema}") String schema;
@@ -31,8 +36,8 @@ public class DemoConfig {
     @Qualifier("onheap")
     public Speedment getOnheapSpeedment() {
         return new FinancialdemoApplication()
-            .with(Table.class, "orders", DemoConfig::disable)
-            .with(Table.class, "price_store", DemoConfig::disable)
+            .with(Table.class, ORDERS, DemoConfig::disable)
+            .with(Table.class, PRICE_STORE, DemoConfig::disable)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
@@ -44,7 +49,7 @@ public class DemoConfig {
     @Qualifier("offheap")
     public Speedment getOffheapSpeedment() {
         return new FinancialdemoApplication()
-            .with(Table.class, "daily_position_performance", DemoConfig::disable)
+            .with(Table.class, POSITIONS, DemoConfig::disable)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
