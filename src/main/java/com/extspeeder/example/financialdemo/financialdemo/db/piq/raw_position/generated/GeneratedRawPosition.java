@@ -1,6 +1,5 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated;
 
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.position_identifier.PositionIdentifier;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.speedment.Entity;
 import com.speedment.config.db.mapper.identity.DoubleIdentityMapper;
@@ -8,12 +7,9 @@ import com.speedment.config.db.mapper.identity.LongIdentityMapper;
 import com.speedment.config.db.mapper.identity.StringIdentityMapper;
 import com.speedment.config.db.mapper.time.TimestampToIntMapper;
 import com.speedment.field.ComparableField;
-import com.speedment.field.ComparableForeignKeyField;
 import com.speedment.field.FieldIdentifier;
 import com.speedment.field.StringField;
 import com.speedment.internal.core.field.ComparableFieldImpl;
-import com.speedment.internal.core.field.ComparableForeignKeyFieldImpl;
-import com.speedment.plugin.extspeeder.runtime.field.VirtualComparableField;
 import com.speedment.plugin.extspeeder.runtime.field.VirtualStringField;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -31,11 +27,11 @@ import javax.annotation.Generated;
 @Generated("Ext Speeder")
 public interface GeneratedRawPosition extends Entity<RawPosition> {
     
-    /**
-     * A field representation of the virtual field 'trader_id' derived from the
-     * column 'trader_id' in table 'position_identifier'.
-     */
-    final ComparableField<RawPosition, Long, Long> TRADER_ID = new VirtualComparableField<>(Identifier.TRADER_ID, RawPosition::getTraderId, new LongIdentityMapper(), false);
+//    /**
+//     * A field representation of the virtual field 'trader_id' derived from the
+//     * column 'trader_id' in table 'position_identifier'.
+//     */
+//    final ComparableField<RawPosition, Long, Long> TRADER_ID = new VirtualComparableField<>(Identifier.TRADER_ID, RawPosition::getTraderId, new LongIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'trader_name' derived from the
      * column 'name' in table 'trader'.
@@ -51,11 +47,11 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * from the column 'cohort_type' in table 'cohort'.
      */
     final StringField<RawPosition, String> TRADER_GROUP_TYPE = new VirtualStringField<>(Identifier.TRADER_GROUP_TYPE, RawPosition::getTraderGroupType, new StringIdentityMapper(), false);
-    /**
-     * A field representation of the virtual field 'instrument_id' derived from
-     * the column 'instrument_id' in table 'position_identifier'.
-     */
-    final ComparableField<RawPosition, Long, Long> INSTRUMENT_ID = new VirtualComparableField<>(Identifier.INSTRUMENT_ID, RawPosition::getInstrumentId, new LongIdentityMapper(), false);
+//    /**
+//     * A field representation of the virtual field 'instrument_id' derived from
+//     * the column 'instrument_id' in table 'position_identifier'.
+//     */
+//    final ComparableField<RawPosition, Long, Long> INSTRUMENT_ID = new VirtualComparableField<>(Identifier.INSTRUMENT_ID, RawPosition::getInstrumentId, new LongIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'instrument_name' derived from
      * the column 'name' in table 'instrument'.
@@ -77,16 +73,6 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      */
     final StringField<RawPosition, String> INSTRUMENT_INDUSTRY = new VirtualStringField<>(Identifier.INSTRUMENT_INDUSTRY, o -> o.getInstrumentIndustry().orElse(null), new StringIdentityMapper(), false);
     /**
-     * A field representation of the virtual field 'start_date' derived from the
-     * column 'start_date' in table 'cohort'.
-     */
-    final ComparableField<RawPosition, Timestamp, Integer> START_DATE = new VirtualComparableField<>(Identifier.START_DATE, o -> o.getStartDate().orElse(null), new TimestampToIntMapper(), false);
-    /**
-     * A field representation of the virtual field 'end_date' derived from the
-     * column 'end_date' in table 'cohort'.
-     */
-    final ComparableField<RawPosition, Timestamp, Integer> END_DATE = new VirtualComparableField<>(Identifier.END_DATE, o -> o.getEndDate().orElse(null), new TimestampToIntMapper(), false);
-    /**
      * This Field corresponds to the {@link RawPosition} field that can be
      * obtained using the {@link RawPosition#getId()} method.
      */
@@ -96,11 +82,11 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * obtained using the {@link RawPosition#getPnl()} method.
      */
     final ComparableField<RawPosition, Double, Double> PNL = new ComparableFieldImpl<>(Identifier.PNL, RawPosition::getPnl, RawPosition::setPnl, new DoubleIdentityMapper(), false);
-    /**
-     * This Field corresponds to the {@link RawPosition} field that can be
-     * obtained using the {@link RawPosition#getPid()} method.
-     */
-    final ComparableForeignKeyField<RawPosition, Long, Long, PositionIdentifier> PID = new ComparableForeignKeyFieldImpl<>(Identifier.PID, RawPosition::getPid, RawPosition::setPid, RawPosition::findPid, new LongIdentityMapper(), false);
+//    /**
+//     * This Field corresponds to the {@link RawPosition} field that can be
+//     * obtained using the {@link RawPosition#getPid()} method.
+//     */
+//    final ComparableField<RawPosition, Long, Long> PID = new ComparableFieldImpl<>(Identifier.PID, RawPosition::getPid, RawPosition::setPid, new LongIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link RawPosition} field that can be
      * obtained using the {@link RawPosition#getInitiateTradingMktVal()} method.
@@ -117,36 +103,21 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      */
     final ComparableField<RawPosition, Timestamp, Integer> VALUE_DATE = new ComparableFieldImpl<>(Identifier.VALUE_DATE, RawPosition::getValueDate, RawPosition::setValueDate, new TimestampToIntMapper(), false);
     
-    /**
-     * Finds and returns the foreign key Entity {@link PositionIdentifier}
-     * referenced by the field that can be obtained using {@link
-     * RawPosition#getPid()}.
-     * <p>
-     * N.B. The current implementation only supports lazy-loading of the
-     * referenced Entities. This means that if you traverse N RawPosition
-     * entities and call this method for each one, there will be N SQL-queries
-     * executed.
-     * 
-     * @return the foreign key Entity {@link PositionIdentifier} referenced by
-     * the field that can be obtained using {@link RawPosition#getPid()}
-     */
-    PositionIdentifier findPid();
-    
-    /**
-     * Returns the virtual value of column 'trader_id' in foreign table
-     * 'position_identifier'.
-     * 
-     * @return the virtual value TraderId
-     */
-    Long getTraderId();
-    
-    /**
-     * Sets the internal value of virtual column 'trader_id'. This will not
-     * affect the database value.
-     * 
-     * @param traderId the virtual value
-     */
-    void setTraderId(Long traderId);
+//    /**
+//     * Returns the virtual value of column 'trader_id' in foreign table
+//     * 'position_identifier'.
+//     * 
+//     * @return the virtual value TraderId
+//     */
+//    Long getTraderId();
+//    
+//    /**
+//     * Sets the internal value of virtual column 'trader_id'. This will not
+//     * affect the database value.
+//     * 
+//     * @param traderId the virtual value
+//     */
+//    void setTraderId(Long traderId);
     
     /**
      * Returns the virtual value of column 'name' in foreign table 'trader'.
@@ -193,22 +164,22 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * @param traderGroupType the virtual value
      */
     void setTraderGroupType(String traderGroupType);
-    
-    /**
-     * Returns the virtual value of column 'instrument_id' in foreign table
-     * 'position_identifier'.
-     * 
-     * @return the virtual value InstrumentId
-     */
-    Long getInstrumentId();
-    
-    /**
-     * Sets the internal value of virtual column 'instrument_id'. This will not
-     * affect the database value.
-     * 
-     * @param instrumentId the virtual value
-     */
-    void setInstrumentId(Long instrumentId);
+//    
+//    /**
+//     * Returns the virtual value of column 'instrument_id' in foreign table
+//     * 'position_identifier'.
+//     * 
+//     * @return the virtual value InstrumentId
+//     */
+//    Long getInstrumentId();
+//    
+//    /**
+//     * Sets the internal value of virtual column 'instrument_id'. This will not
+//     * affect the database value.
+//     * 
+//     * @param instrumentId the virtual value
+//     */
+//    void setInstrumentId(Long instrumentId);
     
     /**
      * Returns the virtual value of column 'name' in foreign table 'instrument'.
@@ -274,37 +245,6 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
     void setInstrumentIndustry(String instrumentIndustry);
     
     /**
-     * Returns the virtual value of column 'start_date' in foreign table
-     * 'cohort'.
-     * 
-     * @return the virtual value StartDate
-     */
-    Optional<Integer> getStartDate();
-    
-    /**
-     * Sets the internal value of virtual column 'start_date'. This will not
-     * affect the database value.
-     * 
-     * @param startDate the virtual value
-     */
-    void setStartDate(Integer startDate);
-    
-    /**
-     * Returns the virtual value of column 'end_date' in foreign table 'cohort'.
-     * 
-     * @return the virtual value EndDate
-     */
-    Optional<Integer> getEndDate();
-    
-    /**
-     * Sets the internal value of virtual column 'end_date'. This will not affect
-     * the database value.
-     * 
-     * @param endDate the virtual value
-     */
-    void setEndDate(Integer endDate);
-    
-    /**
      * Returns the id of this RawPosition. The id field corresponds to the
      * database column db0.piq.daily_position_performance.id.
      * 
@@ -319,14 +259,14 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * @return the pnl of this RawPosition
      */
     Double getPnl();
-    
-    /**
-     * Returns the pid of this RawPosition. The pid field corresponds to the
-     * database column db0.piq.daily_position_performance.position_identifier_id.
-     * 
-     * @return the pid of this RawPosition
-     */
-    Long getPid();
+//    
+//    /**
+//     * Returns the pid of this RawPosition. The pid field corresponds to the
+//     * database column db0.piq.daily_position_performance.position_identifier_id.
+//     * 
+//     * @return the pid of this RawPosition
+//     */
+//    Long getPid();
     
     /**
      * Returns the initiateTradingMktVal of this RawPosition. The
@@ -371,15 +311,15 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * @return this RawPosition instance
      */
     RawPosition setPnl(Double pnl);
-    
-    /**
-     * Sets the pid of this RawPosition. The pid field corresponds to the
-     * database column db0.piq.daily_position_performance.position_identifier_id.
-     * 
-     * @param pid to set of this RawPosition
-     * @return this RawPosition instance
-     */
-    RawPosition setPid(Long pid);
+//    
+//    /**
+//     * Sets the pid of this RawPosition. The pid field corresponds to the
+//     * database column db0.piq.daily_position_performance.position_identifier_id.
+//     * 
+//     * @param pid to set of this RawPosition
+//     * @return this RawPosition instance
+//     */
+//    RawPosition setPid(Long pid);
     
     /**
      * Sets the initiateTradingMktVal of this RawPosition. The
@@ -414,21 +354,19 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
         
         ID ("id"),
         PNL ("pnl"),
-        PID ("position_identifier_id"),
+//        PID ("position_identifier_id"),
         INITIATE_TRADING_MKT_VAL ("total_initiate_mkt_val"),
         LIQUIDATE_TRADING_MKT_VAL ("total_liquidate_mkt_val"),
         VALUE_DATE ("value_date"),
-        TRADER_ID ("trader_id"),
+//        TRADER_ID ("trader_id"),
         TRADER_NAME ("trader_name"),
         TRADER_GROUP ("trader_group"),
         TRADER_GROUP_TYPE ("trader_group_type"),
-        INSTRUMENT_ID ("instrument_id"),
+//        INSTRUMENT_ID ("instrument_id"),
         INSTRUMENT_NAME ("instrument_name"),
         INSTRUMENT_SYMBOL ("instrument_symbol"),
         INSTRUMENT_SECTOR ("instrument_sector"),
-        INSTRUMENT_INDUSTRY ("instrument_industry"),
-        START_DATE ("start_date"),
-        END_DATE ("end_date");
+        INSTRUMENT_INDUSTRY ("instrument_industry");
         
         private final String columnName;
         

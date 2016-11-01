@@ -1,11 +1,10 @@
 package com.extspeeder.example.financialdemo.controller;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
+import static com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.speedment.internal.util.testing.Stopwatch;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
@@ -33,7 +32,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PositionController {
     
     private final static String SEPARATOR  = ">>";
-    private final static DateFormat FORMAT = new SimpleDateFormat("yyyyMMdd");
     
     private @Autowired RawPositionManager rawPositions;
 
@@ -48,8 +46,8 @@ public class PositionController {
     ) throws ParseException {
         
         final Stopwatch sw = Stopwatch.createStarted();
-        final int iFrom = (int) (FORMAT.parse(startDate).getTime() / 1000);
-        final int iTo   = (int) (FORMAT.parse(endDate).getTime() / 1000);
+        final int iFrom = toEpochSecs(startDate);
+        final int iTo   = toEpochSecs(endDate);
         final String[] groups = aGroups.split(SEPARATOR);
         
         Stream<RawPosition> positions = rawPositions.stream()
@@ -130,7 +128,7 @@ public class PositionController {
     
     private static Function<RawPosition, String> classifier(String group) {
         switch (group) {
-//            case "valueDate"          : return RawPosition::getValueDate;
+            case "valueDate"          : return RawPosition::getValueDateAsString;
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;
@@ -144,8 +142,9 @@ public class PositionController {
         }
     }
     
-    private static Predicate<RawPosition> filter(String group, String key) {
+    private static Predicate<RawPosition> filter(String group, String key) throws ParseException {
         switch (group) {
+            case "valueDate"          : return RawPosition.VALUE_DATE.equal(toEpochSecs(key));
             case "traderName"         : return RawPosition.TRADER_NAME.equal(key);
             case "traderGroup"        : return RawPosition.TRADER_GROUP.equal(key);
             case "traderGroupType"    : return RawPosition.TRADER_GROUP_TYPE.equal(key);
@@ -159,38 +158,29 @@ public class PositionController {
         }
     }
     
+    private static int toEpochSecs(String date) throws ParseException {
+        return (int) (DATE_FORMAT.parse(date).getTime() / 1_000);
+    }
+    
+    private static String fromEpochSecs(int epochSecs) {
+        return DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(epochSecs)));
+    }
+    
     private final static class ResultFactory {
         
         private final Function<RawPosition, String> getId;
-//        private final Function<RawPosition, String> getName;
-//        private final boolean leaf;
 
-        public ResultFactory(
-                Function<RawPosition, String> getId//,
-//                Function<RawPosition, String> getName,
-//                boolean leaf
-        ) {
-            
+        public ResultFactory(Function<RawPosition, String> getId) {
             this.getId   = requireNonNull(getId);
-//            this.getName = requireNonNull(getName);
-//            this.leaf    = leaf;
         }
         
         public Result createFrom(RawPosition pos) {
             return new Result(
                 getId.apply(pos),
-//                getName.apply(pos),
-//                leaf,
                 pos.getInitiateTradingMktVal(),
                 pos.getLiquidateTradingMktVal(),
                 pos.getPnl(),
-//                pos.getTraderName(),
-//                pos.getTraderGroup(),
-//                pos.getTraderGroupType(),
                 pos.getInstrumentNameUnwrapped(),
-//                pos.getInstrumentSymbol(),
-//                pos.getInstrumentSectorUnwrapped(),
-//                pos.getInstrumentIndustryUnwrapped(),
                 pos.getValueDate()
             );
         }
@@ -199,52 +189,26 @@ public class PositionController {
     public final static class Result {
         
         private final String id;
-//        private final String name;
-//        private final boolean leaf;
         
         private double initiateTradingMktValue;
         private double liquidateTradingMktValue;
         private double pnl;
-        
-//        private String traderName;
-//        private String traderGroup;
-//        private String traderGroupType;
         private String instrumentName;
-//        private String instrumentSymbol;
-//        private String instrumentSector;
-//        private String instrumentIndustry;
-        
         private int minDate;
         private int maxDate;
 
-        public Result(String id, 
-//                      String name, 
-//                      boolean leaf, 
+        public Result(String id,
                       double initiateTradingMktValue, 
                       double liquidateTradingMktValue, 
-                      double pnl, 
-//                      String traderName, 
-//                      String traderGroup, 
-//                      String traderGroupType, 
-                      String instrumentName, 
-//                      String instrumentSymbol, 
-//                      String instrumentSector, 
-//                      String instrumentIndustry,
+                      double pnl,
+                      String instrumentName,
                       int valueDate) {
             
             this.id                       = id;
-//            this.name                     = name;
-//            this.leaf                     = leaf;
             this.initiateTradingMktValue  = initiateTradingMktValue;
             this.liquidateTradingMktValue = liquidateTradingMktValue;
             this.pnl                      = pnl;
-//            this.traderName               = traderName;
-//            this.traderGroup              = traderGroup;
-//            this.traderGroupType          = traderGroupType;
             this.instrumentName           = instrumentName;
-//            this.instrumentSymbol         = instrumentSymbol;
-//            this.instrumentSector         = instrumentSector;
-//            this.instrumentIndustry       = instrumentIndustry;
             
             this.minDate = valueDate;
             this.maxDate = valueDate;
@@ -253,14 +217,6 @@ public class PositionController {
         public String getId() {
             return id;
         }
-
-//        public String getName() {
-//            return name;
-//        }
-//
-//        public boolean isLeaf() {
-//            return leaf;
-//        }
 
         public double getInitiateTradingMktValue() {
             return initiateTradingMktValue;
@@ -274,40 +230,16 @@ public class PositionController {
             return pnl;
         }
 
-//        public String getTraderName() {
-//            return traderName;
-//        }
-//
-//        public String getTraderGroup() {
-//            return traderGroup;
-//        }
-//
-//        public String getTraderGroupType() {
-//            return traderGroupType;
-//        }
-
         public String getInstrumentName() {
             return instrumentName;
         }
 
-//        public String getInstrumentSymbol() {
-//            return instrumentSymbol;
-//        }
-//
-//        public String getInstrumentSector() {
-//            return instrumentSector;
-//        }
-//
-//        public String getInstrumentIndustry() {
-//            return instrumentIndustry;
-//        }
-        
         public String getMinDate() {
-            return FORMAT.format(Date.from(Instant.ofEpochSecond(minDate)));
+            return fromEpochSecs(minDate);
         }
         
         public String getMaxDate() {
-            return FORMAT.format(Date.from(Instant.ofEpochSecond(maxDate)));
+            return fromEpochSecs(maxDate);
         }
         
         public Result aggregate(Result other) {
@@ -315,13 +247,7 @@ public class PositionController {
             liquidateTradingMktValue += other.liquidateTradingMktValue;
             pnl                      += other.pnl;
             
-//            traderName         = aggregate(traderName,         other.traderName);
-//            traderGroup        = aggregate(traderGroup,        other.traderGroup);
-//            traderGroupType    = aggregate(traderGroupType,    other.traderGroupType);
-            instrumentName     = aggregate(instrumentName,     other.instrumentName);
-//            instrumentSymbol   = aggregate(instrumentSymbol,   other.instrumentSymbol);
-//            instrumentSector   = aggregate(instrumentSector,   other.instrumentSector);
-//            instrumentIndustry = aggregate(instrumentIndustry, other.instrumentIndustry);
+            instrumentName = aggregate(instrumentName, other.instrumentName);
             
             minDate = Math.min(minDate, other.minDate);
             maxDate = Math.max(maxDate, other.maxDate);

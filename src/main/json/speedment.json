@@ -303,7 +303,7 @@
                     "enabled": false
                   }
                 ],
-                "expanded": true,
+                "expanded": false,
                 "primaryKeyColumns": [
                   {
                     "expanded": false,
@@ -391,7 +391,7 @@
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
-                    "typeMapper": "com.speedment.config.db.mapper.time.TimestampToIntMapper",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
                     "expanded": false,
                     "nullable": true,
                     "autoIncrement": false,
@@ -402,7 +402,7 @@
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
-                    "typeMapper": "com.speedment.config.db.mapper.time.TimestampToIntMapper",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
                     "expanded": false,
                     "nullable": true,
                     "autoIncrement": false,
@@ -500,7 +500,7 @@
                 ],
                 "customRestPath": "financialdemo/db/piq/cohort",
                 "name": "cohort",
-                "enabled": true,
+                "enabled": false,
                 "exposedInRest": false
               },
               {
@@ -979,7 +979,7 @@
                       }
                     ],
                     "name": "FK_kxm8biw1ugho45xx6r7kkrnfy",
-                    "enabled": true
+                    "enabled": false
                   }
                 ],
                 "expanded": true,
@@ -1058,7 +1058,7 @@
                         "columnName": "trader_id"
                       }
                     ],
-                    "enabled": true
+                    "enabled": false
                   },
                   {
                     "expanded": true,
@@ -1164,7 +1164,7 @@
                         "columnName": "instrument_id"
                       }
                     ],
-                    "enabled": true
+                    "enabled": false
                   },
                   {
                     "expanded": true,
@@ -1265,68 +1265,6 @@
                       }
                     ],
                     "enabled": true
-                  },
-                  {
-                    "expanded": true,
-                    "name": "start_date",
-                    "columnReferences": [
-                      {
-                        "name": "piq.daily_position_performance.position_identifier_id",
-                        "schemaName": "piq",
-                        "tableName": "daily_position_performance",
-                        "columnName": "position_identifier_id"
-                      },
-                      {
-                        "name": "piq.position_identifier.trader_id",
-                        "schemaName": "piq",
-                        "tableName": "position_identifier",
-                        "columnName": "trader_id"
-                      },
-                      {
-                        "name": "piq.trader.cohort_id",
-                        "schemaName": "piq",
-                        "tableName": "trader",
-                        "columnName": "cohort_id"
-                      },
-                      {
-                        "name": "piq.cohort.start_date",
-                        "schemaName": "piq",
-                        "tableName": "cohort",
-                        "columnName": "start_date"
-                      }
-                    ],
-                    "enabled": true
-                  },
-                  {
-                    "expanded": true,
-                    "name": "end_date",
-                    "columnReferences": [
-                      {
-                        "name": "piq.daily_position_performance.position_identifier_id",
-                        "schemaName": "piq",
-                        "tableName": "daily_position_performance",
-                        "columnName": "position_identifier_id"
-                      },
-                      {
-                        "name": "piq.position_identifier.trader_id",
-                        "schemaName": "piq",
-                        "tableName": "position_identifier",
-                        "columnName": "trader_id"
-                      },
-                      {
-                        "name": "piq.trader.cohort_id",
-                        "schemaName": "piq",
-                        "tableName": "trader",
-                        "columnName": "cohort_id"
-                      },
-                      {
-                        "name": "piq.cohort.end_date",
-                        "schemaName": "piq",
-                        "tableName": "cohort",
-                        "columnName": "end_date"
-                      }
-                    ],
-                    "enabled": true
                   }
                 ],
                 "columns": [
@@ -1405,7 +1343,7 @@
                     "name": "position_identifier_id",
                     "alias": "pid",
                     "ordinalPosition": 7.0,
-                    "enabled": true,
+                    "enabled": false,
                     "exposedInRest": false
                   },
                   {
@@ -2183,7 +2121,7 @@
                 ],
                 "customRestPath": "financialdemo/db/piq/instrument",
                 "name": "instrument",
-                "enabled": true,
+                "enabled": false,
                 "exposedInRest": false
               },
               {
@@ -2271,7 +2209,7 @@
                       }
                     ],
                     "name": "FKC3DF62E5510A1603",
-                    "enabled": true
+                    "enabled": false
                   },
                   {
                     "expanded": false,
@@ -2287,7 +2225,7 @@
                       }
                     ],
                     "name": "FKC3DF62E5BAAB0532",
-                    "enabled": true
+                    "enabled": false
                   },
                   {
                     "expanded": false,
@@ -2303,7 +2241,7 @@
                       }
                     ],
                     "name": "FK_lmi5qkh97towmguy7pxsbbqkh",
-                    "enabled": true
+                    "enabled": false
                   }
                 ],
                 "expanded": false,
@@ -2372,6 +2310,153 @@
                     "enabled": true
                   }
                 ],
+                "virtualColumns": [
+                  {
+                    "expanded": true,
+                    "name": "instrument_symbol",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.instrument_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "instrument_id"
+                      },
+                      {
+                        "name": "piq.instrument.symbol",
+                        "schemaName": "piq",
+                        "tableName": "instrument",
+                        "columnName": "symbol"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "instrument_sector",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.instrument_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "instrument_id"
+                      },
+                      {
+                        "name": "piq.instrument.sector",
+                        "schemaName": "piq",
+                        "tableName": "instrument",
+                        "columnName": "sector"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "instrument_industry",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.instrument_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "instrument_id"
+                      },
+                      {
+                        "name": "piq.instrument.industry",
+                        "schemaName": "piq",
+                        "tableName": "instrument",
+                        "columnName": "industry"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "trader_name",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.trader_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "trader_id"
+                      },
+                      {
+                        "name": "piq.trader.name",
+                        "schemaName": "piq",
+                        "tableName": "trader",
+                        "columnName": "name"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "trader_group",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.trader_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "trader_id"
+                      },
+                      {
+                        "name": "piq.trader.cohort_id",
+                        "schemaName": "piq",
+                        "tableName": "trader",
+                        "columnName": "cohort_id"
+                      },
+                      {
+                        "name": "piq.cohort.name",
+                        "schemaName": "piq",
+                        "tableName": "cohort",
+                        "columnName": "name"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "trader_group_type",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.trader_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "trader_id"
+                      },
+                      {
+                        "name": "piq.trader.cohort_id",
+                        "schemaName": "piq",
+                        "tableName": "trader",
+                        "columnName": "cohort_id"
+                      },
+                      {
+                        "name": "piq.cohort.cohort_type",
+                        "schemaName": "piq",
+                        "tableName": "cohort",
+                        "columnName": "cohort_type"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "price",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.execution_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "execution_id"
+                      },
+                      {
+                        "name": "piq.execution.price",
+                        "schemaName": "piq",
+                        "tableName": "execution",
+                        "columnName": "price"
+                      }
+                    ],
+                    "enabled": true
+                  }
+                ],
                 "columns": [
                   {
                     "databaseType": "java.lang.Long",
@@ -2381,156 +2466,190 @@
                     "autoIncrement": true,
                     "name": "id",
                     "ordinalPosition": 1.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "version",
                     "ordinalPosition": 2.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
+                    "typeMapper": "com.speedment.config.db.mapper.time.TimestampToIntMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "date_created",
                     "ordinalPosition": 3.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "typeMapper": "com.extspeeder.example.financialdemo.extra.BuySellMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "direction",
                     "ordinalPosition": 4.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": true,
+                    "autoIncrement": false,
                     "name": "execution_id",
                     "ordinalPosition": 5.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "instrument_id",
                     "ordinalPosition": 6.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
                     "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "last_updated",
                     "ordinalPosition": 7.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "typeMapper": "com.extspeeder.example.financialdemo.extra.OrderTypeMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "order_type",
                     "ordinalPosition": 8.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Integer",
                     "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "quantity",
                     "ordinalPosition": 9.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "typeMapper": "com.extspeeder.example.financialdemo.extra.StatusMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "status",
                     "ordinalPosition": 10.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Boolean",
                     "typeMapper": "com.speedment.config.db.mapper.identity.BooleanIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "system_generated",
                     "ordinalPosition": 11.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.String",
                     "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "class",
                     "ordinalPosition": 12.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
                     "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
                     "expanded": false,
                     "nullable": true,
+                    "autoIncrement": false,
                     "name": "expiry",
                     "ordinalPosition": 13.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Double",
                     "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
                     "expanded": false,
                     "nullable": true,
+                    "autoIncrement": false,
                     "name": "limit_price",
                     "ordinalPosition": 14.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Integer",
                     "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
                     "expanded": false,
                     "nullable": true,
+                    "autoIncrement": false,
                     "name": "confidence",
                     "ordinalPosition": 15.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.String",
                     "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
                     "expanded": false,
                     "nullable": true,
+                    "autoIncrement": false,
                     "name": "system_notes",
                     "ordinalPosition": 16.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "trader_id",
                     "ordinalPosition": 17.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   }
                 ],
-                "customRestPath": "financialdemo/db/piq/orders",
+                "customRestPath": "orders",
                 "name": "orders",
-                "enabled": false,
+                "alias": "order",
+                "enabled": true,
                 "exposedInRest": true
               },
               {
@@ -2987,7 +3106,7 @@
                     "enabled": true
                   }
                 ],
-                "expanded": true,
+                "expanded": false,
                 "primaryKeyColumns": [
                   {
                     "expanded": false,
@@ -3093,7 +3212,7 @@
                 ],
                 "customRestPath": "financialdemo/db/piq/position_identifier",
                 "name": "position_identifier",
-                "enabled": true,
+                "enabled": false,
                 "exposedInRest": false
               },
               {
@@ -3192,13 +3311,8 @@
                 "primaryKeyColumns": [
                   {
                     "expanded": false,
-                    "name": "instrument_id",
+                    "name": "id",
                     "ordinalPosition": 1.0
-                  },
-                  {
-                    "expanded": false,
-                    "name": "value_date",
-                    "ordinalPosition": 2.0
                   }
                 ],
                 "indexes": [
@@ -3229,122 +3343,159 @@
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
-                    "name": "instrument_id",
+                    "autoIncrement": true,
+                    "name": "id",
                     "ordinalPosition": 1.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
-                    "name": "value_date",
+                    "autoIncrement": false,
+                    "name": "instrument_id",
                     "ordinalPosition": 2.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "open",
-                    "ordinalPosition": 3.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "high",
-                    "ordinalPosition": 4.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "low",
-                    "ordinalPosition": 5.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "close",
-                    "ordinalPosition": 6.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "bid",
-                    "ordinalPosition": 7.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "ask",
-                    "ordinalPosition": 8.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "previous_close",
-                    "ordinalPosition": 9.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "last",
-                    "ordinalPosition": 10.0,
-                    "enabled": true
-                  },
-                  {
-                    "databaseType": "java.lang.Double",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
-                    "expanded": false,
-                    "nullable": true,
-                    "name": "volume",
-                    "ordinalPosition": 11.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Long",
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
-                    "name": "refresh_time",
+                    "autoIncrement": false,
+                    "name": "value_date",
+                    "ordinalPosition": 3.0,
+                    "enabled": true,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": false,
+                    "autoIncrement": false,
+                    "name": "open",
+                    "ordinalPosition": 4.0,
+                    "enabled": true,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": false,
+                    "autoIncrement": false,
+                    "name": "high",
+                    "ordinalPosition": 5.0,
+                    "enabled": true,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": false,
+                    "autoIncrement": false,
+                    "name": "low",
+                    "ordinalPosition": 6.0,
+                    "enabled": true,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "close",
+                    "ordinalPosition": 7.0,
+                    "enabled": true,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "bid",
+                    "ordinalPosition": 8.0,
+                    "enabled": false,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "ask",
+                    "ordinalPosition": 9.0,
+                    "enabled": false,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "previous_close",
+                    "ordinalPosition": 10.0,
+                    "enabled": false,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "last",
+                    "ordinalPosition": 11.0,
+                    "enabled": false,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Double",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.DoubleIdentityMapper",
+                    "expanded": false,
+                    "nullable": true,
+                    "autoIncrement": false,
+                    "name": "volume",
                     "ordinalPosition": 12.0,
-                    "enabled": true
+                    "enabled": false,
+                    "exposedInRest": true
+                  },
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": false,
+                    "nullable": false,
+                    "autoIncrement": false,
+                    "name": "refresh_time",
+                    "ordinalPosition": 13.0,
+                    "enabled": false,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Boolean",
                     "typeMapper": "com.speedment.config.db.mapper.identity.BooleanIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "historical_close_written",
-                    "ordinalPosition": 13.0,
-                    "enabled": true
+                    "ordinalPosition": 14.0,
+                    "enabled": false,
+                    "exposedInRest": true
                   }
                 ],
-                "customRestPath": "financialdemo/db/piq/price_store",
+                "customRestPath": "prices",
                 "name": "price_store",
-                "enabled": false,
+                "enabled": true,
                 "exposedInRest": true
               },
               {
@@ -3606,7 +3757,7 @@
                       }
                     ],
                     "name": "FK_74gw6stlk1gf9tc5rw73xoxft",
-                    "enabled": true
+                    "enabled": false
                   },
                   {
                     "expanded": false,
@@ -3756,7 +3907,7 @@
                 ],
                 "customRestPath": "financialdemo/db/piq/trader",
                 "name": "trader",
-                "enabled": true,
+                "enabled": false,
                 "exposedInRest": false
               },
               {

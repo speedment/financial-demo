@@ -33,7 +33,6 @@
     </properties>
     
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -61,16 +60,13 @@
 <!--    <build>
         <plugins>
             <plugin>
-                <groupId>com.speedment</groupId>
-                <artifactId>extspeeder-maven-plugin</artifactId>
-                <version>${extspeeder.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>${db.groupId}</groupId>
-                        <artifactId>${db.artifactId}</artifactId>
-                        <version>${db.version}</version>
-                    </dependency>
-                </dependencies>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>
+                        -XX:+PrintGC -XX:+PrintGCDetails -XX:+UseG1GC -Xmx10G -Xms10G
+                    </jvmArguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>-->

@@ -1,6 +1,8 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
+import java.time.Instant;
+import java.util.Date;
 
 /**
  * An implementation representing an entity (for example, a row) in the Table
@@ -17,7 +19,7 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
     public String getInstrumentNameUnwrapped() {
         return instrumentName;
     }
-
+    
     @Override
     public String getInstrumentSectorOrEmpty() {
         return instrumentSector == null ? "" : instrumentSector;
@@ -31,5 +33,15 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
     @Override
     public String getInstrumentIndustryOrEmpty() {
         return instrumentIndustry == null ? "" : instrumentIndustry;
+    }
+
+    @Override
+    public String getValueDateAsString() {
+        final Integer valueDate = getValueDate();
+        if (valueDate == null) {
+            return null;
+        } else {
+            return RawPosition.DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(valueDate)));
+        }
     }
 }

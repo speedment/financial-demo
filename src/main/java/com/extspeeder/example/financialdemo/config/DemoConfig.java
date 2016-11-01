@@ -45,7 +45,6 @@ public class DemoConfig {
     public Speedment getOffheapSpeedment() {
         return new FinancialdemoApplication()
             .with(Table.class, "daily_position_performance", DemoConfig::disable)
-            .with(Table.class, "position_identifier", DemoConfig::disable)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
@@ -69,6 +68,7 @@ public class DemoConfig {
     }
     
     private static void disable(Table table) {
+        System.out.println("Disabling " + table.getName());
         table.mutator().setEnabled(false);
     }
 }

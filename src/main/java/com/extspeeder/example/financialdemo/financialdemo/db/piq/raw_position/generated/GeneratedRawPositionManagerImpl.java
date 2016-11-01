@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
-import static com.speedment.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated base manager implementation representing an entity (for
@@ -40,21 +39,16 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
         try {
             entity.setId(resultSet.getLong(1));
             entity.setPnl(resultSet.getDouble(2));
-            entity.setPid(resultSet.getLong(3));
-            entity.setInitiateTradingMktVal(resultSet.getDouble(4));
-            entity.setLiquidateTradingMktVal(resultSet.getDouble(5));
-            entity.setValueDate(RawPosition.VALUE_DATE.typeMapper().toJavaType(resultSet.getTimestamp(6)));
-            entity.setTraderId(resultSet.getLong(7));
-            entity.setTraderName(resultSet.getString(8));
-            entity.setTraderGroup(resultSet.getString(9));
-            entity.setTraderGroupType(resultSet.getString(10));
-            entity.setInstrumentId(resultSet.getLong(11));
-            entity.setInstrumentName(resultSet.getString(12));
-            entity.setInstrumentSymbol(resultSet.getString(13));
-            entity.setInstrumentSector(resultSet.getString(14));
-            entity.setInstrumentIndustry(resultSet.getString(15));
-            entity.setStartDate(RawPosition.START_DATE.typeMapper().toJavaType(resultSet.getTimestamp(16)));
-            entity.setEndDate(RawPosition.END_DATE.typeMapper().toJavaType(resultSet.getTimestamp(17)));
+            entity.setInitiateTradingMktVal(resultSet.getDouble(3));
+            entity.setLiquidateTradingMktVal(resultSet.getDouble(4));
+            entity.setValueDate(RawPosition.VALUE_DATE.typeMapper().toJavaType(resultSet.getTimestamp(5)));
+            entity.setTraderName(resultSet.getString(6));
+            entity.setTraderGroup(resultSet.getString(7));
+            entity.setTraderGroupType(resultSet.getString(8));
+            entity.setInstrumentName(resultSet.getString(9));
+            entity.setInstrumentSymbol(resultSet.getString(10));
+            entity.setInstrumentSector(resultSet.getString(11));
+            entity.setInstrumentIndustry(resultSet.getString(12));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);
@@ -77,21 +71,16 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
         switch ((RawPosition.Identifier) identifier) {
             case ID : return entity.getId();
             case PNL : return entity.getPnl();
-            case PID : return entity.getPid();
             case INITIATE_TRADING_MKT_VAL : return entity.getInitiateTradingMktVal();
             case LIQUIDATE_TRADING_MKT_VAL : return entity.getLiquidateTradingMktVal();
             case VALUE_DATE : return entity.getValueDate();
-            case TRADER_ID : return entity.getTraderId();
             case TRADER_NAME : return entity.getTraderName();
             case TRADER_GROUP : return entity.getTraderGroup();
             case TRADER_GROUP_TYPE : return entity.getTraderGroupType();
-            case INSTRUMENT_ID : return entity.getInstrumentId();
             case INSTRUMENT_NAME : return entity.getInstrumentName().orElse(null);
             case INSTRUMENT_SYMBOL : return entity.getInstrumentSymbol();
             case INSTRUMENT_SECTOR : return entity.getInstrumentSector().orElse(null);
             case INSTRUMENT_INDUSTRY : return entity.getInstrumentIndustry().orElse(null);
-            case START_DATE : return entity.getStartDate().orElse(null);
-            case END_DATE : return entity.getEndDate().orElse(null);
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -101,21 +90,16 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
         switch ((RawPosition.Identifier) identifier) {
             case ID : entity.setId((Long) value); break;
             case PNL : entity.setPnl((Double) value); break;
-            case PID : entity.setPid((Long) value); break;
             case INITIATE_TRADING_MKT_VAL : entity.setInitiateTradingMktVal((Double) value); break;
             case LIQUIDATE_TRADING_MKT_VAL : entity.setLiquidateTradingMktVal((Double) value); break;
             case VALUE_DATE : entity.setValueDate((Integer) value); break;
-            case TRADER_ID : entity.setTraderId((Long) value); break;
             case TRADER_NAME : entity.setTraderName((String) value); break;
             case TRADER_GROUP : entity.setTraderGroup((String) value); break;
             case TRADER_GROUP_TYPE : entity.setTraderGroupType((String) value); break;
-            case INSTRUMENT_ID : entity.setInstrumentId((Long) value); break;
             case INSTRUMENT_NAME : entity.setInstrumentName((String) value); break;
             case INSTRUMENT_SYMBOL : entity.setInstrumentSymbol((String) value); break;
             case INSTRUMENT_SECTOR : entity.setInstrumentSector((String) value); break;
             case INSTRUMENT_INDUSTRY : entity.setInstrumentIndustry((String) value); break;
-            case START_DATE : entity.setStartDate((Integer) value); break;
-            case END_DATE : entity.setEndDate((Integer) value); break;
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -125,21 +109,16 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
         return Stream.of(
             RawPosition.ID,
             RawPosition.PNL,
-            RawPosition.PID,
             RawPosition.INITIATE_TRADING_MKT_VAL,
             RawPosition.LIQUIDATE_TRADING_MKT_VAL,
             RawPosition.VALUE_DATE,
-            RawPosition.TRADER_ID,
             RawPosition.TRADER_NAME,
             RawPosition.TRADER_GROUP,
             RawPosition.TRADER_GROUP_TYPE,
-            RawPosition.INSTRUMENT_ID,
             RawPosition.INSTRUMENT_NAME,
             RawPosition.INSTRUMENT_SYMBOL,
             RawPosition.INSTRUMENT_SECTOR,
-            RawPosition.INSTRUMENT_INDUSTRY,
-            RawPosition.START_DATE,
-            RawPosition.END_DATE
+            RawPosition.INSTRUMENT_INDUSTRY
         );
     }
     
@@ -166,7 +145,6 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
         
         copy.setId(source.getId());
         copy.setPnl(source.getPnl());
-        copy.setPid(source.getPid());
         copy.setInitiateTradingMktVal(source.getInitiateTradingMktVal());
         copy.setLiquidateTradingMktVal(source.getLiquidateTradingMktVal());
         copy.setValueDate(source.getValueDate());

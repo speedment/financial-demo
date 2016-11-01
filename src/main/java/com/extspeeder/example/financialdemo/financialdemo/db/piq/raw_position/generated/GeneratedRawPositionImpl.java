@@ -1,8 +1,6 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated;
 
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.position_identifier.PositionIdentifier;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
-import com.speedment.exception.SpeedmentException;
 import com.speedment.internal.core.code.AbstractBaseEntity;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,20 +19,15 @@ import javax.annotation.Generated;
 @Generated("Ext Speeder")
 public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPosition> implements RawPosition {
     
-    private Long traderId;
     private String traderName;
     private String traderGroup;
     private String traderGroupType;
-    private Long instrumentId;
     protected String instrumentName;
     private String instrumentSymbol;
     protected String instrumentSector;
     protected String instrumentIndustry;
-    private Integer startDate;
-    private Integer endDate;
     private Long id;
     private Double pnl;
-    private Long pid;
     private Double initiateTradingMktVal;
     private Double liquidateTradingMktVal;
     private Integer valueDate;
@@ -42,24 +35,16 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     protected GeneratedRawPositionImpl() {
         
     }
-    
+
     @Override
-    public PositionIdentifier findPid() {
-        return managerOf_(PositionIdentifier.class).findAny(PositionIdentifier.ID, getPid())
-            .orElseThrow(() -> new SpeedmentException(
-                "Foreign key constraint error. PositionIdentifier is set to " + getPid()
-                ));
-            
+    public Long getId() {
+        return id;
     }
-    
+
     @Override
-    public Long getTraderId() {
-        return traderId;
-    }
-    
-    @Override
-    public void setTraderId(Long traderId) {
-        this.traderId = traderId;
+    public RawPosition setId(Long id) {
+        this.id = id;
+        return this;
     }
     
     @Override
@@ -91,17 +76,7 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public void setTraderGroupType(String traderGroupType) {
         this.traderGroupType = traderGroupType;
     }
-    
-    @Override
-    public Long getInstrumentId() {
-        return instrumentId;
-    }
-    
-    @Override
-    public void setInstrumentId(Long instrumentId) {
-        this.instrumentId = instrumentId;
-    }
-    
+
     @Override
     public Optional<String> getInstrumentName() {
         return Optional.ofNullable(instrumentName);
@@ -141,42 +116,12 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public void setInstrumentIndustry(String instrumentIndustry) {
         this.instrumentIndustry = instrumentIndustry;
     }
-    
-    @Override
-    public Optional<Integer> getStartDate() {
-        return Optional.ofNullable(startDate);
-    }
-    
-    @Override
-    public void setStartDate(Integer startDate) {
-        this.startDate = startDate;
-    }
-    
-    @Override
-    public Optional<Integer> getEndDate() {
-        return Optional.ofNullable(endDate);
-    }
-    
-    @Override
-    public void setEndDate(Integer endDate) {
-        this.endDate = endDate;
-    }
-    
-    @Override
-    public Long getId() {
-        return id;
-    }
-    
+
     @Override
     public Double getPnl() {
         return pnl;
     }
-    
-    @Override
-    public Long getPid() {
-        return pid;
-    }
-    
+
     @Override
     public Double getInitiateTradingMktVal() {
         return initiateTradingMktVal;
@@ -191,25 +136,13 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public Integer getValueDate() {
         return valueDate;
     }
-    
-    @Override
-    public final RawPosition setId(Long id) {
-        this.id = id;
-        return this;
-    }
-    
+
     @Override
     public final RawPosition setPnl(Double pnl) {
         this.pnl = pnl;
         return this;
     }
-    
-    @Override
-    public final RawPosition setPid(Long pid) {
-        this.pid = pid;
-        return this;
-    }
-    
+
     @Override
     public final RawPosition setInitiateTradingMktVal(Double initiateTradingMktVal) {
         this.initiateTradingMktVal = initiateTradingMktVal;
@@ -233,7 +166,6 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
         sj.add("pnl = "+Objects.toString(getPnl()));
-        sj.add("pid = "+Objects.toString(getPid()));
         sj.add("initiateTradingMktVal = "+Objects.toString(getInitiateTradingMktVal()));
         sj.add("liquidateTradingMktVal = "+Objects.toString(getLiquidateTradingMktVal()));
         sj.add("valueDate = "+Objects.toString(getValueDate()));
@@ -245,9 +177,7 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
         if (this == that) { return true; }
         if (!(that instanceof RawPosition)) { return false; }
         final RawPosition thatRawPosition = (RawPosition)that;
-        if (!Objects.equals(this.getId(), thatRawPosition.getId())) {return false; }
         if (!Objects.equals(this.getPnl(), thatRawPosition.getPnl())) {return false; }
-        if (!Objects.equals(this.getPid(), thatRawPosition.getPid())) {return false; }
         if (!Objects.equals(this.getInitiateTradingMktVal(), thatRawPosition.getInitiateTradingMktVal())) {return false; }
         if (!Objects.equals(this.getLiquidateTradingMktVal(), thatRawPosition.getLiquidateTradingMktVal())) {return false; }
         if (!Objects.equals(this.getValueDate(), thatRawPosition.getValueDate())) {return false; }
@@ -259,7 +189,6 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
         int hash = 7;
         hash = 31 * hash + Objects.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(getPnl());
-        hash = 31 * hash + Objects.hashCode(getPid());
         hash = 31 * hash + Objects.hashCode(getInitiateTradingMktVal());
         hash = 31 * hash + Objects.hashCode(getLiquidateTradingMktVal());
         hash = 31 * hash + Objects.hashCode(getValueDate());

@@ -39,8 +39,6 @@ public class GeneratedRawPositionSerializerImpl extends AbstractEntitySerializer
     private final static Serializer<String> INSTRUMENT_SYMBOL = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_SECTOR = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_INDUSTRY = SerializerFactory.serializerOf(String.class);
-    private final static Serializer<Integer> START_DATE = SerializerFactory.serializerOf(Integer.class);
-    private final static Serializer<Integer> END_DATE = SerializerFactory.serializerOf(Integer.class);
     
     public GeneratedRawPositionSerializerImpl(Manager<RawPosition> manager) {
         super(manager);
@@ -52,26 +50,19 @@ public class GeneratedRawPositionSerializerImpl extends AbstractEntitySerializer
         if (!rawPosition.getInstrumentName().isPresent()) BitSetUtil.set(bits, 0);
         if (!rawPosition.getInstrumentSector().isPresent()) BitSetUtil.set(bits, 1);
         if (!rawPosition.getInstrumentIndustry().isPresent()) BitSetUtil.set(bits, 2);
-        if (!rawPosition.getStartDate().isPresent()) BitSetUtil.set(bits, 3);
-        if (!rawPosition.getEndDate().isPresent()) BitSetUtil.set(bits, 4);
         out.writeLong(bits[0]);
         out.writeLong(rawPosition.getId());
         out.writeDouble(rawPosition.getPnl());
-        out.writeLong(rawPosition.getPid());
         out.writeDouble(rawPosition.getInitiateTradingMktVal());
         out.writeDouble(rawPosition.getLiquidateTradingMktVal());
         out.writeInt(rawPosition.getValueDate());
-        out.writeLong(rawPosition.getTraderId());
         out.writeUTF(rawPosition.getTraderName());
         out.writeUTF(rawPosition.getTraderGroup());
         out.writeUTF(rawPosition.getTraderGroupType());
-        out.writeLong(rawPosition.getInstrumentId());
         if (rawPosition.getInstrumentName().isPresent()) out.writeUTF(rawPosition.getInstrumentName().get());
         out.writeUTF(rawPosition.getInstrumentSymbol());
         if (rawPosition.getInstrumentSector().isPresent()) out.writeUTF(rawPosition.getInstrumentSector().get());
         if (rawPosition.getInstrumentIndustry().isPresent()) out.writeUTF(rawPosition.getInstrumentIndustry().get());
-        if (rawPosition.getStartDate().isPresent()) out.writeInt(rawPosition.getStartDate().get());
-        if (rawPosition.getEndDate().isPresent()) out.writeInt(rawPosition.getEndDate().get());
     }
     
     @Override
@@ -81,21 +72,16 @@ public class GeneratedRawPositionSerializerImpl extends AbstractEntitySerializer
         bits[0] = in.readLong();
         rawPosition.setId(in.readLong());
         rawPosition.setPnl(in.readDouble());
-        rawPosition.setPid(in.readLong());
         rawPosition.setInitiateTradingMktVal(in.readDouble());
         rawPosition.setLiquidateTradingMktVal(in.readDouble());
         rawPosition.setValueDate(in.readInt());
-        rawPosition.setTraderId(in.readLong());
         rawPosition.setTraderName(in.readUTF());
         rawPosition.setTraderGroup(in.readUTF());
         rawPosition.setTraderGroupType(in.readUTF());
-        rawPosition.setInstrumentId(in.readLong());
         if (!BitSetUtil.get0(bits)) rawPosition.setInstrumentName(in.readUTF());
         rawPosition.setInstrumentSymbol(in.readUTF());
         if (!BitSetUtil.get1(bits)) rawPosition.setInstrumentSector(in.readUTF());
         if (!BitSetUtil.get2(bits)) rawPosition.setInstrumentIndustry(in.readUTF());
-        if (!BitSetUtil.get3(bits)) rawPosition.setStartDate(in.readInt());
-        if (!BitSetUtil.get4(bits)) rawPosition.setEndDate(in.readInt());
         return rawPosition;
     }
 }
