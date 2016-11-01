@@ -28,14 +28,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Emil Forslund
  * @since  1.0.0
  */
-@RestController("/positions")
+@RestController
 public class PositionController {
     
     private final static String SEPARATOR  = ">>";
     
     private @Autowired RawPositionManager rawPositions;
 
-    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
     public Collection<Result> handleGet(
             @RequestParam(name="callback") String callback,
             @RequestParam(name="startDate") String startDate, 

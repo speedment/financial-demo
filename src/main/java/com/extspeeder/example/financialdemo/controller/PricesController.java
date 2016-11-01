@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Emil Forslund
  * @since  1.0.0
  */
-@RestController("/prices")
+@RestController
 public final class PricesController {
 
     private final SizeCache sizeCache;
@@ -36,7 +36,7 @@ public final class PricesController {
         sizeCache = new SizeCache();
     }
     
-    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/prices", method = GET, produces = APPLICATION_JSON_VALUE)
     public PriceTotalResult handleGet(
         @RequestParam(name="callback") String callback,
         @RequestParam(name="start", required=false) Long start,

@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Emil Forslund
  * @since  1.0.0
  */
-@RestController("/orders")
+@RestController
 public final class OrdersController {
     
     private final static DateFormat FORMAT = new SimpleDateFormat("yyyyMMdd");
@@ -46,7 +46,7 @@ public final class OrdersController {
         sizeCache = new SizeCache();
     }
     
-    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/orders", method = GET, produces = APPLICATION_JSON_VALUE)
     public OrderTotalResult handleGet(
         @RequestParam(name="callback") String callback,
         @RequestParam(name="start", required=false) Long start,
