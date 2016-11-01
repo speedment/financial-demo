@@ -5,10 +5,13 @@ import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStore;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStoreManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.speedment.field.ComparableField;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -30,6 +33,8 @@ import org.springframework.web.bind.annotation.RestController;
 public final class PricesController {
 
     private final SizeCache sizeCache;
+    
+    private @Autowired Gson gson;
     private @Autowired PriceStoreManager manager;
     
     PricesController() {
@@ -41,15 +46,22 @@ public final class PricesController {
         @RequestParam(name="callback", required=false) String callback,
         @RequestParam(name="start", required=false) Long start,
         @RequestParam(name="limit", required=false) Long limit,
-        @RequestParam(name="filters", required=false) Collection<Filter> oFilters,
-        @RequestParam(name="sort", required=false) Collection<Sort> sorts,
+        @RequestParam(name="filters", required=false) String sFilters,
+        @RequestParam(name="sort", required=false) String sSorts,
         HttpServletResponse response) {
         
-        final Collection<Filter> filters;
-        if (oFilters == null || oFilters.isEmpty()) {
+        final List<Filter> filters;
+        if (sFilters == null || "[]".equals(sFilters)) {
             filters = Collections.emptyList();
         } else {
-            filters = oFilters;
+            filters = gson.fromJson(sFilters, new TypeToken<List<Filter>>(){}.getType());
+        }
+        
+        final List<Sort> sorts;
+        if (sSorts == null || "[]".equals(sSorts)) {
+            sorts = Collections.emptyList();
+        } else {
+            sorts = gson.fromJson(sSorts, new TypeToken<List<Sort>>(){}.getType());
         }
         
         Stream<PriceStore> stream = manager.stream();
@@ -60,7 +72,7 @@ public final class PricesController {
             stream = stream.filter(predicate);
             stream = stream.filter(predicate);
         }
-
+        
         if (sorts != null && !sorts.isEmpty()) {
             final Optional<Comparator<PriceStore>> comparator = sorts.stream()
                 .map(PricesController::sortToComparator)

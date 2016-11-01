@@ -7,6 +7,7 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.Pri
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStoreManager;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
+import com.google.gson.Gson;
 import com.speedment.Speedment;
 import com.speedment.enterprise.offheapreadonlycache.OffHeapReadOnlyCacheComponent;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,11 @@ public class DemoConfig {
     private @Value("${dbms.username}") String username;
     private @Value("${dbms.password}") String password;
     private @Value("${dbms.schema}") String schema;
+    
+    @Bean
+    public Gson getGson() {
+        return new Gson();
+    }
 
     @Bean
 //    @Qualifier("onheap")

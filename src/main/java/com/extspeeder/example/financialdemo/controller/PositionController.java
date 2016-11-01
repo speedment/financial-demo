@@ -5,13 +5,13 @@ import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.from
 import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.toEpochSecs;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
+import com.google.gson.Gson;
 import com.speedment.field.trait.ComparableFieldTrait;
 import com.speedment.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.joining;
@@ -36,6 +36,7 @@ public class PositionController {
     
     private final static String SEPARATOR  = ">>";
     
+    private @Autowired Gson gson;
     private @Autowired RawPositionManager rawPositions;
 
     @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
@@ -45,7 +46,6 @@ public class PositionController {
             @RequestParam(name="endDate") String endDate,
             @RequestParam(name="drillDownPath") String aGroups,
             @RequestParam(name="drillDownKey", required=false) String aKeys,
-            @RequestParam(name="sort", required=false) Collection<Sort> sorts,
             HttpServletResponse response
     ) throws ParseException {
         
@@ -81,16 +81,6 @@ public class PositionController {
         final ResultFactory factory = new ResultFactory(
             identifier(groups, usedGroups)
         );
-        
-        if (sorts != null && !sorts.isEmpty()) {
-            final Optional<Comparator<RawPosition>> comparator = sorts.stream()
-                .map(PositionController::sortToComparator)
-                .reduce(Comparator::thenComparing);
-            
-            if (comparator.isPresent()) {
-                positions = positions.sorted(comparator.get());
-            }
-        }
         
         try {
             if (classifier == null) {

@@ -13,7 +13,7 @@ public final class Sort {
     
     private final String property;
     private final Direction direction;
-
+   
     public Sort(String property, Direction direction) {
         this.property  = requireNonNull(property);
         this.direction = requireNonNull(direction);

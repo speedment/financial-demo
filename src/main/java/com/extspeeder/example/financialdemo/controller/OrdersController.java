@@ -9,14 +9,15 @@ import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.Order;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.OrderManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.speedment.field.trait.ComparableFieldTrait;
 import com.speedment.field.trait.StringFieldTrait;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -37,9 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public final class OrdersController {
     
-    private final static DateFormat FORMAT = new SimpleDateFormat("yyyyMMdd");
-    
     private final SizeCache sizeCache;
+    
+    private @Autowired Gson gson;
     private @Autowired OrderManager manager;
     
     OrdersController() {
@@ -48,18 +49,26 @@ public final class OrdersController {
     
     @RequestMapping(value = "/orders", method = GET, produces = APPLICATION_JSON_VALUE)
     public OrderTotalResult handleGet(
-        @RequestParam(name="callback", required=false) String callback,
-        @RequestParam(name="start", required=false) Long start,
-        @RequestParam(name="limit", required=false) Long limit,
-        @RequestParam(name="filters", required=false) Collection<Filter> oFilters,
-        @RequestParam(name="sort", required=false) Collection<Sort> sorts,
-        HttpServletResponse response) throws ParseException, NumberFormatException {
+            @RequestParam(name="callback", required=false) String callback,
+            @RequestParam(name="start", required=false) Long start,
+            @RequestParam(name="limit", required=false) Long limit,
+            @RequestParam(name="filters", required=false) String sFilters,
+            @RequestParam(name="sort", required=false) String sSorts,
+            HttpServletResponse response
+    ) throws ParseException, NumberFormatException {
         
-        final Collection<Filter> filters;
-        if (oFilters == null || oFilters.isEmpty()) {
+        final List<Filter> filters;
+        if (sFilters == null || "[]".equals(sFilters)) {
             filters = Collections.emptyList();
         } else {
-            filters = oFilters;
+            filters = gson.fromJson(sFilters, new TypeToken<List<Filter>>(){}.getType());
+        }
+        
+        final List<Sort> sorts;
+        if (sSorts == null || "[]".equals(sSorts)) {
+            sorts = Collections.emptyList();
+        } else {
+            sorts = gson.fromJson(sSorts, new TypeToken<List<Sort>>(){}.getType());
         }
         
         Stream<Order> stream      = manager.stream();
