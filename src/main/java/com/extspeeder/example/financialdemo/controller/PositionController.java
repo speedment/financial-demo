@@ -1,7 +1,7 @@
 package com.extspeeder.example.financialdemo.controller;
 
+import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
-import static com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.speedment.internal.util.testing.Stopwatch;
 import java.text.ParseException;

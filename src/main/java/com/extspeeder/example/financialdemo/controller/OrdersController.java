@@ -3,6 +3,7 @@ package com.extspeeder.example.financialdemo.controller;
 import com.extspeeder.example.financialdemo.component.SizeCache;
 import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
+import com.extspeeder.example.financialdemo.controller.util.TimeUtil;
 import com.extspeeder.example.financialdemo.extra.BuySell;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
@@ -13,7 +14,6 @@ import com.speedment.field.trait.StringFieldTrait;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -131,7 +131,7 @@ public final class OrdersController {
         } else {
             switch (filter.getProperty()) {
                 case "id"                 : return Long.parseLong(filter.getValue());
-                case "dateCreated"        : return FORMAT.parse(filter.getValue()).getTime() / 1_000;
+                case "dateCreated"        : return TimeUtil.toEpochSecs(filter.getValue());
                 case "direction"          : return BuySell.valueOf(filter.getValue());
                 case "traderName"         : // Fallthrough
                 case "traderGroup"        : // Fallthrough
@@ -247,7 +247,7 @@ public final class OrdersController {
         static OrderResult from(Order original) {
             return new OrderResult(
                 original.getId(),
-                FORMAT.format(Instant.ofEpochSecond(original.getDateCreated())),
+                TimeUtil.fromEpochSecs(original.getDateCreated()),
                 original.getDirection(),
                 original.getInstrumentSymbol(),
                 original.getInstrumentSector().orElse(null),

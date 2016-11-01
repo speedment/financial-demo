@@ -1,8 +1,6 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPosition;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 /**
  * An interface representing an entity (for example, a row) in the Table
@@ -14,8 +12,6 @@ import java.text.SimpleDateFormat;
  * @author Speedment
  */
 public interface RawPosition extends GeneratedRawPosition {
-    
-    DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
     
     String getInstrumentNameUnwrapped();
     

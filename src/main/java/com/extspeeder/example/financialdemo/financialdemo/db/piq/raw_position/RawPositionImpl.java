@@ -1,5 +1,6 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
+import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
 import java.time.Instant;
 import java.util.Date;
@@ -41,7 +42,7 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
         if (valueDate == null) {
             return null;
         } else {
-            return RawPosition.DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(valueDate)));
+            return DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(valueDate)));
         }
     }
 }
