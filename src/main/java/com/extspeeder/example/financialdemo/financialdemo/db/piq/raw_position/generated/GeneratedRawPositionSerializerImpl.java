@@ -26,15 +26,12 @@ public class GeneratedRawPositionSerializerImpl extends AbstractEntitySerializer
     protected final static long serialVersionUID = 124388340;
     private final static Serializer<Long> ID_SERIALIZER = SerializerFactory.serializerOf(Long.class);
     private final static Serializer<Double> PNL_SERIALIZER = SerializerFactory.serializerOf(Double.class);
-    private final static Serializer<Long> PID_SERIALIZER = SerializerFactory.serializerOf(Long.class);
     private final static Serializer<Double> INITIATE_TRADING_MKT_VAL_SERIALIZER = SerializerFactory.serializerOf(Double.class);
     private final static Serializer<Double> LIQUIDATE_TRADING_MKT_VAL_SERIALIZER = SerializerFactory.serializerOf(Double.class);
     private final static Serializer<Integer> VALUE_DATE_SERIALIZER = SerializerFactory.serializerOf(Integer.class);
-    private final static Serializer<Long> TRADER_ID = SerializerFactory.serializerOf(Long.class);
     private final static Serializer<String> TRADER_NAME = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> TRADER_GROUP = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> TRADER_GROUP_TYPE = SerializerFactory.serializerOf(String.class);
-    private final static Serializer<Long> INSTRUMENT_ID = SerializerFactory.serializerOf(Long.class);
     private final static Serializer<String> INSTRUMENT_NAME = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_SYMBOL = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_SECTOR = SerializerFactory.serializerOf(String.class);

@@ -35,17 +35,6 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     protected GeneratedRawPositionImpl() {
         
     }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public RawPosition setId(Long id) {
-        this.id = id;
-        return this;
-    }
     
     @Override
     public String getTraderName() {
@@ -76,7 +65,7 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public void setTraderGroupType(String traderGroupType) {
         this.traderGroupType = traderGroupType;
     }
-
+    
     @Override
     public Optional<String> getInstrumentName() {
         return Optional.ofNullable(instrumentName);
@@ -116,12 +105,17 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public void setInstrumentIndustry(String instrumentIndustry) {
         this.instrumentIndustry = instrumentIndustry;
     }
-
+    
+    @Override
+    public Long getId() {
+        return id;
+    }
+    
     @Override
     public Double getPnl() {
         return pnl;
     }
-
+    
     @Override
     public Double getInitiateTradingMktVal() {
         return initiateTradingMktVal;
@@ -136,13 +130,19 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
     public Integer getValueDate() {
         return valueDate;
     }
-
+    
+    @Override
+    public final RawPosition setId(Long id) {
+        this.id = id;
+        return this;
+    }
+    
     @Override
     public final RawPosition setPnl(Double pnl) {
         this.pnl = pnl;
         return this;
     }
-
+    
     @Override
     public final RawPosition setInitiateTradingMktVal(Double initiateTradingMktVal) {
         this.initiateTradingMktVal = initiateTradingMktVal;
@@ -177,6 +177,7 @@ public abstract class GeneratedRawPositionImpl extends AbstractBaseEntity<RawPos
         if (this == that) { return true; }
         if (!(that instanceof RawPosition)) { return false; }
         final RawPosition thatRawPosition = (RawPosition)that;
+        if (!Objects.equals(this.getId(), thatRawPosition.getId())) {return false; }
         if (!Objects.equals(this.getPnl(), thatRawPosition.getPnl())) {return false; }
         if (!Objects.equals(this.getInitiateTradingMktVal(), thatRawPosition.getInitiateTradingMktVal())) {return false; }
         if (!Objects.equals(this.getLiquidateTradingMktVal(), thatRawPosition.getLiquidateTradingMktVal())) {return false; }

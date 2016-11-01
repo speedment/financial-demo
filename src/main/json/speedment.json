@@ -1043,25 +1043,6 @@
                 "virtualColumns": [
                   {
                     "expanded": true,
-                    "name": "trader_id",
-                    "columnReferences": [
-                      {
-                        "name": "piq.daily_position_performance.position_identifier_id",
-                        "schemaName": "piq",
-                        "tableName": "daily_position_performance",
-                        "columnName": "position_identifier_id"
-                      },
-                      {
-                        "name": "piq.position_identifier.trader_id",
-                        "schemaName": "piq",
-                        "tableName": "position_identifier",
-                        "columnName": "trader_id"
-                      }
-                    ],
-                    "enabled": false
-                  },
-                  {
-                    "expanded": true,
                     "name": "trader_name",
                     "columnReferences": [
                       {
@@ -1146,25 +1127,6 @@
                       }
                     ],
                     "enabled": true
-                  },
-                  {
-                    "expanded": true,
-                    "name": "instrument_id",
-                    "columnReferences": [
-                      {
-                        "name": "piq.daily_position_performance.position_identifier_id",
-                        "schemaName": "piq",
-                        "tableName": "daily_position_performance",
-                        "columnName": "position_identifier_id"
-                      },
-                      {
-                        "name": "piq.position_identifier.instrument_id",
-                        "schemaName": "piq",
-                        "tableName": "position_identifier",
-                        "columnName": "instrument_id"
-                      }
-                    ],
-                    "enabled": false
                   },
                   {
                     "expanded": true,

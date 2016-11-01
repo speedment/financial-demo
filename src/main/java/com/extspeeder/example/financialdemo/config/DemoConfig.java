@@ -8,9 +8,7 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.Pri
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.speedment.Speedment;
-import com.speedment.config.db.Table;
 import com.speedment.enterprise.offheapreadonlycache.OffHeapReadOnlyCacheComponent;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,11 +31,11 @@ public class DemoConfig {
     private @Value("${dbms.schema}") String schema;
 
     @Bean
-    @Qualifier("onheap")
+//    @Qualifier("onheap")
     public Speedment getOnheapSpeedment() {
         return new FinancialdemoApplication()
-            .with(Table.class, ORDERS, DemoConfig::disable)
-            .with(Table.class, PRICE_STORE, DemoConfig::disable)
+//            .with(Table.class, ORDERS, DemoConfig::disable)
+//            .with(Table.class, PRICE_STORE, DemoConfig::disable)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
@@ -45,35 +43,35 @@ public class DemoConfig {
             .build();
     }
     
-    @Bean
-    @Qualifier("offheap")
-    public Speedment getOffheapSpeedment() {
-        return new FinancialdemoApplication()
-            .with(Table.class, POSITIONS, DemoConfig::disable)
-            .withUsername(username)
-            .withPassword(password)
-            .withSchema(schema)
-            .with(OffHeapReadOnlyCacheComponent::createOffHeap)
-            .build();
-    }
+//    @Bean
+//    @Qualifier("offheap")
+//    public Speedment getOffheapSpeedment() {
+//        return new FinancialdemoApplication()
+//            .with(Table.class, POSITIONS, DemoConfig::disable)
+//            .withUsername(username)
+//            .withPassword(password)
+//            .withSchema(schema)
+//            .with(OffHeapReadOnlyCacheComponent::createOffHeap)
+//            .build();
+//    }
     
     @Bean
-    public RawPositionManager getRawPositionManager(@Qualifier("onheap") Speedment speedment) {
+    public RawPositionManager getRawPositionManager(/*@Qualifier("onheap") */Speedment speedment) {
         return (RawPositionManager) speedment.managerOf(RawPosition.class);
     }
     
     @Bean
-    public OrderManager getOrderManager(@Qualifier("offheap") Speedment speedment) {
+    public OrderManager getOrderManager(/*@Qualifier("offheap") */Speedment speedment) {
         return (OrderManager) speedment.managerOf(Order.class);
     }
     
     @Bean
-    public PriceStoreManager getPriceStoreManager(@Qualifier("offheap") Speedment speedment) {
+    public PriceStoreManager getPriceStoreManager(/*@Qualifier("offheap") */Speedment speedment) {
         return (PriceStoreManager) speedment.managerOf(PriceStore.class);
     }
-    
-    private static void disable(Table table) {
-        System.out.println("Disabling " + table.getName());
-        table.mutator().setEnabled(false);
-    }
+//    
+//    private static void disable(Table table) {
+//        System.out.println("Disabling " + table.getName());
+//        table.mutator().setEnabled(false);
+//    }
 }
