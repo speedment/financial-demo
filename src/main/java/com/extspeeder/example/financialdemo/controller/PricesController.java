@@ -38,7 +38,7 @@ public final class PricesController {
     
     @RequestMapping(value = "/prices", method = GET, produces = APPLICATION_JSON_VALUE)
     public PriceTotalResult handleGet(
-        @RequestParam(name="callback") String callback,
+        @RequestParam(name="callback", required=false) String callback,
         @RequestParam(name="start", required=false) Long start,
         @RequestParam(name="limit", required=false) Long limit,
         @RequestParam(name="filters", required=false) Collection<Filter> oFilters,

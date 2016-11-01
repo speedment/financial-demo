@@ -48,7 +48,7 @@ public final class OrdersController {
     
     @RequestMapping(value = "/orders", method = GET, produces = APPLICATION_JSON_VALUE)
     public OrderTotalResult handleGet(
-        @RequestParam(name="callback") String callback,
+        @RequestParam(name="callback", required=false) String callback,
         @RequestParam(name="start", required=false) Long start,
         @RequestParam(name="limit", required=false) Long limit,
         @RequestParam(name="filters", required=false) Collection<Filter> oFilters,

@@ -1,14 +1,17 @@
 package com.extspeeder.example.financialdemo.controller;
 
-import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.DATE_FORMAT;
+import com.extspeeder.example.financialdemo.controller.param.Sort;
+import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.fromEpochSecs;
+import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.toEpochSecs;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
+import com.speedment.field.trait.ComparableFieldTrait;
 import com.speedment.internal.util.testing.Stopwatch;
 import java.text.ParseException;
-import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
+import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.joining;
@@ -37,11 +40,12 @@ public class PositionController {
 
     @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
     public Collection<Result> handleGet(
-            @RequestParam(name="callback") String callback,
+            @RequestParam(name="callback", required=false) String callback,
             @RequestParam(name="startDate") String startDate, 
             @RequestParam(name="endDate") String endDate,
             @RequestParam(name="drillDownPath") String aGroups,
             @RequestParam(name="drillDownKey", required=false) String aKeys,
+            @RequestParam(name="sort", required=false) Collection<Sort> sorts,
             HttpServletResponse response
     ) throws ParseException {
         
@@ -77,6 +81,16 @@ public class PositionController {
         final ResultFactory factory = new ResultFactory(
             identifier(groups, usedGroups)
         );
+        
+        if (sorts != null && !sorts.isEmpty()) {
+            final Optional<Comparator<RawPosition>> comparator = sorts.stream()
+                .map(PositionController::sortToComparator)
+                .reduce(Comparator::thenComparing);
+            
+            if (comparator.isPresent()) {
+                positions = positions.sorted(comparator.get());
+            }
+        }
         
         try {
             if (classifier == null) {
@@ -158,12 +172,34 @@ public class PositionController {
         }
     }
     
-    private static int toEpochSecs(String date) throws ParseException {
-        return (int) (DATE_FORMAT.parse(date).getTime() / 1_000);
+    private static Comparator<RawPosition> sortToComparator(Sort sort) {
+        final ComparableFieldTrait<RawPosition, ?, ?> field = findField(sort.getProperty());
+        final Comparator<RawPosition> comparator = field.comparator();
+        if (sort.getDirection() == Sort.Direction.DESC) {
+            return comparator.reversed();
+        } else {
+            return comparator;
+        }
     }
     
-    private static String fromEpochSecs(int epochSecs) {
-        return DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(epochSecs)));
+    private static ComparableFieldTrait<RawPosition, ?, ?> findField(String property) {
+        switch (property) {
+            case "id"                       : return RawPosition.ID;
+            case "pnl"                      : return RawPosition.PNL;
+            case "initiateTradingMktVal"    : return RawPosition.INITIATE_TRADING_MKT_VAL;
+            case "liquidateTradingMktVal"   : return RawPosition.LIQUIDATE_TRADING_MKT_VAL;
+            case "valueDate"                : return RawPosition.VALUE_DATE;
+            case "traderName"               : return RawPosition.TRADER_NAME;
+            case "traderGroup"              : return RawPosition.TRADER_GROUP;
+            case "traderGroupType"          : return RawPosition.TRADER_GROUP_TYPE;
+            case "instrumentName"           : return RawPosition.INSTRUMENT_NAME;
+            case "instrumentSymbol"         : return RawPosition.INSTRUMENT_SYMBOL;
+            case "instrumentSector"         : return RawPosition.INSTRUMENT_SECTOR;
+            case "instrumentIndustry"       : return RawPosition.INSTRUMENT_INDUSTRY;
+            default : throw new IllegalArgumentException(
+                "Unknown property '" + property + "'."
+            );
+        }
     }
     
     private final static class ResultFactory {
