@@ -252,6 +252,7 @@ public final class OrdersController {
         private final String traderGroup;
         private final String traderGroupType;
         private final Double price;
+        private final Integer quantity;
         
         static OrderResult from(Order original) {
             return new OrderResult(
@@ -266,7 +267,8 @@ public final class OrdersController {
                 original.getTraderName(),
                 original.getTraderGroup(),
                 original.getTraderGroupType(),
-                original.getPrice()
+                original.getPrice(),
+                original.getQuantity()
             );
         }
 
@@ -282,7 +284,8 @@ public final class OrdersController {
                 String traderName, 
                 String traderGroup, 
                 String traderGroupType, 
-                Double price) {
+                Double price,
+                Integer quantity) {
             
             this.id                 = id;
             this.dateCreated        = dateCreated;
@@ -296,6 +299,7 @@ public final class OrdersController {
             this.traderGroup        = traderGroup;
             this.traderGroupType    = traderGroupType;
             this.price              = price;
+            this.quantity           = quantity;
         }
 
         public long getId() {
@@ -344,6 +348,10 @@ public final class OrdersController {
 
         public Double getPrice() {
             return price;
+        }
+
+        public Integer getQuantity() {
+            return quantity;
         }
     }
 }
