@@ -57,19 +57,19 @@
         </dependency>
     </dependencies>
     
-<!--    <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <jvmArguments>
-                        -XX:+PrintGC -XX:+PrintGCDetails -XX:+UseG1GC -Xmx10G -Xms10G
+                        -XX:+UseG1GC -Xmx10G -Xms10G
                     </jvmArguments>
                 </configuration>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
     
     <repositories>
         <repository>
