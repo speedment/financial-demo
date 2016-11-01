@@ -40,6 +40,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
     private final static Serializer<String> TRADER_GROUP = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> TRADER_GROUP_TYPE = SerializerFactory.serializerOf(String.class);
     private final static Serializer<Double> PRICE = SerializerFactory.serializerOf(Double.class);
+    private final static Serializer<Integer> DATE_EXECUTED = SerializerFactory.serializerOf(Integer.class);
     
     public GeneratedOrderSerializerImpl(Manager<Order> manager) {
         super(manager);
@@ -51,6 +52,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         if (!order.getInstrumentSector().isPresent()) BitSetUtil.set(bits, 0);
         if (!order.getInstrumentIndustry().isPresent()) BitSetUtil.set(bits, 1);
         if (order.getPrice() == null) BitSetUtil.set(bits, 2);
+        if (order.getDateExecuted() == null) BitSetUtil.set(bits, 3);
         out.writeLong(bits[0]);
         out.writeLong(order.getId());
         out.writeInt(order.getDateCreated());
@@ -65,6 +67,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         out.writeUTF(order.getTraderGroup());
         out.writeUTF(order.getTraderGroupType());
         if (order.getPrice() != null) out.writeDouble(order.getPrice());
+        if (order.getDateExecuted() != null) out.writeInt(order.getDateExecuted());
     }
     
     @Override
@@ -85,6 +88,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         order.setTraderGroup(in.readUTF());
         order.setTraderGroupType(in.readUTF());
         if (!BitSetUtil.get2(bits)) order.setPrice(in.readDouble());
+        if (!BitSetUtil.get3(bits)) order.setDateExecuted(in.readInt());
         return order;
     }
 }

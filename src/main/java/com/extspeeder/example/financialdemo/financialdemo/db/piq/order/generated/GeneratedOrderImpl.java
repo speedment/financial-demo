@@ -30,6 +30,7 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
     private String traderGroup;
     private String traderGroupType;
     private Double price;
+    private Integer dateExecuted;
     private Long id;
     private Integer dateCreated;
     private BuySell direction;
@@ -109,6 +110,16 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
     @Override
     public void setPrice(Double price) {
         this.price = price;
+    }
+    
+    @Override
+    public Integer getDateExecuted() {
+        return dateExecuted;
+    }
+    
+    @Override
+    public void setDateExecuted(Integer dateExecuted) {
+        this.dateExecuted = dateExecuted;
     }
     
     @Override

@@ -1747,12 +1747,14 @@
                   },
                   {
                     "databaseType": "java.sql.Timestamp",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
+                    "typeMapper": "com.speedment.config.db.mapper.time.TimestampToIntMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "transact_time",
                     "ordinalPosition": 8.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.lang.Double",
@@ -2206,7 +2208,7 @@
                     "enabled": false
                   }
                 ],
-                "expanded": false,
+                "expanded": true,
                 "primaryKeyColumns": [
                   {
                     "expanded": false,
@@ -2414,6 +2416,25 @@
                         "schemaName": "piq",
                         "tableName": "execution",
                         "columnName": "price"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  {
+                    "expanded": true,
+                    "name": "date_executed",
+                    "columnReferences": [
+                      {
+                        "name": "piq.orders.execution_id",
+                        "schemaName": "piq",
+                        "tableName": "orders",
+                        "columnName": "execution_id"
+                      },
+                      {
+                        "name": "piq.execution.transact_time",
+                        "schemaName": "piq",
+                        "tableName": "execution",
+                        "columnName": "transact_time"
                       }
                     ],
                     "enabled": true
@@ -3818,9 +3839,11 @@
                     "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
                     "expanded": false,
                     "nullable": false,
+                    "autoIncrement": false,
                     "name": "cohort_id",
                     "ordinalPosition": 3.0,
-                    "enabled": true
+                    "enabled": true,
+                    "exposedInRest": true
                   },
                   {
                     "databaseType": "java.sql.Timestamp",

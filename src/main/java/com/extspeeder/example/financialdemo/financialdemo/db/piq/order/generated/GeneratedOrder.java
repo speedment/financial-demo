@@ -71,6 +71,11 @@ public interface GeneratedOrder extends Entity<Order> {
      */
     final ComparableField<Order, Double, Double> PRICE = new VirtualComparableField<>(Identifier.PRICE, Order::getPrice, new DoubleIdentityMapper(), false);
     /**
+     * A field representation of the virtual field 'date_executed' derived from
+     * the column 'transact_time' in table 'execution'.
+     */
+    final ComparableField<Order, Timestamp, Integer> DATE_EXECUTED = new VirtualComparableField<>(Identifier.DATE_EXECUTED, Order::getDateExecuted, new TimestampToIntMapper(), false);
+    /**
      * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getId()} method.
      */
@@ -211,6 +216,22 @@ public interface GeneratedOrder extends Entity<Order> {
     void setPrice(Double price);
     
     /**
+     * Returns the virtual value of column 'transact_time' in foreign table
+     * 'execution'.
+     * 
+     * @return the virtual value DateExecuted
+     */
+    Integer getDateExecuted();
+    
+    /**
+     * Sets the internal value of virtual column 'transact_time'. This will not
+     * affect the database value.
+     * 
+     * @param dateExecuted the virtual value
+     */
+    void setDateExecuted(Integer dateExecuted);
+    
+    /**
      * Returns the id of this Order. The id field corresponds to the database
      * column db0.piq.orders.id.
      * 
@@ -326,7 +347,8 @@ public interface GeneratedOrder extends Entity<Order> {
         TRADER_NAME ("trader_name"),
         TRADER_GROUP ("trader_group"),
         TRADER_GROUP_TYPE ("trader_group_type"),
-        PRICE ("price");
+        PRICE ("price"),
+        DATE_EXECUTED ("date_executed");
         
         private final String columnName;
         

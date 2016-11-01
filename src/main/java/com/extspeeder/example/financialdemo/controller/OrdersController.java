@@ -241,16 +241,14 @@ public final class OrdersController {
     public final static class OrderResult {
         
         private final long id;
-        private final String dateCreated;
+        private final String valueDate;
+        private final long dateCreated;
+        private final long dateExecuted;
         private final BuySell direction;
         private final String instrumentSymbol;
-        private final String instrumentSector;
-        private final String instrumentIndustry;
         private final OrderType orderType;
         private final Status status;
         private final String traderName;
-        private final String traderGroup;
-        private final String traderGroupType;
         private final Double price;
         private final Integer quantity;
         
@@ -258,15 +256,13 @@ public final class OrdersController {
             return new OrderResult(
                 original.getId(),
                 TimeUtil.fromEpochSecs(original.getDateCreated()),
+                original.getDateCreated() * 1_000L,
+                original.getDateExecuted() * 1_000L,
                 original.getDirection(),
                 original.getInstrumentSymbol(),
-                original.getInstrumentSector().orElse(null),
-                original.getInstrumentIndustry().orElse(null),
                 original.getOrderType(),
                 original.getStatus(),
                 original.getTraderName(),
-                original.getTraderGroup(),
-                original.getTraderGroupType(),
                 original.getPrice(),
                 original.getQuantity()
             );
@@ -274,30 +270,26 @@ public final class OrdersController {
 
         public OrderResult(
                 long id, 
-                String dateCreated, 
+                String valueDate, 
+                long dateCreated, 
+                long dateExecuted, 
                 BuySell direction, 
-                String instrumentSymbol, 
-                String instrumentSector, 
-                String instrumentIndustry, 
+                String instrumentSymbol,
                 OrderType orderType, 
                 Status status, 
-                String traderName, 
-                String traderGroup, 
-                String traderGroupType, 
+                String traderName,
                 Double price,
                 Integer quantity) {
             
             this.id                 = id;
+            this.valueDate          = valueDate;
             this.dateCreated        = dateCreated;
+            this.dateExecuted       = dateExecuted;
             this.direction          = direction;
             this.instrumentSymbol   = instrumentSymbol;
-            this.instrumentSector   = instrumentSector;
-            this.instrumentIndustry = instrumentIndustry;
             this.orderType          = orderType;
             this.status             = status;
             this.traderName         = traderName;
-            this.traderGroup        = traderGroup;
-            this.traderGroupType    = traderGroupType;
             this.price              = price;
             this.quantity           = quantity;
         }
@@ -306,8 +298,16 @@ public final class OrdersController {
             return id;
         }
 
-        public String getDateCreated() {
+        public String getValueDate() {
+            return valueDate;
+        }
+
+        public long getDateCreated() {
             return dateCreated;
+        }
+
+        public long getDateExecuted() {
+            return dateExecuted;
         }
 
         public BuySell getDirection() {
@@ -316,14 +316,6 @@ public final class OrdersController {
 
         public String getInstrumentSymbol() {
             return instrumentSymbol;
-        }
-
-        public String getInstrumentSector() {
-            return instrumentSector;
-        }
-
-        public String getInstrumentIndustry() {
-            return instrumentIndustry;
         }
 
         public OrderType getOrderType() {
@@ -336,14 +328,6 @@ public final class OrdersController {
 
         public String getTraderName() {
             return traderName;
-        }
-
-        public String getTraderGroup() {
-            return traderGroup;
-        }
-
-        public String getTraderGroupType() {
-            return traderGroupType;
         }
 
         public Double getPrice() {
