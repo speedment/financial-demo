@@ -314,7 +314,7 @@ public final class OrdersController {
             return dateCreated;
         }
 
-        public long getDateExecuted() {
+        public Long getDateExecuted() {
             return dateExecuted;
         }
 
