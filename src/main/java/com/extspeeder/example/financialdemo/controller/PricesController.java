@@ -7,7 +7,8 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.Pri
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStoreManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.speedment.field.ComparableField;
+import com.speedment.field.trait.ComparableFieldTrait;
+import com.speedment.field.trait.StringFieldTrait;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -106,7 +107,7 @@ public final class PricesController {
         }
     }
     
-    private static ComparableField<PriceStore, ?, ?> findField(String property) {
+    private static ComparableFieldTrait<PriceStore, ?, ?> findField(String property) {
         switch (property) {
             case "id"        : return PriceStore.ID;
             case "valueDate" : return PriceStore.VALUE_DATE;
@@ -114,6 +115,7 @@ public final class PricesController {
             case "close"     : return PriceStore.CLOSE;
             case "high"      : return PriceStore.HIGH;
             case "low"       : return PriceStore.LOW;
+            case "instrumentSymbol" : return PriceStore.INSTRUMENT_SYMBOL;
             default : throw new IllegalArgumentException(
                 "Unknown property: " + property + "."
             );
@@ -131,6 +133,7 @@ public final class PricesController {
                 case "close"     :
                 case "high"      :
                 case "low"       : return Double.parseDouble(filter.getValue());
+                case "instrumentSymbol" : return filter.getValue();
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -142,8 +145,8 @@ public final class PricesController {
     findPredicate(Filter filter) {
         try {
             @SuppressWarnings("unchecked")
-            final ComparableField<PriceStore, ?, V> field = 
-                (ComparableField<PriceStore, ?, V>) findField(filter.getProperty());
+            final ComparableFieldTrait<PriceStore, ?, V> field = 
+                (ComparableFieldTrait<PriceStore, ?, V>) findField(filter.getProperty());
 
             @SuppressWarnings("unchecked")
             final V operand = (V) findOperand(filter);
@@ -155,6 +158,20 @@ public final class PricesController {
                 case LESS_OR_EQUAL    : return field.lessOrEqual(operand);
                 case GREATER_THAN     : return field.greaterThan(operand);
                 case GREATER_OR_EQUAL : return field.greaterOrEqual(operand);
+                case LIKE             : {
+                    try {
+                        @SuppressWarnings("unchecked")
+                        final StringFieldTrait<PriceStore, ?> stringField =
+                            (StringFieldTrait<PriceStore, ?>) field;
+
+                        return stringField.contains(filter.getValue());
+                    } catch (final ClassCastException ex) {
+                        throw new IllegalArgumentException(
+                            "Expecting a property of type 'String' if " + 
+                            "operator 'like' is used.", ex
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -168,7 +185,7 @@ public final class PricesController {
     }
     
     private static Comparator<PriceStore> sortToComparator(Sort sort) {
-        final ComparableField<PriceStore, ?, ?> field = findField(sort.getProperty());
+        final ComparableFieldTrait<PriceStore, ?, ?> field = findField(sort.getProperty());
         final Comparator<PriceStore> comparator = field.comparator();
         if (sort.getDirection() == Sort.Direction.DESC) {
             return comparator.reversed();
@@ -211,6 +228,7 @@ public final class PricesController {
         private final Double close;
         private final Double high;
         private final Double low;
+        private final String instrumentSymbol;
         
         static PriceResult from(PriceStore original) {
             return new PriceResult(
@@ -219,7 +237,8 @@ public final class PricesController {
                 original.getOpen().orElse(null),
                 original.getClose().orElse(null),
                 original.getHigh().orElse(null),
-                original.getLow().orElse(null)
+                original.getLow().orElse(null),
+                original.getInstrumentSymbol()
             );
         }
 
@@ -247,13 +266,18 @@ public final class PricesController {
             return low;
         }
 
-        private PriceResult(long id, long valueDate, double open, Double close, double high, double low) {
+        public String getInstrumentSymbol() {
+            return instrumentSymbol;
+        }
+
+        private PriceResult(long id, long valueDate, double open, Double close, double high, double low, String instrumentSymbol) {
             this.id        = id;
             this.valueDate = valueDate;
             this.open      = open;
             this.close     = close;
             this.high      = high;
             this.low       = low;
+            this.instrumentSymbol = instrumentSymbol;
         }
     }
 }
