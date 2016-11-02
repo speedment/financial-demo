@@ -105,6 +105,11 @@ public interface GeneratedOrder extends Entity<Order> {
      * using the {@link Order#getStatus()} method.
      */
     final ComparableField<Order, String, Status> STATUS = new ComparableFieldImpl<>(Identifier.STATUS, Order::getStatus, Order::setStatus, new StatusMapper(), false);
+    /**
+     * This Field corresponds to the {@link Order} field that can be obtained
+     * using the {@link Order#getLimitPrice()} method.
+     */
+    final ComparableField<Order, Double, Double> LIMIT_PRICE = new ComparableFieldImpl<>(Identifier.LIMIT_PRICE, o -> o.getLimitPrice().orElse(null), Order::setLimitPrice, new DoubleIdentityMapper(), false);
     
     /**
      * Returns the virtual value of column 'symbol' in foreign table
@@ -280,6 +285,14 @@ public interface GeneratedOrder extends Entity<Order> {
     Status getStatus();
     
     /**
+     * Returns the limitPrice of this Order. The limitPrice field corresponds to
+     * the database column db0.piq.orders.limit_price.
+     * 
+     * @return the limitPrice of this Order
+     */
+    Optional<Double> getLimitPrice();
+    
+    /**
      * Sets the id of this Order. The id field corresponds to the database column
      * db0.piq.orders.id.
      * 
@@ -333,6 +346,15 @@ public interface GeneratedOrder extends Entity<Order> {
      */
     Order setStatus(Status status);
     
+    /**
+     * Sets the limitPrice of this Order. The limitPrice field corresponds to the
+     * database column db0.piq.orders.limit_price.
+     * 
+     * @param limitPrice to set of this Order
+     * @return this Order instance
+     */
+    Order setLimitPrice(Double limitPrice);
+    
     enum Identifier implements FieldIdentifier<Order> {
         
         ID ("id"),
@@ -341,6 +363,7 @@ public interface GeneratedOrder extends Entity<Order> {
         ORDER_TYPE ("order_type"),
         QUANTITY ("quantity"),
         STATUS ("status"),
+        LIMIT_PRICE ("limit_price"),
         INSTRUMENT_SYMBOL ("instrument_symbol"),
         INSTRUMENT_SECTOR ("instrument_sector"),
         INSTRUMENT_INDUSTRY ("instrument_industry"),

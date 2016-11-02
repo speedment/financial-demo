@@ -4,7 +4,6 @@ import com.extspeeder.example.financialdemo.extra.BuySell;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.Order;
-import com.speedment.Speedment;
 import com.speedment.internal.core.code.AbstractBaseEntity;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,6 +36,7 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
     private OrderType orderType;
     private Integer quantity;
     private Status status;
+    private Double limitPrice;
     
     protected GeneratedOrderImpl() {
         
@@ -153,6 +153,11 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
     }
     
     @Override
+    public Optional<Double> getLimitPrice() {
+        return Optional.ofNullable(limitPrice);
+    }
+    
+    @Override
     public final Order setId(Long id) {
         this.id = id;
         return this;
@@ -189,6 +194,12 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
     }
     
     @Override
+    public final Order setLimitPrice(Double limitPrice) {
+        this.limitPrice = limitPrice;
+        return this;
+    }
+    
+    @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
@@ -197,6 +208,7 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
         sj.add("orderType = "+Objects.toString(getOrderType()));
         sj.add("quantity = "+Objects.toString(getQuantity()));
         sj.add("status = "+Objects.toString(getStatus()));
+        sj.add("limitPrice = "+Objects.toString(getLimitPrice().orElse(null)));
         return "OrderImpl "+sj.toString();
     }
     
@@ -211,6 +223,7 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
         if (!Objects.equals(this.getOrderType(), thatOrder.getOrderType())) {return false; }
         if (!Objects.equals(this.getQuantity(), thatOrder.getQuantity())) {return false; }
         if (!Objects.equals(this.getStatus(), thatOrder.getStatus())) {return false; }
+        if (!Objects.equals(this.getLimitPrice(), thatOrder.getLimitPrice())) {return false; }
         return true;
     }
     
@@ -223,6 +236,7 @@ public abstract class GeneratedOrderImpl extends AbstractBaseEntity<Order> imple
         hash = 31 * hash + Objects.hashCode(getOrderType());
         hash = 31 * hash + Objects.hashCode(getQuantity());
         hash = 31 * hash + Objects.hashCode(getStatus());
+        hash = 31 * hash + Objects.hashCode(getLimitPrice());
         return hash;
     }
     

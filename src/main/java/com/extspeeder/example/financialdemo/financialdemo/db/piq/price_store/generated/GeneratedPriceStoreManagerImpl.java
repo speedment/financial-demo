@@ -39,10 +39,11 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractExtSpeederS
         try {
             entity.setId(resultSet.getLong(1));
             entity.setValueDate(resultSet.getLong(2));
-            entity.setOpen(resultSet.getDouble(3));
-            entity.setHigh(resultSet.getDouble(4));
-            entity.setLow(resultSet.getDouble(5));
+            entity.setOpen(getDouble(resultSet, 3));
+            entity.setHigh(getDouble(resultSet, 4));
+            entity.setLow(getDouble(resultSet, 5));
             entity.setClose(getDouble(resultSet, 6));
+            entity.setInstrumentSymbol(resultSet.getString(7));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);
@@ -65,10 +66,11 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractExtSpeederS
         switch ((PriceStore.Identifier) identifier) {
             case ID : return entity.getId();
             case VALUE_DATE : return entity.getValueDate();
-            case OPEN : return entity.getOpen();
-            case HIGH : return entity.getHigh();
-            case LOW : return entity.getLow();
+            case OPEN : return entity.getOpen().orElse(null);
+            case HIGH : return entity.getHigh().orElse(null);
+            case LOW : return entity.getLow().orElse(null);
             case CLOSE : return entity.getClose().orElse(null);
+            case INSTRUMENT_SYMBOL : return entity.getInstrumentSymbol();
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -82,6 +84,7 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractExtSpeederS
             case HIGH : entity.setHigh((Double) value); break;
             case LOW : entity.setLow((Double) value); break;
             case CLOSE : entity.setClose((Double) value); break;
+            case INSTRUMENT_SYMBOL : entity.setInstrumentSymbol((String) value); break;
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -94,7 +97,8 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractExtSpeederS
             PriceStore.OPEN,
             PriceStore.HIGH,
             PriceStore.LOW,
-            PriceStore.CLOSE
+            PriceStore.CLOSE,
+            PriceStore.INSTRUMENT_SYMBOL
         );
     }
     
@@ -121,9 +125,9 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractExtSpeederS
         
         copy.setId(source.getId());
         copy.setValueDate(source.getValueDate());
-        copy.setOpen(source.getOpen());
-        copy.setHigh(source.getHigh());
-        copy.setLow(source.getLow());
+        source.getOpen().ifPresent(copy::setOpen);
+        source.getHigh().ifPresent(copy::setHigh);
+        source.getLow().ifPresent(copy::setLow);
         source.getClose().ifPresent(copy::setClose);
         
         return copy;

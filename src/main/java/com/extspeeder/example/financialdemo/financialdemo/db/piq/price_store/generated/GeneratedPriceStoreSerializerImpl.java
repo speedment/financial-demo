@@ -30,6 +30,7 @@ public class GeneratedPriceStoreSerializerImpl extends AbstractEntitySerializer<
     private final static Serializer<Double> HIGH_SERIALIZER = SerializerFactory.serializerOf(Double.class);
     private final static Serializer<Double> LOW_SERIALIZER = SerializerFactory.serializerOf(Double.class);
     private final static Serializer<Double> CLOSE_SERIALIZER = SerializerFactory.serializerOf(Double.class);
+    private final static Serializer<String> INSTRUMENT_SYMBOL = SerializerFactory.serializerOf(String.class);
     
     public GeneratedPriceStoreSerializerImpl(Manager<PriceStore> manager) {
         super(manager);
@@ -38,14 +39,18 @@ public class GeneratedPriceStoreSerializerImpl extends AbstractEntitySerializer<
     @Override
     public void serialize(final DataOutput out, final PriceStore priceStore) throws IOException {
         final long[] bits = new long[1];
-        if (!priceStore.getClose().isPresent()) BitSetUtil.set(bits, 0);
+        if (!priceStore.getOpen().isPresent()) BitSetUtil.set(bits, 0);
+        if (!priceStore.getHigh().isPresent()) BitSetUtil.set(bits, 1);
+        if (!priceStore.getLow().isPresent()) BitSetUtil.set(bits, 2);
+        if (!priceStore.getClose().isPresent()) BitSetUtil.set(bits, 3);
         out.writeLong(bits[0]);
         out.writeLong(priceStore.getId());
         out.writeLong(priceStore.getValueDate());
-        out.writeDouble(priceStore.getOpen());
-        out.writeDouble(priceStore.getHigh());
-        out.writeDouble(priceStore.getLow());
+        if (priceStore.getOpen().isPresent()) out.writeDouble(priceStore.getOpen().get());
+        if (priceStore.getHigh().isPresent()) out.writeDouble(priceStore.getHigh().get());
+        if (priceStore.getLow().isPresent()) out.writeDouble(priceStore.getLow().get());
         if (priceStore.getClose().isPresent()) out.writeDouble(priceStore.getClose().get());
+        out.writeUTF(priceStore.getInstrumentSymbol());
     }
     
     @Override
@@ -55,10 +60,11 @@ public class GeneratedPriceStoreSerializerImpl extends AbstractEntitySerializer<
         bits[0] = in.readLong();
         priceStore.setId(in.readLong());
         priceStore.setValueDate(in.readLong());
-        priceStore.setOpen(in.readDouble());
-        priceStore.setHigh(in.readDouble());
-        priceStore.setLow(in.readDouble());
-        if (!BitSetUtil.get0(bits)) priceStore.setClose(in.readDouble());
+        if (!BitSetUtil.get0(bits)) priceStore.setOpen(in.readDouble());
+        if (!BitSetUtil.get1(bits)) priceStore.setHigh(in.readDouble());
+        if (!BitSetUtil.get2(bits)) priceStore.setLow(in.readDouble());
+        if (!BitSetUtil.get3(bits)) priceStore.setClose(in.readDouble());
+        priceStore.setInstrumentSymbol(in.readUTF());
         return priceStore;
     }
 }

@@ -19,6 +19,7 @@ import javax.annotation.Generated;
 @Generated("Ext Speeder")
 public abstract class GeneratedPriceStoreImpl extends AbstractBaseEntity<PriceStore> implements PriceStore {
     
+    private String instrumentSymbol;
     private Long id;
     private Long valueDate;
     private Double open;
@@ -28,6 +29,16 @@ public abstract class GeneratedPriceStoreImpl extends AbstractBaseEntity<PriceSt
     
     protected GeneratedPriceStoreImpl() {
         
+    }
+    
+    @Override
+    public String getInstrumentSymbol() {
+        return instrumentSymbol;
+    }
+    
+    @Override
+    public void setInstrumentSymbol(String instrumentSymbol) {
+        this.instrumentSymbol = instrumentSymbol;
     }
     
     @Override
@@ -41,18 +52,18 @@ public abstract class GeneratedPriceStoreImpl extends AbstractBaseEntity<PriceSt
     }
     
     @Override
-    public Double getOpen() {
-        return open;
+    public Optional<Double> getOpen() {
+        return Optional.ofNullable(open);
     }
     
     @Override
-    public Double getHigh() {
-        return high;
+    public Optional<Double> getHigh() {
+        return Optional.ofNullable(high);
     }
     
     @Override
-    public Double getLow() {
-        return low;
+    public Optional<Double> getLow() {
+        return Optional.ofNullable(low);
     }
     
     @Override
@@ -101,9 +112,9 @@ public abstract class GeneratedPriceStoreImpl extends AbstractBaseEntity<PriceSt
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
         sj.add("valueDate = "+Objects.toString(getValueDate()));
-        sj.add("open = "+Objects.toString(getOpen()));
-        sj.add("high = "+Objects.toString(getHigh()));
-        sj.add("low = "+Objects.toString(getLow()));
+        sj.add("open = "+Objects.toString(getOpen().orElse(null)));
+        sj.add("high = "+Objects.toString(getHigh().orElse(null)));
+        sj.add("low = "+Objects.toString(getLow().orElse(null)));
         sj.add("close = "+Objects.toString(getClose().orElse(null)));
         return "PriceStoreImpl "+sj.toString();
     }

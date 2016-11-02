@@ -33,6 +33,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
     private final static Serializer<OrderType> ORDER_TYPE_SERIALIZER = SerializerFactory.serializerOf(OrderType.class);
     private final static Serializer<Integer> QUANTITY_SERIALIZER = SerializerFactory.serializerOf(Integer.class);
     private final static Serializer<Status> STATUS_SERIALIZER = SerializerFactory.serializerOf(Status.class);
+    private final static Serializer<Double> LIMIT_PRICE_SERIALIZER = SerializerFactory.serializerOf(Double.class);
     private final static Serializer<String> INSTRUMENT_SYMBOL = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_SECTOR = SerializerFactory.serializerOf(String.class);
     private final static Serializer<String> INSTRUMENT_INDUSTRY = SerializerFactory.serializerOf(String.class);
@@ -49,10 +50,11 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
     @Override
     public void serialize(final DataOutput out, final Order order) throws IOException {
         final long[] bits = new long[1];
-        if (!order.getInstrumentSector().isPresent()) BitSetUtil.set(bits, 0);
-        if (!order.getInstrumentIndustry().isPresent()) BitSetUtil.set(bits, 1);
-        if (order.getPrice() == null) BitSetUtil.set(bits, 2);
-        if (order.getDateExecuted() == null) BitSetUtil.set(bits, 3);
+        if (!order.getLimitPrice().isPresent()) BitSetUtil.set(bits, 0);
+        if (!order.getInstrumentSector().isPresent()) BitSetUtil.set(bits, 1);
+        if (!order.getInstrumentIndustry().isPresent()) BitSetUtil.set(bits, 2);
+        if (order.getPrice() == null) BitSetUtil.set(bits, 3);
+        if (order.getDateExecuted() == null) BitSetUtil.set(bits, 4);
         out.writeLong(bits[0]);
         out.writeLong(order.getId());
         out.writeInt(order.getDateCreated());
@@ -60,6 +62,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         ORDER_TYPE_SERIALIZER.serialize(out, order.getOrderType());
         out.writeInt(order.getQuantity());
         STATUS_SERIALIZER.serialize(out, order.getStatus());
+        if (order.getLimitPrice().isPresent()) out.writeDouble(order.getLimitPrice().get());
         out.writeUTF(order.getInstrumentSymbol());
         if (order.getInstrumentSector().isPresent()) out.writeUTF(order.getInstrumentSector().get());
         if (order.getInstrumentIndustry().isPresent()) out.writeUTF(order.getInstrumentIndustry().get());
@@ -67,7 +70,7 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         out.writeUTF(order.getTraderGroup());
         out.writeUTF(order.getTraderGroupType());
         if (order.getPrice() != null) out.writeDouble(order.getPrice());
-        if (order.getDateExecuted() != null) out.writeInt(order.getDateExecuted());
+        if (order.getDateExecuted()  != null) out.writeInt(order.getDateExecuted());
     }
     
     @Override
@@ -81,14 +84,15 @@ public class GeneratedOrderSerializerImpl extends AbstractEntitySerializer<Order
         order.setOrderType(ORDER_TYPE_SERIALIZER.deserialize(in, available));
         order.setQuantity(in.readInt());
         order.setStatus(STATUS_SERIALIZER.deserialize(in, available));
+        if (!BitSetUtil.get0(bits)) order.setLimitPrice(in.readDouble());
         order.setInstrumentSymbol(in.readUTF());
-        if (!BitSetUtil.get0(bits)) order.setInstrumentSector(in.readUTF());
-        if (!BitSetUtil.get1(bits)) order.setInstrumentIndustry(in.readUTF());
+        if (!BitSetUtil.get1(bits)) order.setInstrumentSector(in.readUTF());
+        if (!BitSetUtil.get2(bits)) order.setInstrumentIndustry(in.readUTF());
         order.setTraderName(in.readUTF());
         order.setTraderGroup(in.readUTF());
         order.setTraderGroupType(in.readUTF());
-        if (!BitSetUtil.get2(bits)) order.setPrice(in.readDouble());
-        if (!BitSetUtil.get3(bits)) order.setDateExecuted(in.readInt());
+        if (!BitSetUtil.get3(bits)) order.setPrice(in.readDouble());
+        if (!BitSetUtil.get4(bits)) order.setDateExecuted(in.readInt());
         return order;
     }
 }

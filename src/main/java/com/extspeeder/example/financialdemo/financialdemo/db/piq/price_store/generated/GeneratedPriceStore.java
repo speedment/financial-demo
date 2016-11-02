@@ -4,9 +4,12 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.Pri
 import com.speedment.Entity;
 import com.speedment.config.db.mapper.identity.DoubleIdentityMapper;
 import com.speedment.config.db.mapper.identity.LongIdentityMapper;
+import com.speedment.config.db.mapper.identity.StringIdentityMapper;
 import com.speedment.field.ComparableField;
 import com.speedment.field.FieldIdentifier;
+import com.speedment.field.StringField;
 import com.speedment.internal.core.field.ComparableFieldImpl;
+import com.speedment.plugin.extspeeder.runtime.field.VirtualStringField;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -23,6 +26,11 @@ import javax.annotation.Generated;
 public interface GeneratedPriceStore extends Entity<PriceStore> {
     
     /**
+     * A field representation of the virtual field 'instrument_symbol' derived
+     * from the column 'symbol' in table 'instrument'.
+     */
+    final StringField<PriceStore, String> INSTRUMENT_SYMBOL = new VirtualStringField<>(Identifier.INSTRUMENT_SYMBOL, PriceStore::getInstrumentSymbol, new StringIdentityMapper(), false);
+    /**
      * This Field corresponds to the {@link PriceStore} field that can be
      * obtained using the {@link PriceStore#getId()} method.
      */
@@ -36,22 +44,38 @@ public interface GeneratedPriceStore extends Entity<PriceStore> {
      * This Field corresponds to the {@link PriceStore} field that can be
      * obtained using the {@link PriceStore#getOpen()} method.
      */
-    final ComparableField<PriceStore, Double, Double> OPEN = new ComparableFieldImpl<>(Identifier.OPEN, PriceStore::getOpen, PriceStore::setOpen, new DoubleIdentityMapper(), false);
+    final ComparableField<PriceStore, Double, Double> OPEN = new ComparableFieldImpl<>(Identifier.OPEN, o -> o.getOpen().orElse(null), PriceStore::setOpen, new DoubleIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link PriceStore} field that can be
      * obtained using the {@link PriceStore#getHigh()} method.
      */
-    final ComparableField<PriceStore, Double, Double> HIGH = new ComparableFieldImpl<>(Identifier.HIGH, PriceStore::getHigh, PriceStore::setHigh, new DoubleIdentityMapper(), false);
+    final ComparableField<PriceStore, Double, Double> HIGH = new ComparableFieldImpl<>(Identifier.HIGH, o -> o.getHigh().orElse(null), PriceStore::setHigh, new DoubleIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link PriceStore} field that can be
      * obtained using the {@link PriceStore#getLow()} method.
      */
-    final ComparableField<PriceStore, Double, Double> LOW = new ComparableFieldImpl<>(Identifier.LOW, PriceStore::getLow, PriceStore::setLow, new DoubleIdentityMapper(), false);
+    final ComparableField<PriceStore, Double, Double> LOW = new ComparableFieldImpl<>(Identifier.LOW, o -> o.getLow().orElse(null), PriceStore::setLow, new DoubleIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link PriceStore} field that can be
      * obtained using the {@link PriceStore#getClose()} method.
      */
     final ComparableField<PriceStore, Double, Double> CLOSE = new ComparableFieldImpl<>(Identifier.CLOSE, o -> o.getClose().orElse(null), PriceStore::setClose, new DoubleIdentityMapper(), false);
+    
+    /**
+     * Returns the virtual value of column 'symbol' in foreign table
+     * 'instrument'.
+     * 
+     * @return the virtual value InstrumentSymbol
+     */
+    String getInstrumentSymbol();
+    
+    /**
+     * Sets the internal value of virtual column 'symbol'. This will not affect
+     * the database value.
+     * 
+     * @param instrumentSymbol the virtual value
+     */
+    void setInstrumentSymbol(String instrumentSymbol);
     
     /**
      * Returns the id of this PriceStore. The id field corresponds to the
@@ -75,7 +99,7 @@ public interface GeneratedPriceStore extends Entity<PriceStore> {
      * 
      * @return the open of this PriceStore
      */
-    Double getOpen();
+    Optional<Double> getOpen();
     
     /**
      * Returns the high of this PriceStore. The high field corresponds to the
@@ -83,7 +107,7 @@ public interface GeneratedPriceStore extends Entity<PriceStore> {
      * 
      * @return the high of this PriceStore
      */
-    Double getHigh();
+    Optional<Double> getHigh();
     
     /**
      * Returns the low of this PriceStore. The low field corresponds to the
@@ -91,7 +115,7 @@ public interface GeneratedPriceStore extends Entity<PriceStore> {
      * 
      * @return the low of this PriceStore
      */
-    Double getLow();
+    Optional<Double> getLow();
     
     /**
      * Returns the close of this PriceStore. The close field corresponds to the
@@ -162,7 +186,8 @@ public interface GeneratedPriceStore extends Entity<PriceStore> {
         OPEN ("open"),
         HIGH ("high"),
         LOW ("low"),
-        CLOSE ("close");
+        CLOSE ("close"),
+        INSTRUMENT_SYMBOL ("instrument_symbol");
         
         private final String columnName;
         

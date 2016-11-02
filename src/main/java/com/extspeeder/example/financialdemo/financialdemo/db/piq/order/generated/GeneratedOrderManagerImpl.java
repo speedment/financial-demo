@@ -46,14 +46,15 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             entity.setOrderType(Order.ORDER_TYPE.typeMapper().toJavaType(resultSet.getString(4)));
             entity.setQuantity(resultSet.getInt(5));
             entity.setStatus(Order.STATUS.typeMapper().toJavaType(resultSet.getString(6)));
-            entity.setInstrumentSymbol(resultSet.getString(7));
-            entity.setInstrumentSector(resultSet.getString(8));
-            entity.setInstrumentIndustry(resultSet.getString(9));
-            entity.setTraderName(resultSet.getString(10));
-            entity.setTraderGroup(resultSet.getString(11));
-            entity.setTraderGroupType(resultSet.getString(12));
-            entity.setPrice(getDouble(resultSet, 13));
-            entity.setDateExecuted(Order.DATE_EXECUTED.typeMapper().toJavaType(resultSet.getTimestamp(14)));
+            entity.setLimitPrice(getDouble(resultSet, 7));
+            entity.setInstrumentSymbol(resultSet.getString(8));
+            entity.setInstrumentSector(resultSet.getString(9));
+            entity.setInstrumentIndustry(resultSet.getString(10));
+            entity.setTraderName(resultSet.getString(11));
+            entity.setTraderGroup(resultSet.getString(12));
+            entity.setTraderGroupType(resultSet.getString(13));
+            entity.setPrice(getDouble(resultSet, 14));
+            entity.setDateExecuted(Order.DATE_EXECUTED.typeMapper().toJavaType(resultSet.getTimestamp(15)));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);
@@ -80,6 +81,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             case ORDER_TYPE : return entity.getOrderType();
             case QUANTITY : return entity.getQuantity();
             case STATUS : return entity.getStatus();
+            case LIMIT_PRICE : return entity.getLimitPrice().orElse(null);
             case INSTRUMENT_SYMBOL : return entity.getInstrumentSymbol();
             case INSTRUMENT_SECTOR : return entity.getInstrumentSector().orElse(null);
             case INSTRUMENT_INDUSTRY : return entity.getInstrumentIndustry().orElse(null);
@@ -101,6 +103,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             case ORDER_TYPE : entity.setOrderType((OrderType) value); break;
             case QUANTITY : entity.setQuantity((Integer) value); break;
             case STATUS : entity.setStatus((Status) value); break;
+            case LIMIT_PRICE : entity.setLimitPrice((Double) value); break;
             case INSTRUMENT_SYMBOL : entity.setInstrumentSymbol((String) value); break;
             case INSTRUMENT_SECTOR : entity.setInstrumentSector((String) value); break;
             case INSTRUMENT_INDUSTRY : entity.setInstrumentIndustry((String) value); break;
@@ -122,6 +125,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             Order.ORDER_TYPE,
             Order.QUANTITY,
             Order.STATUS,
+            Order.LIMIT_PRICE,
             Order.INSTRUMENT_SYMBOL,
             Order.INSTRUMENT_SECTOR,
             Order.INSTRUMENT_INDUSTRY,
@@ -160,6 +164,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
         copy.setOrderType(source.getOrderType());
         copy.setQuantity(source.getQuantity());
         copy.setStatus(source.getStatus());
+        source.getLimitPrice().ifPresent(copy::setLimitPrice);
         
         return copy;
     }
