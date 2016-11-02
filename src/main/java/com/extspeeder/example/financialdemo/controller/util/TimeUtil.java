@@ -1,8 +1,10 @@
 package com.extspeeder.example.financialdemo.controller.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  *
@@ -11,14 +13,14 @@ import java.time.format.DateTimeFormatter;
  */
 public final class TimeUtil {
     
-    public final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
+    public final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
     
     public static int toEpochSecs(String date) throws ParseException {
-        return (int) (Instant.from(DATE_FORMAT.parse(date)).getEpochSecond());
+        return (int) (DATE_FORMAT.parse(date).getTime() / 1_000);
     }
     
     public static String fromEpochSecs(int epochSecs) {
-        return DATE_FORMAT.format(Instant.ofEpochSecond(epochSecs));
+        return DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(epochSecs)));
     }
     
     public static String fromEpochMillis(long epochMillis) {

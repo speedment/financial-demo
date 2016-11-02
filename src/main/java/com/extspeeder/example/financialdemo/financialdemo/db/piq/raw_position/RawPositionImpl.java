@@ -1,7 +1,9 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
-import com.extspeeder.example.financialdemo.controller.util.TimeUtil;
+import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
+import java.time.Instant;
+import java.util.Date;
 
 /**
  * An implementation representing an entity (for example, a row) in the Table
@@ -41,13 +43,15 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
             if (valueDate == null) {
                 return null;
             } else {
-                return TimeUtil.fromEpochSecs(valueDate);
+                return DATE_FORMAT.format(Date.from(
+                    Instant.ofEpochSecond(valueDate)
+                ));
             }
-        } catch (final Exception ex) {
+        } catch (final ArrayIndexOutOfBoundsException ex) {
             System.err.println(String.format(
-                "Error parsing epoch second '%d' of raw position '%d' to " +
-                "string.",
-                getValueDate(),
+                "Error parsing epoch second '%d' of raw position '%d' to " + 
+                "string.", 
+                getValueDate(), 
                 getId()
             ));
             throw ex;
