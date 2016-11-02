@@ -73,8 +73,8 @@ public class RawPositionsController {
 
         for (final Filter filter : filters) {
             final Predicate<RawPosition> predicate = findPredicate(filter);
-            stream = stream.filter(predicate);
-            stream = stream.filter(predicate);
+            stream      = stream.filter(predicate);
+            totalStream = totalStream.filter(predicate);
         }
         
         if (sorts != null && !sorts.isEmpty()) {

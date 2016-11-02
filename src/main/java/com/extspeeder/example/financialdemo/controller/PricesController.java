@@ -69,8 +69,8 @@ public final class PricesController {
 
         for (final Filter filter : filters) {
             final Predicate<PriceStore> predicate = findPredicate(filter);
-            stream = stream.filter(predicate);
-            stream = stream.filter(predicate);
+            stream      = stream.filter(predicate);
+            totalStream = totalStream.filter(predicate);
         }
         
         if (sorts != null && !sorts.isEmpty()) {
