@@ -128,6 +128,7 @@ public final class OrdersController {
             case "traderGroup"        : return Order.TRADER_GROUP;
             case "traderGroupType"    : return Order.TRADER_GROUP_TYPE;
             case "execPrice"          : return Order.PRICE;
+            case "limitPrice"         : return Order.LIMIT_PRICE;
             default : throw new IllegalArgumentException(
                 "Unknown property: " + property + "."
             );
@@ -151,7 +152,8 @@ public final class OrdersController {
                 case "orderType"          : return OrderType.valueOf(filter.getValue());
                 case "status"             : return Status.valueOf(filter.getValue());
                 case "quantity"           : return Integer.parseInt(filter.getValue());
-                case "execPrice"          : return Double.parseDouble(filter.getValue());
+                case "execPrice"          : // Fallthrough
+                case "limitPrice"         : return Double.parseDouble(filter.getValue());
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -252,6 +254,7 @@ public final class OrdersController {
         private final Status status;
         private final String traderName;
         private final Double execPrice;
+        private final Double limitPrice;
         private final Integer quantity;
         
         static OrderResult from(Order original) {
@@ -268,6 +271,7 @@ public final class OrdersController {
                 original.getStatus(),
                 original.getTraderName(),
                 original.getPrice(),
+                original.getLimitPrice().orElse(null),
                 original.getQuantity()
             );
         }
@@ -285,6 +289,7 @@ public final class OrdersController {
                 Status status, 
                 String traderName,
                 Double price,
+                Double limitPrice,
                 Integer quantity) {
             
             this.id                 = id;
@@ -299,6 +304,7 @@ public final class OrdersController {
             this.status             = status;
             this.traderName         = traderName;
             this.execPrice          = price;
+            this.limitPrice         = limitPrice;
             this.quantity           = quantity;
         }
 
@@ -348,6 +354,10 @@ public final class OrdersController {
 
         public Double getExecPrice() {
             return execPrice;
+        }
+
+        public Double getLimitPrice() {
+            return limitPrice;
         }
 
         public Integer getQuantity() {
