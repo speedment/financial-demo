@@ -1,6 +1,6 @@
 package com.extspeeder.example.financialdemo.controller.param;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -11,13 +11,13 @@ import static java.util.Objects.requireNonNull;
 public final class Filter {
 
     public enum Operator {
-        @JsonProperty("eq") EQUAL,
-        @JsonProperty("ne") NOT_EQUAL,
-        @JsonProperty("lt") LESS_THAN,
-        @JsonProperty("le") LESS_OR_EQUAL,
-        @JsonProperty("gt") GREATER_THAN,
-        @JsonProperty("ge") GREATER_OR_EQUAL,
-        @JsonProperty("like") LIKE;
+        @SerializedName("eq") EQUAL,
+        @SerializedName("ne") NOT_EQUAL,
+        @SerializedName("lt") LESS_THAN,
+        @SerializedName("le") LESS_OR_EQUAL,
+        @SerializedName("gt") GREATER_THAN,
+        @SerializedName("ge") GREATER_OR_EQUAL,
+        @SerializedName("like") LIKE;
     }
        
     private final Operator operator;
