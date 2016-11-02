@@ -207,19 +207,19 @@ public final class PricesController {
         
         private final long id;
         private final long valueDate;
-        private final double open;
+        private final Double open;
         private final Double close;
-        private final double high;
-        private final double low;
+        private final Double high;
+        private final Double low;
         
         static PriceResult from(PriceStore original) {
             return new PriceResult(
                 original.getId(),
                 original.getValueDate(),
-                original.getOpen(),
+                original.getOpen().orElse(null),
                 original.getClose().orElse(null),
-                original.getHigh(),
-                original.getLow()
+                original.getHigh().orElse(null),
+                original.getLow().orElse(null)
             );
         }
 
@@ -231,7 +231,7 @@ public final class PricesController {
             return valueDate;
         }
 
-        public double getOpen() {
+        public Double getOpen() {
             return open;
         }
 
@@ -239,11 +239,11 @@ public final class PricesController {
             return close;
         }
 
-        public double getHigh() {
+        public Double getHigh() {
             return high;
         }
 
-        public double getLow() {
+        public Double getLow() {
             return low;
         }
 
