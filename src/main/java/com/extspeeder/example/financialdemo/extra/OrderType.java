@@ -14,7 +14,8 @@ public enum OrderType {
     }
     
     public static OrderType fromDatabase(String value) {
-        switch (value) {
+        if (value == null) return null; 
+        else switch (value) {
             case "MARKET" : return MARKET;
             case "LIMIT"  : return LIMIT;
             case "STOP"   : return STOP;

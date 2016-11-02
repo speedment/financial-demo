@@ -14,7 +14,8 @@ public enum Status {
     }
     
     public static Status fromDatabase(String value) {
-        switch (value) {
+        if (value == null) return null; 
+        else switch (value) {
             case "FILLED"    : return FILLED;
             case "CANCELLED" : return CANCELLED;
             case "EXPIRED"   : return EXPIRED;

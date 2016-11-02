@@ -243,8 +243,8 @@ public final class OrdersController {
         private final long id;
         private final String valueDate;
         private final long dateCreated;
-        private final long dateExecuted;
-        private final BuySell direction;
+        private final Long dateExecuted;
+        private final BuySell direction; 
         private final String instrumentSymbol;
         private final OrderType orderType;
         private final Status status;
@@ -257,7 +257,7 @@ public final class OrdersController {
                 original.getId(),
                 TimeUtil.fromEpochSecs(original.getDateCreated()),
                 original.getDateCreated() * 1_000L,
-                original.getDateExecuted() * 1_000L,
+                (original.getDateExecuted() == null ? null : (original.getDateExecuted() * 1_000L)),
                 original.getDirection(),
                 original.getInstrumentSymbol(),
                 original.getOrderType(),
@@ -272,7 +272,7 @@ public final class OrdersController {
                 long id, 
                 String valueDate, 
                 long dateCreated, 
-                long dateExecuted, 
+                Long dateExecuted, 
                 BuySell direction, 
                 String instrumentSymbol,
                 OrderType orderType, 

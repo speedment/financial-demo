@@ -14,7 +14,8 @@ public enum BuySell {
     }
     
     public static BuySell fromDatabase(String value) {
-        switch (value) {
+        if (value == null) return null; 
+        else switch (value) {
             case "BUY" : return BUY;
             case "SELL" : return SELL;
             default : throw new IllegalArgumentException(
