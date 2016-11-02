@@ -38,11 +38,23 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
 
     @Override
     public String getValueDateAsString() {
-        final Integer valueDate = getValueDate();
-        if (valueDate == null) {
-            return null;
-        } else {
-            return DATE_FORMAT.format(Date.from(Instant.ofEpochSecond(valueDate)));
+        try {
+            final Integer valueDate = getValueDate();
+            if (valueDate == null) {
+                return null;
+            } else {
+                return DATE_FORMAT.format(Date.from(
+                    Instant.ofEpochSecond(valueDate)
+                ));
+            }
+        } catch (final ArrayIndexOutOfBoundsException ex) {
+            System.err.println(String.format(
+                "Error parsing epoch second '%d' of raw position '%d' to " + 
+                "string.", 
+                getValueDate(), 
+                getId()
+            ));
+            throw ex;
         }
     }
 }
