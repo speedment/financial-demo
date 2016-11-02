@@ -12,17 +12,18 @@ import java.util.function.LongSupplier;
  */
 public class SizeCache {
 
-    private final Map<String, Map<String, Long>> maps;
+    private final Map<String, Long> maps;
 
     public SizeCache() {
         this.maps = new ConcurrentHashMap<>();
     }
 
-    public Long computeIfAbsent(String path, String filter, LongSupplier supplier) {
-        requireNonNulls(path, filter, supplier);
-        return maps
-            .computeIfAbsent(path, $ -> new ConcurrentHashMap<>())
-            .computeIfAbsent(filter, $ -> supplier.getAsLong());
+    public Long computeIfAbsent(String filter, LongSupplier supplier) {
+        requireNonNulls(supplier);
+        return maps.computeIfAbsent(
+            filter == null ? "[]" : filter, 
+            $ -> supplier.getAsLong()
+        );
     }
 
     public void clear() {

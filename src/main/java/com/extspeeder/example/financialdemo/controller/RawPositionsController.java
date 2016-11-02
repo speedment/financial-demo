@@ -96,9 +96,7 @@ public class RawPositionsController {
         }
 
         final long totalCount = sizeCache.computeIfAbsent(
-            getClass().getName(),
-            filters.toString(),
-            totalStream::count
+            sFilters, totalStream::count
         );
 
         try {
