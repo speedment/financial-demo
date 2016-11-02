@@ -246,6 +246,8 @@ public final class OrdersController {
         private final Long dateExecuted;
         private final BuySell direction; 
         private final String instrumentSymbol;
+        private final String instrumentIndustry;
+        private final String instrumentSector;
         private final OrderType orderType;
         private final Status status;
         private final String traderName;
@@ -260,6 +262,8 @@ public final class OrdersController {
                 (original.getDateExecuted() == null ? null : (original.getDateExecuted() * 1_000L)),
                 original.getDirection(),
                 original.getInstrumentSymbol(),
+                original.getInstrumentIndustry().orElse(null),
+                original.getInstrumentSector().orElse(null),
                 original.getOrderType(),
                 original.getStatus(),
                 original.getTraderName(),
@@ -275,6 +279,8 @@ public final class OrdersController {
                 Long dateExecuted, 
                 BuySell direction, 
                 String instrumentSymbol,
+                String instrumentIndustry,
+                String instrumentSector,
                 OrderType orderType, 
                 Status status, 
                 String traderName,
@@ -287,6 +293,8 @@ public final class OrdersController {
             this.dateExecuted       = dateExecuted;
             this.direction          = direction;
             this.instrumentSymbol   = instrumentSymbol;
+            this.instrumentIndustry = instrumentIndustry;
+            this.instrumentSector   = instrumentSector;
             this.orderType          = orderType;
             this.status             = status;
             this.traderName         = traderName;
@@ -316,6 +324,14 @@ public final class OrdersController {
 
         public String getInstrumentSymbol() {
             return instrumentSymbol;
+        }
+
+        public String getInstrumentIndustry() {
+            return instrumentIndustry;
+        }
+
+        public String getInstrumentSector() {
+            return instrumentSector;
         }
 
         public OrderType getOrderType() {
