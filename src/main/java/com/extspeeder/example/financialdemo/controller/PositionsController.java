@@ -1,16 +1,12 @@
 package com.extspeeder.example.financialdemo.controller;
 
-import com.extspeeder.example.financialdemo.controller.param.Sort;
 import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.fromEpochSecs;
 import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.toEpochSecs;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
-import com.google.gson.Gson;
-import com.speedment.field.trait.ComparableFieldTrait;
 import com.speedment.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
-import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -32,11 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @since  1.0.0
  */
 @RestController
-public class PositionController {
+public class PositionsController {
     
     private final static String SEPARATOR  = ">>";
     
-    private @Autowired Gson gson;
     private @Autowired RawPositionManager rawPositions;
 
     @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
@@ -124,7 +119,7 @@ public class PositionController {
                 classifier(groups[4]).apply(pos);
             default : return pos -> Stream.of(groups)
                 .limit(limit)
-                .map(PositionController::classifier)
+                .map(PositionsController::classifier)
                 .map(c -> c.apply(pos))
                 .collect(joining(SEPARATOR));
         }
@@ -158,36 +153,6 @@ public class PositionController {
             case "instrumentIndustry" : return RawPosition.INSTRUMENT_INDUSTRY.equal(key);
             default : throw new IllegalArgumentException(
                 "Unknown group '" + group + "'."
-            );
-        }
-    }
-    
-    private static Comparator<RawPosition> sortToComparator(Sort sort) {
-        final ComparableFieldTrait<RawPosition, ?, ?> field = findField(sort.getProperty());
-        final Comparator<RawPosition> comparator = field.comparator();
-        if (sort.getDirection() == Sort.Direction.DESC) {
-            return comparator.reversed();
-        } else {
-            return comparator;
-        }
-    }
-    
-    private static ComparableFieldTrait<RawPosition, ?, ?> findField(String property) {
-        switch (property) {
-            case "id"                       : return RawPosition.ID;
-            case "pnl"                      : return RawPosition.PNL;
-            case "initiateTradingMktVal"    : return RawPosition.INITIATE_TRADING_MKT_VAL;
-            case "liquidateTradingMktVal"   : return RawPosition.LIQUIDATE_TRADING_MKT_VAL;
-            case "valueDate"                : return RawPosition.VALUE_DATE;
-            case "traderName"               : return RawPosition.TRADER_NAME;
-            case "traderGroup"              : return RawPosition.TRADER_GROUP;
-            case "traderGroupType"          : return RawPosition.TRADER_GROUP_TYPE;
-            case "instrumentName"           : return RawPosition.INSTRUMENT_NAME;
-            case "instrumentSymbol"         : return RawPosition.INSTRUMENT_SYMBOL;
-            case "instrumentSector"         : return RawPosition.INSTRUMENT_SECTOR;
-            case "instrumentIndustry"       : return RawPosition.INSTRUMENT_INDUSTRY;
-            default : throw new IllegalArgumentException(
-                "Unknown property '" + property + "'."
             );
         }
     }
