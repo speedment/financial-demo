@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 public abstract class RawPositionImpl extends GeneratedRawPositionImpl implements RawPosition {
     
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private final static ZoneId NEW_YORK_ZONE = ZoneId.of("America/New_York");
     
     @Override
     public String getInstrumentNameUnwrapped() {
@@ -46,16 +47,22 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
             if (valueDate == null) {
                 return null;
             } else {
-                return FORMATTER.format(ZonedDateTime.ofInstant(Instant.ofEpochSecond(valueDate), ZoneId.of("America/New_York")));
+                return FORMATTER.format(ZonedDateTime.ofInstant(Instant.ofEpochSecond(valueDate), NEW_YORK_ZONE));
             }
         } catch (final ArrayIndexOutOfBoundsException ex) {
             System.err.println(String.format(
-                "Error parsing epoch second '%d' of raw position '%d' to " + 
-                "string.", 
-                getValueDate(), 
+                "Error parsing epoch second '%d' of raw position '%d' to " +
+                "string.",
+                getValueDate(),
                 getId()
             ));
             throw ex;
         }
+    }
+
+    @Override
+    public String getValueDateAsRawString() {
+        final Integer date = getValueDate();
+        return date == null ? null : date.toString();
     }
 }

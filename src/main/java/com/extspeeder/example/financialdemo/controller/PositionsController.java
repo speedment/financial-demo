@@ -42,7 +42,7 @@ public class PositionsController {
             @RequestParam(name="drillDownPath") String aGroups,
             @RequestParam(name="drillDownKey", required=false) String aKeys,
             HttpServletResponse response
-    ) throws ParseException {
+    ) throws ParseException, NumberFormatException {
         
         final Stopwatch sw = Stopwatch.createStarted();
         final int iFrom = toEpochSecs(startDate);
@@ -127,7 +127,7 @@ public class PositionsController {
     
     private static Function<RawPosition, String> classifier(String group) {
         switch (group) {
-            case "valueDate"          : return RawPosition::getValueDateAsString;
+            case "valueDate"          : return RawPosition::getValueDateAsRawString;
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;
@@ -141,9 +141,9 @@ public class PositionsController {
         }
     }
     
-    private static Predicate<RawPosition> filter(String group, String key) throws ParseException {
+    private static Predicate<RawPosition> filter(String group, String key) throws ParseException, NumberFormatException {
         switch (group) {
-            case "valueDate"          : return RawPosition.VALUE_DATE.equal(toEpochSecs(key));
+            case "valueDate"          : return RawPosition.VALUE_DATE.equal(Integer.parseInt(key));
             case "traderName"         : return RawPosition.TRADER_NAME.equal(key);
             case "traderGroup"        : return RawPosition.TRADER_GROUP.equal(key);
             case "traderGroupType"    : return RawPosition.TRADER_GROUP_TYPE.equal(key);
@@ -162,7 +162,7 @@ public class PositionsController {
         private final Function<RawPosition, String> getId;
 
         public ResultFactory(Function<RawPosition, String> getId) {
-            this.getId   = requireNonNull(getId);
+            this.getId = requireNonNull(getId);
         }
         
         public Result createFrom(RawPosition pos) {

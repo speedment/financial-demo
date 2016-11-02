@@ -23,4 +23,6 @@ public interface RawPosition extends GeneratedRawPosition {
     
     String getValueDateAsString();
     
+    String getValueDateAsRawString();
+    
 }
