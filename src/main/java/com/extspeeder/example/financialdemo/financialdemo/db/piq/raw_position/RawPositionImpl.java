@@ -2,6 +2,8 @@ package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -44,7 +46,7 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
             if (valueDate == null) {
                 return null;
             } else {
-                return FORMATTER.format(Instant.ofEpochSecond(valueDate));
+                return FORMATTER.format(ZonedDateTime.ofInstant(Instant.ofEpochSecond(valueDate), ZoneId.of("America/New_York")));
             }
         } catch (final ArrayIndexOutOfBoundsException ex) {
             System.err.println(String.format(
