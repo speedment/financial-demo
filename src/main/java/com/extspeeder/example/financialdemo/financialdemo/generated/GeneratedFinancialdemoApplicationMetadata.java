@@ -73,6 +73,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
         initPart49(sb);
         initPart50(sb);
         initPart51(sb);
+        initPart52(sb);
         return sb.toString();
     }
     
@@ -1172,7 +1173,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"enabled\": true",
+            "                    \"enabled\": false",
             "                  }",
             "                ],",
             "                \"virtualColumns\": [",
@@ -1779,7 +1780,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
     
     private static void initPart16(StringBuilder sb) {
         Stream.of(
-            "                \"expanded\": false,",
+            "                \"expanded\": true,",
             "                \"primaryKeyColumns\": [",
             "                  {",
             "                    \"expanded\": false,",
@@ -1931,18 +1932,22 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
+            "                    \"autoIncrement\": false,",
             "                    \"name\": \"initiate_mkt_val\",",
             "                    \"ordinalPosition\": 9.0,",
-            "                    \"enabled\": true",
+            "                    \"enabled\": true,",
+            "                    \"exposedInRest\": true",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
+            "                    \"autoIncrement\": false,",
             "                    \"name\": \"liquidate_mkt_val\",",
             "                    \"ordinalPosition\": 10.0,",
-            "                    \"enabled\": true",
+            "                    \"enabled\": true,",
+            "                    \"exposedInRest\": true",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
@@ -1981,16 +1986,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"enabled\": true",
-            "                  },",
-            "                  {",
-            "                    \"expanded\": false,",
-            "                    \"unique\": false,"
+            "                    \"enabled\": true"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart18(StringBuilder sb) {
         Stream.of(
+            "                  },",
+            "                  {",
+            "                    \"expanded\": false,",
+            "                    \"unique\": false,",
             "                    \"name\": \"symbol\",",
             "                    \"indexColumns\": [",
             "                      {",
@@ -2087,16 +2092,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
             "                    \"autoIncrement\": false,",
-            "                    \"name\": \"short_name\",",
-            "                    \"ordinalPosition\": 8.0,",
-            "                    \"enabled\": false,",
-            "                    \"exposedInRest\": true",
-            "                  },"
+            "                    \"name\": \"short_name\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart19(StringBuilder sb) {
         Stream.of(
+            "                    \"ordinalPosition\": 8.0,",
+            "                    \"enabled\": false,",
+            "                    \"exposedInRest\": true",
+            "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
@@ -2193,16 +2198,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"avg_mkt_cap_in_millions\",",
             "                    \"ordinalPosition\": 17.0,",
-            "                    \"enabled\": false,",
-            "                    \"exposedInRest\": true",
-            "                  },",
-            "                  {",
-            "                    \"databaseType\": \"java.lang.Double\","
+            "                    \"enabled\": false,"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart20(StringBuilder sb) {
         Stream.of(
+            "                    \"exposedInRest\": true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
@@ -2299,16 +2304,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  }",
             "                ],",
             "                \"columns\": [",
-            "                  {",
-            "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
-            "                    \"expanded\": false,",
-            "                    \"nullable\": false,"
+            "                  {"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart21(StringBuilder sb) {
         Stream.of(
+            "                    \"databaseType\": \"java.lang.Long\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
+            "                    \"expanded\": false,",
+            "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
             "                    \"name\": \"id\",",
             "                    \"ordinalPosition\": 1.0,",
@@ -2405,16 +2410,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"name\": \"id\",",
             "                    \"ordinalPosition\": 1.0",
             "                  }",
-            "                ],",
-            "                \"indexes\": [",
-            "                  {",
-            "                    \"expanded\": false,",
-            "                    \"unique\": true,"
+            "                ],"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart22(StringBuilder sb) {
         Stream.of(
+            "                \"indexes\": [",
+            "                  {",
+            "                    \"expanded\": false,",
+            "                    \"unique\": true,",
             "                    \"name\": \"PRIMARY\",",
             "                    \"indexColumns\": [",
             "                      {",
@@ -2438,7 +2443,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"enabled\": true",
+            "                    \"enabled\": false",
             "                  },",
             "                  {",
             "                    \"expanded\": false,",
@@ -2452,7 +2457,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"enabled\": true",
+            "                    \"enabled\": false",
             "                  },",
             "                  {",
             "                    \"expanded\": false,",
@@ -2466,7 +2471,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"enabled\": true",
+            "                    \"enabled\": false",
             "                  }",
             "                ],",
             "                \"virtualColumns\": [",
@@ -2511,16 +2516,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  {",
             "                    \"expanded\": true,",
             "                    \"name\": \"instrument_industry\",",
-            "                    \"columnReferences\": [",
-            "                      {",
-            "                        \"name\": \"piq.orders.instrument_id\",",
-            "                        \"schemaName\": \"piq\",",
-            "                        \"tableName\": \"orders\","
+            "                    \"columnReferences\": ["
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart23(StringBuilder sb) {
         Stream.of(
+            "                      {",
+            "                        \"name\": \"piq.orders.instrument_id\",",
+            "                        \"schemaName\": \"piq\",",
+            "                        \"tableName\": \"orders\",",
             "                        \"columnName\": \"instrument_id\"",
             "                      },",
             "                      {",
@@ -2617,16 +2622,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"tableName\": \"execution\",",
             "                        \"columnName\": \"price\"",
             "                      }",
-            "                    ],",
-            "                    \"enabled\": true",
-            "                  },",
-            "                  {",
-            "                    \"expanded\": true,"
+            "                    ],"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart24(StringBuilder sb) {
         Stream.of(
+            "                    \"enabled\": true",
+            "                  },",
+            "                  {",
+            "                    \"expanded\": true,",
             "                    \"name\": \"date_executed\",",
             "                    \"columnReferences\": [",
             "                      {",
@@ -2723,16 +2728,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"enabled\": false,",
             "                    \"exposedInRest\": true",
             "                  },",
-            "                  {",
-            "                    \"databaseType\": \"java.lang.String\",",
-            "                    \"typeMapper\": \"com.extspeeder.example.financialdemo.extra.OrderTypeMapper\",",
-            "                    \"expanded\": false,",
-            "                    \"nullable\": false,"
+            "                  {"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart25(StringBuilder sb) {
         Stream.of(
+            "                    \"databaseType\": \"java.lang.String\",",
+            "                    \"typeMapper\": \"com.extspeeder.example.financialdemo.extra.OrderTypeMapper\",",
+            "                    \"expanded\": false,",
+            "                    \"nullable\": false,",
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"order_type\",",
             "                    \"ordinalPosition\": 8.0,",
@@ -2802,7 +2807,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"limit_price\",",
             "                    \"ordinalPosition\": 14.0,",
-            "                    \"enabled\": false,",
+            "                    \"enabled\": true,",
             "                    \"exposedInRest\": true",
             "                  },",
             "                  {",
@@ -2829,16 +2834,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
-            "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
-            "                    \"autoIncrement\": false,",
-            "                    \"name\": \"trader_id\","
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart26(StringBuilder sb) {
         Stream.of(
+            "                    \"expanded\": false,",
+            "                    \"nullable\": false,",
+            "                    \"autoIncrement\": false,",
+            "                    \"name\": \"trader_id\",",
             "                    \"ordinalPosition\": 17.0,",
             "                    \"enabled\": false,",
             "                    \"exposedInRest\": true",
@@ -2935,16 +2940,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"enabled\": true",
             "                  }",
             "                ],",
-            "                \"columns\": [",
-            "                  {",
-            "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
-            "                    \"expanded\": false,"
+            "                \"columns\": ["
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart27(StringBuilder sb) {
         Stream.of(
+            "                  {",
+            "                    \"databaseType\": \"java.lang.Long\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
+            "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
             "                    \"name\": \"id\",",
@@ -3041,16 +3046,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"ordinalPosition\": 11.0,",
             "                    \"enabled\": true",
             "                  },",
-            "                  {",
-            "                    \"databaseType\": \"java.lang.Double\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
-            "                    \"expanded\": false,",
-            "                    \"nullable\": false,"
+            "                  {"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart28(StringBuilder sb) {
         Stream.of(
+            "                    \"databaseType\": \"java.lang.Double\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
+            "                    \"expanded\": false,",
+            "                    \"nullable\": false,",
             "                    \"name\": \"sales_commission\",",
             "                    \"ordinalPosition\": 12.0,",
             "                    \"enabled\": true",
@@ -3147,16 +3152,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                      }",
             "                    ],",
             "                    \"enabled\": true",
-            "                  },",
-            "                  {",
-            "                    \"expanded\": false,",
-            "                    \"unique\": false,",
-            "                    \"name\": \"FK_mm5lf83p92ft6ik99kxval9yg\","
+            "                  },"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart29(StringBuilder sb) {
         Stream.of(
+            "                  {",
+            "                    \"expanded\": false,",
+            "                    \"unique\": false,",
+            "                    \"name\": \"FK_mm5lf83p92ft6ik99kxval9yg\",",
             "                    \"indexColumns\": [",
             "                      {",
             "                        \"orderType\": \"ASC\",",
@@ -3253,16 +3258,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"orderType\": \"ASC\",",
             "                        \"expanded\": false,",
             "                        \"name\": \"execution_id\",",
-            "                        \"ordinalPosition\": 1.0",
-            "                      }",
-            "                    ],",
-            "                    \"enabled\": true",
-            "                  }"
+            "                        \"ordinalPosition\": 1.0"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart30(StringBuilder sb) {
         Stream.of(
+            "                      }",
+            "                    ],",
+            "                    \"enabled\": true",
+            "                  }",
             "                ],",
             "                \"columns\": [",
             "                  {",
@@ -3359,16 +3364,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      },",
             "                      {",
-            "                        \"orderType\": \"ASC\",",
-            "                        \"expanded\": false,",
-            "                        \"name\": \"instrument_id\",",
-            "                        \"ordinalPosition\": 2.0",
-            "                      }"
+            "                        \"orderType\": \"ASC\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart31(StringBuilder sb) {
         Stream.of(
+            "                        \"expanded\": false,",
+            "                        \"name\": \"instrument_id\",",
+            "                        \"ordinalPosition\": 2.0",
+            "                      }",
             "                    ],",
             "                    \"enabled\": true",
             "                  },",
@@ -3465,16 +3470,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"expanded\": false,",
             "                        \"name\": \"split_id\",",
             "                        \"foreignColumnName\": \"id\",",
-            "                        \"foreignTableName\": \"split\",",
-            "                        \"ordinalPosition\": 1.0",
-            "                      }",
-            "                    ],",
-            "                    \"name\": \"FK_k2hej8pptnoebt70fvtkl1s22\","
+            "                        \"foreignTableName\": \"split\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart32(StringBuilder sb) {
         Stream.of(
+            "                        \"ordinalPosition\": 1.0",
+            "                      }",
+            "                    ],",
+            "                    \"name\": \"FK_k2hej8pptnoebt70fvtkl1s22\",",
             "                    \"enabled\": true",
             "                  }",
             "                ],",
@@ -3535,7 +3540,25 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                \"exposedInRest\": true",
             "              },",
             "              {",
-            "                \"expanded\": false,",
+            "                \"expanded\": true,",
+            "                \"foreignKeys\": [",
+            "                  {",
+            "                    \"expanded\": false,",
+            "                    \"foreignKeyColumns\": [",
+            "                      {",
+            "                        \"foreignDatabaseName\": \"db0\",",
+            "                        \"foreignSchemaName\": \"piq\",",
+            "                        \"expanded\": true,",
+            "                        \"name\": \"instrument_id\",",
+            "                        \"foreignColumnName\": \"id\",",
+            "                        \"foreignTableName\": \"instrument\",",
+            "                        \"ordinalPosition\": 1.0",
+            "                      }",
+            "                    ],",
+            "                    \"name\": \"fk_instrument_id\",",
+            "                    \"enabled\": false",
+            "                  }",
+            "                ],",
             "                \"primaryKeyColumns\": [",
             "                  {",
             "                    \"expanded\": false,",
@@ -3553,13 +3576,59 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"orderType\": \"ASC\",",
             "                        \"expanded\": false,",
             "                        \"name\": \"instrument_id\",",
-            "                        \"ordinalPosition\": 1.0",
+            "                        \"ordinalPosition\": 1.0"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart33(StringBuilder sb) {
+        Stream.of(
             "                      },",
             "                      {",
             "                        \"orderType\": \"ASC\",",
             "                        \"expanded\": false,",
             "                        \"name\": \"value_date\",",
             "                        \"ordinalPosition\": 2.0",
+            "                      },",
+            "                      {",
+            "                        \"orderType\": \"ASC\",",
+            "                        \"expanded\": true,",
+            "                        \"name\": \"id\",",
+            "                        \"ordinalPosition\": 1.0",
+            "                      }",
+            "                    ],",
+            "                    \"enabled\": true",
+            "                  },",
+            "                  {",
+            "                    \"expanded\": false,",
+            "                    \"unique\": false,",
+            "                    \"name\": \"fk_instrument_id\",",
+            "                    \"indexColumns\": [",
+            "                      {",
+            "                        \"orderType\": \"ASC\",",
+            "                        \"expanded\": true,",
+            "                        \"name\": \"instrument_id\",",
+            "                        \"ordinalPosition\": 1.0",
+            "                      }",
+            "                    ],",
+            "                    \"enabled\": true",
+            "                  }",
+            "                ],",
+            "                \"virtualColumns\": [",
+            "                  {",
+            "                    \"expanded\": true,",
+            "                    \"name\": \"instrument_symbol\",",
+            "                    \"columnReferences\": [",
+            "                      {",
+            "                        \"name\": \"piq.price_store.instrument_id\",",
+            "                        \"schemaName\": \"piq\",",
+            "                        \"tableName\": \"price_store\",",
+            "                        \"columnName\": \"instrument_id\"",
+            "                      },",
+            "                      {",
+            "                        \"name\": \"piq.instrument.symbol\",",
+            "                        \"schemaName\": \"piq\",",
+            "                        \"tableName\": \"instrument\",",
+            "                        \"columnName\": \"symbol\"",
             "                      }",
             "                    ],",
             "                    \"enabled\": true",
@@ -3575,12 +3644,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"name\": \"id\",",
             "                    \"ordinalPosition\": 1.0,",
             "                    \"enabled\": true,",
-            "                    \"exposedInRest\": true"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart33(StringBuilder sb) {
-        Stream.of(
+            "                    \"exposedInRest\": true",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
@@ -3608,7 +3672,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
+            "                    \"nullable\": true,",
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"open\",",
             "                    \"ordinalPosition\": 4.0,",
@@ -3618,8 +3682,13 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  {",
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
-            "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
+            "                    \"expanded\": false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart34(StringBuilder sb) {
+        Stream.of(
+            "                    \"nullable\": true,",
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"high\",",
             "                    \"ordinalPosition\": 5.0,",
@@ -3630,7 +3699,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
+            "                    \"nullable\": true,",
             "                    \"autoIncrement\": false,",
             "                    \"name\": \"low\",",
             "                    \"ordinalPosition\": 6.0,",
@@ -3681,12 +3750,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"enabled\": false,",
             "                    \"exposedInRest\": true",
             "                  },",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart34(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
@@ -3724,7 +3788,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.BooleanIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
-            "                    \"autoIncrement\": false,",
+            "                    \"autoIncrement\": false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart35(StringBuilder sb) {
+        Stream.of(
             "                    \"name\": \"historical_close_written\",",
             "                    \"ordinalPosition\": 14.0,",
             "                    \"enabled\": false,",
@@ -3787,12 +3856,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"enabled\": true",
             "                  },",
             "                  {",
-            "                    \"databaseType\": \"java.lang.Long\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart35(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\": \"java.lang.Long\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
@@ -3830,7 +3894,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"ordinalPosition\": 1.0",
             "                      }",
             "                    ],",
-            "                    \"name\": \"FK6891B1AD44B4098\"",
+            "                    \"name\": \"FK6891B1AD44B4098\""
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart36(StringBuilder sb) {
+        Stream.of(
             "                  }",
             "                ],",
             "                \"expanded\": false,",
@@ -3893,12 +3962,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                      }",
             "                    ]",
             "                  },",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart36(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"expanded\": false,",
             "                    \"unique\": false,",
             "                    \"name\": \"FK6891B1AD44B4098\",",
@@ -3936,7 +4000,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"ordinalPosition\": 1.0",
             "                  },",
             "                  {",
-            "                    \"databaseType\": \"java.lang.Long\",",
+            "                    \"databaseType\": \"java.lang.Long\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart37(StringBuilder sb) {
+        Stream.of(
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
@@ -3999,12 +4068,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"foreignSchemaName\": \"piq\",",
             "                        \"expanded\": false,",
             "                        \"name\": \"cohort_id\",",
-            "                        \"foreignColumnName\": \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart37(StringBuilder sb) {
-        Stream.of(
+            "                        \"foreignColumnName\": \"id\",",
             "                        \"foreignTableName\": \"cohort\",",
             "                        \"ordinalPosition\": 1.0",
             "                      }",
@@ -4042,7 +4106,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"expanded\": false,",
             "                    \"unique\": true,",
             "                    \"name\": \"PRIMARY\",",
-            "                    \"indexColumns\": [",
+            "                    \"indexColumns\": ["
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart38(StringBuilder sb) {
+        Stream.of(
             "                      {",
             "                        \"orderType\": \"ASC\",",
             "                        \"expanded\": false,",
@@ -4105,12 +4174,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"exposedInRest\": true",
             "                  },",
             "                  {",
-            "                    \"databaseType\": \"java.lang.Long\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart38(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\": \"java.lang.Long\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
@@ -4122,7 +4186,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.sql.Timestamp\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.TimestampIdentityMapper\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.time.TimestampToIntMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
             "                    \"autoIncrement\": false,",
@@ -4144,11 +4208,16 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.sql.Timestamp\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.TimestampIdentityMapper\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.time.TimestampToIntMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": false,",
-            "                    \"name\": \"start_date\",",
+            "                    \"name\": \"start_date\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart39(StringBuilder sb) {
+        Stream.of(
             "                    \"ordinalPosition\": 6.0,",
             "                    \"enabled\": false,",
             "                    \"exposedInRest\": true",
@@ -4211,12 +4280,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": false,",
             "                    \"name\": \"version\",",
             "                    \"ordinalPosition\": 2.0",
-            "                  },"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart39(StringBuilder sb) {
-        Stream.of(
+            "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Integer\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.IntegerIdentityMapper\",",
@@ -4254,7 +4318,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.IntegerIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
-            "                    \"name\": \"avg_trade_confidence\",",
+            "                    \"name\": \"avg_trade_confidence\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart40(StringBuilder sb) {
+        Stream.of(
             "                    \"ordinalPosition\": 7.0",
             "                  },",
             "                  {",
@@ -4317,12 +4386,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart40(StringBuilder sb) {
-        Stream.of(
+            "                    \"nullable\": true,",
             "                    \"name\": \"pct_losses_top_day\",",
             "                    \"ordinalPosition\": 15.0",
             "                  },",
@@ -4360,7 +4424,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Double\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart41(StringBuilder sb) {
+        Stream.of(
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
             "                    \"name\": \"pct_profits_top_days\",",
@@ -4423,12 +4492,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"ordinalPosition\": 27.0",
             "                  },",
             "                  {",
-            "                    \"databaseType\": \"java.lang.Double\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart41(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
@@ -4466,7 +4530,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": true,",
             "                    \"name\": \"total_pnl\",",
             "                    \"ordinalPosition\": 32.0",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart42(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
@@ -4529,12 +4598,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"expanded\": false,",
             "                    \"nullable\": true,",
             "                    \"name\": \"order_placed_day_count\",",
-            "                    \"ordinalPosition\": 40.0"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart42(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\": 40.0",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Integer\",",
@@ -4572,7 +4636,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.lang.Double\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.DoubleIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": true,",
+            "                    \"nullable\": true,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart43(StringBuilder sb) {
+        Stream.of(
             "                    \"name\": \"pct_trade_vol_after_midpoint\",",
             "                    \"ordinalPosition\": 45.0",
             "                  }",
@@ -4635,12 +4704,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"name\": \"version\",",
-            "                    \"ordinalPosition\": 2.0"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart43(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\": 2.0",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Boolean\",",
@@ -4678,7 +4742,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
+            "                    \"nullable\": false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart44(StringBuilder sb) {
+        Stream.of(
             "                    \"name\": \"first_name\",",
             "                    \"ordinalPosition\": 7.0",
             "                  },",
@@ -4741,12 +4810,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                        \"foreignTableName\": \"role\",",
             "                        \"ordinalPosition\": 1.0",
             "                      }",
-            "                    ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart44(StringBuilder sb) {
-        Stream.of(
+            "                    ],",
             "                    \"name\": \"FK_it77eq964jhfqtu54081ebtio\"",
             "                  }",
             "                ],",
@@ -4784,7 +4848,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    ]",
             "                  },",
             "                  {",
-            "                    \"expanded\": false,",
+            "                    \"expanded\": false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart45(StringBuilder sb) {
+        Stream.of(
             "                    \"unique\": false,",
             "                    \"name\": \"FK_apcc8lxk2xnug8377fatvbn04\",",
             "                    \"indexColumns\": [",
@@ -4847,12 +4916,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                \"columns\": [",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart45(StringBuilder sb) {
-        Stream.of(
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
@@ -4890,7 +4954,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": true,",
             "                    \"name\": \"last_updated_by\",",
             "                    \"ordinalPosition\": 5.0",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart46(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
@@ -4953,12 +5022,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                \"columns\": [",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart46(StringBuilder sb) {
-        Stream.of(
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
@@ -4996,7 +5060,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": false,",
             "                    \"name\": \"last_updated\",",
             "                    \"ordinalPosition\": 5.0",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart47(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
@@ -5059,12 +5128,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"name\": \"PRIMARY\",",
             "                    \"indexColumns\": [",
             "                      {",
-            "                        \"orderType\": \"ASC\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart47(StringBuilder sb) {
-        Stream.of(
+            "                        \"orderType\": \"ASC\",",
             "                        \"expanded\": false,",
             "                        \"name\": \"id\",",
             "                        \"ordinalPosition\": 1.0",
@@ -5102,7 +5166,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": false,",
             "                    \"name\": \"version\",",
             "                    \"ordinalPosition\": 2.0",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart48(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
@@ -5165,12 +5234,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                \"columns\": [",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
-            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart48(StringBuilder sb) {
-        Stream.of(
+            "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.LongIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
@@ -5208,7 +5272,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": true,",
             "                    \"name\": \"last_updated_by\",",
             "                    \"ordinalPosition\": 5.0",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart49(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
@@ -5271,12 +5340,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"nullable\": false,",
             "                    \"autoIncrement\": true,",
             "                    \"name\": \"id\",",
-            "                    \"ordinalPosition\": 1.0"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart49(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\": 1.0",
             "                  },",
             "                  {",
             "                    \"databaseType\": \"java.lang.Long\",",
@@ -5314,7 +5378,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"databaseType\": \"java.sql.Timestamp\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.TimestampIdentityMapper\",",
             "                    \"expanded\": false,",
-            "                    \"nullable\": false,",
+            "                    \"nullable\": false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart50(StringBuilder sb) {
+        Stream.of(
             "                    \"name\": \"date_created\",",
             "                    \"ordinalPosition\": 6.0",
             "                  },",
@@ -5377,12 +5446,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                \"expanded\": false,",
             "                \"primaryKeyColumns\": [",
             "                  {",
-            "                    \"expanded\": false,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart50(StringBuilder sb) {
-        Stream.of(
+            "                    \"expanded\": false,",
             "                    \"name\": \"id\",",
             "                    \"ordinalPosition\": 1.0",
             "                  }",
@@ -5420,7 +5484,12 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                      }",
             "                    ]",
             "                  },",
-            "                  {",
+            "                  {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart51(StringBuilder sb) {
+        Stream.of(
             "                    \"expanded\": false,",
             "                    \"unique\": true,",
             "                    \"name\": \"unique_username\",",
@@ -5483,12 +5552,7 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "                    \"ordinalPosition\": 5.0",
             "                  },",
             "                  {",
-            "                    \"databaseType\": \"java.lang.String\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart51(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\": \"java.lang.String\",",
             "                    \"typeMapper\": \"com.speedment.config.db.mapper.identity.StringIdentityMapper\",",
             "                    \"expanded\": false,",
             "                    \"nullable\": false,",
@@ -5527,6 +5591,11 @@ public class GeneratedFinancialdemoApplicationMetadata implements ApplicationMet
             "    \"enabled\": true",
             "  }",
             "}"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart52(StringBuilder sb) {
+        Stream.of(
         ).forEachOrdered(sb::append);
     }
 }
