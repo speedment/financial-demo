@@ -127,7 +127,7 @@ public final class OrdersController {
             case "traderName"         : return Order.TRADER_NAME;
             case "traderGroup"        : return Order.TRADER_GROUP;
             case "traderGroupType"    : return Order.TRADER_GROUP_TYPE;
-            case "price"              : return Order.PRICE;
+            case "execPrice"          : return Order.PRICE;
             default : throw new IllegalArgumentException(
                 "Unknown property: " + property + "."
             );
@@ -151,7 +151,7 @@ public final class OrdersController {
                 case "orderType"          : return OrderType.valueOf(filter.getValue());
                 case "status"             : return Status.valueOf(filter.getValue());
                 case "quantity"           : return Integer.parseInt(filter.getValue());
-                case "price"              : return Double.parseDouble(filter.getValue());
+                case "execPrice"          : return Double.parseDouble(filter.getValue());
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -249,7 +249,7 @@ public final class OrdersController {
         private final OrderType orderType;
         private final Status status;
         private final String traderName;
-        private final Double price;
+        private final Double execPrice;
         private final Integer quantity;
         
         static OrderResult from(Order original) {
@@ -290,7 +290,7 @@ public final class OrdersController {
             this.orderType          = orderType;
             this.status             = status;
             this.traderName         = traderName;
-            this.price              = price;
+            this.execPrice          = price;
             this.quantity           = quantity;
         }
 
@@ -330,8 +330,8 @@ public final class OrdersController {
             return traderName;
         }
 
-        public Double getPrice() {
-            return price;
+        public Double getExecPrice() {
+            return execPrice;
         }
 
         public Integer getQuantity() {
