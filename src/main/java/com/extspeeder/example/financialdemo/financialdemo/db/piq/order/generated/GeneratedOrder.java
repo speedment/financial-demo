@@ -76,6 +76,11 @@ public interface GeneratedOrder extends Entity<Order> {
      */
     final ComparableField<Order, Timestamp, Integer> DATE_EXECUTED = new VirtualComparableField<>(Identifier.DATE_EXECUTED, Order::getDateExecuted, new TimestampToIntMapper(), false);
     /**
+     * A field representation of the virtual field 'instrument_name' derived from
+     * the column 'name' in table 'instrument'.
+     */
+    final StringField<Order, String> INSTRUMENT_NAME = new VirtualStringField<>(Identifier.INSTRUMENT_NAME, o -> o.getInstrumentName().orElse(null), new StringIdentityMapper(), false);
+    /**
      * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getId()} method.
      */
@@ -237,6 +242,21 @@ public interface GeneratedOrder extends Entity<Order> {
     void setDateExecuted(Integer dateExecuted);
     
     /**
+     * Returns the virtual value of column 'name' in foreign table 'instrument'.
+     * 
+     * @return the virtual value InstrumentName
+     */
+    Optional<String> getInstrumentName();
+    
+    /**
+     * Sets the internal value of virtual column 'name'. This will not affect the
+     * database value.
+     * 
+     * @param instrumentName the virtual value
+     */
+    void setInstrumentName(String instrumentName);
+    
+    /**
      * Returns the id of this Order. The id field corresponds to the database
      * column db0.piq.orders.id.
      * 
@@ -371,7 +391,8 @@ public interface GeneratedOrder extends Entity<Order> {
         TRADER_GROUP ("trader_group"),
         TRADER_GROUP_TYPE ("trader_group_type"),
         PRICE ("price"),
-        DATE_EXECUTED ("date_executed");
+        DATE_EXECUTED ("date_executed"),
+        INSTRUMENT_NAME ("instrument_name");
         
         private final String columnName;
         

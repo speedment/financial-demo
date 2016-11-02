@@ -55,6 +55,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             entity.setTraderGroupType(resultSet.getString(13));
             entity.setPrice(getDouble(resultSet, 14));
             entity.setDateExecuted(Order.DATE_EXECUTED.typeMapper().toJavaType(resultSet.getTimestamp(15)));
+            entity.setInstrumentName(resultSet.getString(16));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);
@@ -90,6 +91,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             case TRADER_GROUP_TYPE : return entity.getTraderGroupType();
             case PRICE : return entity.getPrice();
             case DATE_EXECUTED : return entity.getDateExecuted();
+            case INSTRUMENT_NAME : return entity.getInstrumentName().orElse(null);
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -112,6 +114,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             case TRADER_GROUP_TYPE : entity.setTraderGroupType((String) value); break;
             case PRICE : entity.setPrice((Double) value); break;
             case DATE_EXECUTED : entity.setDateExecuted((Integer) value); break;
+            case INSTRUMENT_NAME : entity.setInstrumentName((String) value); break;
             default : throw new IllegalArgumentException("Unknown identifier '" + identifier + "'.");
         }
     }
@@ -133,7 +136,8 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             Order.TRADER_GROUP,
             Order.TRADER_GROUP_TYPE,
             Order.PRICE,
-            Order.DATE_EXECUTED
+            Order.DATE_EXECUTED,
+            Order.INSTRUMENT_NAME
         );
     }
     

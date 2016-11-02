@@ -118,6 +118,7 @@ public final class OrdersController {
             case "id"                 : return Order.ID;
             case "dateCreated"        : return Order.DATE_CREATED;
             case "direction"          : return Order.DIRECTION;
+            case "instrumentName  "   : return Order.INSTRUMENT_NAME;
             case "instrumentSymbol"   : return Order.INSTRUMENT_SYMBOL;
             case "instrumentSector"   : return Order.INSTRUMENT_SECTOR;
             case "instrumentIndustry" : return Order.INSTRUMENT_INDUSTRY;
@@ -146,6 +147,7 @@ public final class OrdersController {
                 case "traderName"         : // Fallthrough
                 case "traderGroup"        : // Fallthrough
                 case "traderGroupType"    : // Fallthrough
+                case "instrumentName"     : // Fallthrough
                 case "instrumentSymbol"   : // Fallthrough
                 case "instrumentSector"   : // Fallthrough
                 case "instrumentIndustry" : return filter.getValue();
@@ -247,6 +249,7 @@ public final class OrdersController {
         private final long dateCreated;
         private final Long dateExecuted;
         private final BuySell direction; 
+        private final String instrumentName;
         private final String instrumentSymbol;
         private final String instrumentIndustry;
         private final String instrumentSector;
@@ -264,6 +267,7 @@ public final class OrdersController {
                 original.getDateCreated() * 1_000L,
                 (original.getDateExecuted() == null ? null : (original.getDateExecuted() * 1_000L)),
                 original.getDirection(),
+                original.getInstrumentName().orElse(null),
                 original.getInstrumentSymbol(),
                 original.getInstrumentIndustry().orElse(null),
                 original.getInstrumentSector().orElse(null),
@@ -282,6 +286,7 @@ public final class OrdersController {
                 long dateCreated, 
                 Long dateExecuted, 
                 BuySell direction, 
+                String instrumentName,
                 String instrumentSymbol,
                 String instrumentIndustry,
                 String instrumentSector,
@@ -297,6 +302,7 @@ public final class OrdersController {
             this.dateCreated        = dateCreated;
             this.dateExecuted       = dateExecuted;
             this.direction          = direction;
+            this.instrumentName     = instrumentName;
             this.instrumentSymbol   = instrumentSymbol;
             this.instrumentIndustry = instrumentIndustry;
             this.instrumentSector   = instrumentSector;
@@ -326,6 +332,10 @@ public final class OrdersController {
 
         public BuySell getDirection() {
             return direction;
+        }
+
+        public String getInstrumentName() {
+            return instrumentName;
         }
 
         public String getInstrumentSymbol() {
