@@ -1,9 +1,8 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
-import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.DATE_FORMAT;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
 import java.time.Instant;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 /**
  * An implementation representing an entity (for example, a row) in the Table
@@ -15,6 +14,8 @@ import java.util.Date;
  * @author Speedment
  */
 public abstract class RawPositionImpl extends GeneratedRawPositionImpl implements RawPosition {
+    
+    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
     
     @Override
     public String getInstrumentNameUnwrapped() {
@@ -43,9 +44,7 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
             if (valueDate == null) {
                 return null;
             } else {
-                return DATE_FORMAT.format(Date.from(
-                    Instant.ofEpochSecond(valueDate)
-                ));
+                return FORMATTER.format(Instant.ofEpochSecond(valueDate));
             }
         } catch (final ArrayIndexOutOfBoundsException ex) {
             System.err.println(String.format(
