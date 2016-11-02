@@ -1,7 +1,6 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.generated;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStore;
-import com.speedment.Speedment;
 import com.speedment.internal.core.code.AbstractBaseEntity;
 import java.util.Objects;
 import java.util.Optional;
