@@ -1,6 +1,5 @@
 package com.extspeeder.example.financialdemo.controller;
 
-import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.fromEpochSecs;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.speedment.internal.util.testing.Stopwatch;
@@ -222,12 +221,12 @@ public class PositionsController {
             return instrumentName;
         }
 
-        public String getMinDate() {
-            return fromEpochSecs(minDate);
+        public int getMinDate() {
+            return minDate;
         }
         
-        public String getMaxDate() {
-            return fromEpochSecs(maxDate);
+        public int getMaxDate() {
+            return maxDate;
         }
         
         public Result aggregate(Result other) {
