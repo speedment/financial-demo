@@ -140,7 +140,7 @@ public final class OrdersController {
         } else {
             switch (filter.getProperty()) {
                 case "id"                 : return Long.parseLong(filter.getValue());
-                case "dateCreated"        : return TimeUtil.toEpochSecs(filter.getValue());
+                case "dateCreated"        : return Integer.parseInt(filter.getValue());
                 case "direction"          : return BuySell.valueOf(filter.getValue());
                 case "traderName"         : // Fallthrough
                 case "traderGroup"        : // Fallthrough
@@ -259,11 +259,24 @@ public final class OrdersController {
         private final Integer quantity;
         
         static OrderResult from(Order original) {
+            String valueDate;
+            try {
+                valueDate = TimeUtil.fromEpochSecs(original.getDateCreated());
+            } catch (final Throwable thrw) {
+                System.err.println("Error in /orders! Could not parse date " + 
+                    "created '" + original.getDateCreated() + "' into string."
+                );
+                valueDate = null;
+            }
+            
+            final Long executed = (original.getDateExecuted() == null 
+                ? null : (original.getDateExecuted() * 1_000L));
+            
             return new OrderResult(
                 original.getId(),
-                TimeUtil.fromEpochSecs(original.getDateCreated()),
+                valueDate,
                 original.getDateCreated() * 1_000L,
-                (original.getDateExecuted() == null ? null : (original.getDateExecuted() * 1_000L)),
+                executed,
                 original.getDirection(),
                 original.getInstrumentName().orElse(null),
                 original.getInstrumentSymbol(),

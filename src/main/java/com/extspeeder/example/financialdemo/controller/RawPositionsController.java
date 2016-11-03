@@ -147,7 +147,7 @@ public class RawPositionsController {
                 case "pnl"                    : // Fallthrough
                 case "initiateTradingMktVal"  : // Fallthrough
                 case "liquidateTradingMktVal" : return Double.parseDouble(filter.getValue());
-                case "valueDate"              : return TimeUtil.toEpochSecs(filter.getValue());
+                case "valueDate"              : return Integer.parseInt(filter.getValue());
                 case "traderName"             : // Fallthrough
                 case "traderGroup"            : // Fallthrough
                 case "traderGroupType"        : // Fallthrough

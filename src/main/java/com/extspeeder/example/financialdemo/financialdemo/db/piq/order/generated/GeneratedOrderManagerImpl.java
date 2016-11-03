@@ -41,7 +41,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
         final Order entity = newEmptyEntity();
         try {
             entity.setId(resultSet.getLong(1));
-            entity.setDateCreated(Order.DATE_CREATED.typeMapper().toJavaType(resultSet.getTimestamp(2)));
+            entity.setDateCreated(resultSet.getInt(2));
             entity.setDirection(Order.DIRECTION.typeMapper().toJavaType(resultSet.getString(3)));
             entity.setOrderType(Order.ORDER_TYPE.typeMapper().toJavaType(resultSet.getString(4)));
             entity.setQuantity(resultSet.getInt(5));
@@ -54,7 +54,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractExtSpeederSqlMan
             entity.setTraderGroup(resultSet.getString(12));
             entity.setTraderGroupType(resultSet.getString(13));
             entity.setPrice(getDouble(resultSet, 14));
-            entity.setDateExecuted(Order.DATE_EXECUTED.typeMapper().toJavaType(resultSet.getTimestamp(15)));
+            entity.setDateExecuted(getInt(resultSet, 15));
             entity.setInstrumentName(resultSet.getString(16));
         }
         catch (SQLException sqle) {

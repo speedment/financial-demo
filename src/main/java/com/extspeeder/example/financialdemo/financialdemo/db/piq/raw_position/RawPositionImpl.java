@@ -1,9 +1,7 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -42,26 +40,6 @@ public abstract class RawPositionImpl extends GeneratedRawPositionImpl implement
 
     @Override
     public String getValueDateAsString() {
-        try {
-            final Integer valueDate = getValueDate();
-            if (valueDate == null) {
-                return null;
-            } else {
-                return FORMATTER.format(ZonedDateTime.ofInstant(Instant.ofEpochSecond(valueDate), NEW_YORK_ZONE));
-            }
-        } catch (final ArrayIndexOutOfBoundsException ex) {
-            System.err.println(String.format(
-                "Error parsing epoch second '%d' of raw position '%d' to " +
-                "string.",
-                getValueDate(),
-                getId()
-            ));
-            throw ex;
-        }
-    }
-
-    @Override
-    public String getValueDateAsRawString() {
         final Integer date = getValueDate();
         return date == null ? null : date.toString();
     }

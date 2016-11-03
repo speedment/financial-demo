@@ -127,7 +127,7 @@ public class PositionsController {
     
     private static Function<RawPosition, String> classifier(String group) {
         switch (group) {
-            case "valueDate"          : return RawPosition::getValueDateAsRawString;
+            case "valueDate"          : return RawPosition::getValueDateAsString;
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;

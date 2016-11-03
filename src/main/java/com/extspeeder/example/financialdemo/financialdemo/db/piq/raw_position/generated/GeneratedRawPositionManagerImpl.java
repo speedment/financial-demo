@@ -41,7 +41,7 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractExtSpeeder
             entity.setPnl(resultSet.getDouble(2));
             entity.setInitiateTradingMktVal(resultSet.getDouble(3));
             entity.setLiquidateTradingMktVal(resultSet.getDouble(4));
-            entity.setValueDate(RawPosition.VALUE_DATE.typeMapper().toJavaType(resultSet.getTimestamp(5)));
+            entity.setValueDate(resultSet.getInt(5));
             entity.setTraderName(resultSet.getString(6));
             entity.setTraderGroup(resultSet.getString(7));
             entity.setTraderGroupType(resultSet.getString(8));

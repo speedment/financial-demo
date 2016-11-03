@@ -12,14 +12,12 @@ import com.speedment.config.db.mapper.identity.DoubleIdentityMapper;
 import com.speedment.config.db.mapper.identity.IntegerIdentityMapper;
 import com.speedment.config.db.mapper.identity.LongIdentityMapper;
 import com.speedment.config.db.mapper.identity.StringIdentityMapper;
-import com.speedment.config.db.mapper.time.TimestampToIntMapper;
 import com.speedment.field.ComparableField;
 import com.speedment.field.FieldIdentifier;
 import com.speedment.field.StringField;
 import com.speedment.internal.core.field.ComparableFieldImpl;
 import com.speedment.plugin.extspeeder.runtime.field.VirtualComparableField;
 import com.speedment.plugin.extspeeder.runtime.field.VirtualStringField;
-import java.sql.Timestamp;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -72,9 +70,9 @@ public interface GeneratedOrder extends Entity<Order> {
     final ComparableField<Order, Double, Double> PRICE = new VirtualComparableField<>(Identifier.PRICE, Order::getPrice, new DoubleIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'date_executed' derived from
-     * the column 'transact_time' in table 'execution'.
+     * the column 'transact_time_int' in table 'execution'.
      */
-    final ComparableField<Order, Timestamp, Integer> DATE_EXECUTED = new VirtualComparableField<>(Identifier.DATE_EXECUTED, Order::getDateExecuted, new TimestampToIntMapper(), false);
+    final ComparableField<Order, Integer, Integer> DATE_EXECUTED = new VirtualComparableField<>(Identifier.DATE_EXECUTED, Order::getDateExecuted, new IntegerIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'instrument_name' derived from
      * the column 'name' in table 'instrument'.
@@ -89,7 +87,7 @@ public interface GeneratedOrder extends Entity<Order> {
      * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getDateCreated()} method.
      */
-    final ComparableField<Order, Timestamp, Integer> DATE_CREATED = new ComparableFieldImpl<>(Identifier.DATE_CREATED, Order::getDateCreated, Order::setDateCreated, new TimestampToIntMapper(), false);
+    final ComparableField<Order, Integer, Integer> DATE_CREATED = new ComparableFieldImpl<>(Identifier.DATE_CREATED, Order::getDateCreated, Order::setDateCreated, new IntegerIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getDirection()} method.
@@ -226,7 +224,7 @@ public interface GeneratedOrder extends Entity<Order> {
     void setPrice(Double price);
     
     /**
-     * Returns the virtual value of column 'transact_time' in foreign table
+     * Returns the virtual value of column 'transact_time_int' in foreign table
      * 'execution'.
      * 
      * @return the virtual value DateExecuted
@@ -234,8 +232,8 @@ public interface GeneratedOrder extends Entity<Order> {
     Integer getDateExecuted();
     
     /**
-     * Sets the internal value of virtual column 'transact_time'. This will not
-     * affect the database value.
+     * Sets the internal value of virtual column 'transact_time_int'. This will
+     * not affect the database value.
      * 
      * @param dateExecuted the virtual value
      */
@@ -266,7 +264,7 @@ public interface GeneratedOrder extends Entity<Order> {
     
     /**
      * Returns the dateCreated of this Order. The dateCreated field corresponds
-     * to the database column db0.piq.orders.date_created.
+     * to the database column db0.piq.orders.date_created_int.
      * 
      * @return the dateCreated of this Order
      */
@@ -323,7 +321,7 @@ public interface GeneratedOrder extends Entity<Order> {
     
     /**
      * Sets the dateCreated of this Order. The dateCreated field corresponds to
-     * the database column db0.piq.orders.date_created.
+     * the database column db0.piq.orders.date_created_int.
      * 
      * @param dateCreated to set of this Order
      * @return this Order instance
@@ -378,7 +376,7 @@ public interface GeneratedOrder extends Entity<Order> {
     enum Identifier implements FieldIdentifier<Order> {
         
         ID ("id"),
-        DATE_CREATED ("date_created"),
+        DATE_CREATED ("date_created_int"),
         DIRECTION ("direction"),
         ORDER_TYPE ("order_type"),
         QUANTITY ("quantity"),

@@ -3,15 +3,14 @@ package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.g
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.speedment.Entity;
 import com.speedment.config.db.mapper.identity.DoubleIdentityMapper;
+import com.speedment.config.db.mapper.identity.IntegerIdentityMapper;
 import com.speedment.config.db.mapper.identity.LongIdentityMapper;
 import com.speedment.config.db.mapper.identity.StringIdentityMapper;
-import com.speedment.config.db.mapper.time.TimestampToIntMapper;
 import com.speedment.field.ComparableField;
 import com.speedment.field.FieldIdentifier;
 import com.speedment.field.StringField;
 import com.speedment.internal.core.field.ComparableFieldImpl;
 import com.speedment.plugin.extspeeder.runtime.field.VirtualStringField;
-import java.sql.Timestamp;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -86,7 +85,7 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * This Field corresponds to the {@link RawPosition} field that can be
      * obtained using the {@link RawPosition#getValueDate()} method.
      */
-    final ComparableField<RawPosition, Timestamp, Integer> VALUE_DATE = new ComparableFieldImpl<>(Identifier.VALUE_DATE, RawPosition::getValueDate, RawPosition::setValueDate, new TimestampToIntMapper(), false);
+    final ComparableField<RawPosition, Integer, Integer> VALUE_DATE = new ComparableFieldImpl<>(Identifier.VALUE_DATE, RawPosition::getValueDate, RawPosition::setValueDate, new IntegerIdentityMapper(), false);
     
     /**
      * Returns the virtual value of column 'name' in foreign table 'trader'.
@@ -233,7 +232,7 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
     
     /**
      * Returns the valueDate of this RawPosition. The valueDate field corresponds
-     * to the database column db0.piq.daily_position_performance.value_date.
+     * to the database column db0.piq.daily_position_performance.value_date_int.
      * 
      * @return the valueDate of this RawPosition
      */
@@ -279,7 +278,7 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
     
     /**
      * Sets the valueDate of this RawPosition. The valueDate field corresponds to
-     * the database column db0.piq.daily_position_performance.value_date.
+     * the database column db0.piq.daily_position_performance.value_date_int.
      * 
      * @param valueDate to set of this RawPosition
      * @return this RawPosition instance
@@ -292,7 +291,7 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
         PNL ("pnl"),
         INITIATE_TRADING_MKT_VAL ("total_initiate_mkt_val"),
         LIQUIDATE_TRADING_MKT_VAL ("total_liquidate_mkt_val"),
-        VALUE_DATE ("value_date"),
+        VALUE_DATE ("value_date_int"),
         TRADER_NAME ("trader_name"),
         TRADER_GROUP ("trader_group"),
         TRADER_GROUP_TYPE ("trader_group_type"),
