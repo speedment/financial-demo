@@ -33,7 +33,7 @@ public class PositionsController {
     
     private @Autowired RawPositionManager rawPositions;
 
-    @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/speeder/positions", method = GET, produces = APPLICATION_JSON_VALUE)
     public Collection<Result> handleGet(
             @RequestParam(name="callback", required=false) String callback,
             @RequestParam(name="startDate") Integer iFrom, 

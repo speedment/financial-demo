@@ -42,12 +42,12 @@ public final class PricesController {
         sizeCache = new SizeCache();
     }
     
-    @RequestMapping(value = "/prices", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/speeder/prices", method = GET, produces = APPLICATION_JSON_VALUE)
     public PriceTotalResult handleGet(
         @RequestParam(name="callback", required=false) String callback,
         @RequestParam(name="start", required=false) Long start,
         @RequestParam(name="limit", required=false) Long limit,
-        @RequestParam(name="filters", required=false) String sFilters,
+        @RequestParam(name="filter", required=false) String sFilters,
         @RequestParam(name="sort", required=false) String sSorts,
         HttpServletResponse response) {
         
@@ -90,6 +90,8 @@ public final class PricesController {
         
         if (limit != null) {
             stream = stream.limit(limit);
+        } else {
+            stream = stream.limit(100);
         }
 
         final long totalCount = sizeCache.computeIfAbsent(
