@@ -3,7 +3,6 @@ package com.extspeeder.example.financialdemo.controller;
 import com.extspeeder.example.financialdemo.component.SizeCache;
 import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
-import com.extspeeder.example.financialdemo.controller.util.TimeUtil;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.google.gson.Gson;
@@ -250,17 +249,17 @@ public class RawPositionsController {
         
         public static RawPositionResult from(RawPosition pos) {
             return new RawPositionResult(
-                pos.getId(), 
-                pos.getPnl(), 
-                pos.getInitiateTradingMktVal(), 
-                pos.getLiquidateTradingMktVal(), 
-                pos.getValueDate(), 
-                pos.getTraderName(), 
-                pos.getTraderGroup(), 
-                pos.getTraderGroupType(), 
-                pos.getInstrumentNameUnwrapped(), 
-                pos.getInstrumentSymbol(), 
-                pos.getInstrumentSector().orElse(null), 
+                pos.getId(),
+                pos.getPnl(),
+                pos.getInitiateTradingMktVal(),
+                pos.getLiquidateTradingMktVal(),
+                pos.getValueDate(),
+                pos.getTraderName(),
+                pos.getTraderGroup(),
+                pos.getTraderGroupType(),
+                pos.getInstrumentNameUnwrapped(),
+                pos.getInstrumentSymbol(),
+                pos.getInstrumentSector().orElse(null),
                 pos.getInstrumentIndustry().orElse(null)
             );
         }
@@ -309,8 +308,8 @@ public class RawPositionsController {
             return liquidateTradingMktVal;
         }
 
-        public String getValueDate() {
-            return TimeUtil.fromEpochSecs(valueDate);
+        public int getValueDate() {
+            return valueDate;
         }
 
         public String getTraderName() {

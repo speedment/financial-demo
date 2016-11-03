@@ -1,8 +1,6 @@
 package com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position;
 
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.generated.GeneratedRawPositionImpl;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 /**
  * An implementation representing an entity (for example, a row) in the Table
@@ -14,9 +12,6 @@ import java.time.format.DateTimeFormatter;
  * @author Speedment
  */
 public abstract class RawPositionImpl extends GeneratedRawPositionImpl implements RawPosition {
-    
-    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
-    private final static ZoneId NEW_YORK_ZONE = ZoneId.of("America/New_York");
     
     @Override
     public String getInstrumentNameUnwrapped() {
