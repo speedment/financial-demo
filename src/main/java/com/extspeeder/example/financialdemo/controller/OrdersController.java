@@ -246,8 +246,8 @@ public final class OrdersController {
         
         private final long id;
         private final String valueDate;
-        private final long dateCreated;
-        private final Long dateExecuted;
+        private final int dateCreated;
+        private final Integer dateExecuted;
         private final BuySell direction; 
         private final String instrumentName;
         private final String instrumentSymbol;
@@ -271,14 +271,11 @@ public final class OrdersController {
                 valueDate = null;
             }
             
-            final Long executed = (original.getDateExecuted() == null 
-                ? null : (original.getDateExecuted() * 1_000L));
-            
             return new OrderResult(
                 original.getId(),
                 valueDate,
-                original.getDateCreated() * 1_000L,
-                executed,
+                original.getDateCreated(),
+                original.getDateExecuted(),
                 original.getDirection(),
                 original.getInstrumentName().orElse(null),
                 original.getInstrumentSymbol(),
@@ -296,8 +293,8 @@ public final class OrdersController {
         public OrderResult(
                 long id, 
                 String valueDate, 
-                long dateCreated, 
-                Long dateExecuted, 
+                int dateCreated, 
+                Integer dateExecuted, 
                 BuySell direction, 
                 String instrumentName,
                 String instrumentSymbol,
@@ -335,11 +332,11 @@ public final class OrdersController {
             return valueDate;
         }
 
-        public long getDateCreated() {
+        public int getDateCreated() {
             return dateCreated;
         }
 
-        public Long getDateExecuted() {
+        public Integer getDateExecuted() {
             return dateExecuted;
         }
 
