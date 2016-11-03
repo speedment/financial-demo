@@ -45,7 +45,7 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * A field representation of the virtual field 'instrument_name' derived from
      * the column 'name' in table 'instrument'.
      */
-    final StringField<RawPosition, String> INSTRUMENT_NAME = new VirtualStringField<>(Identifier.INSTRUMENT_NAME, o -> o.getInstrumentName().orElse(null), new StringIdentityMapper(), false);
+    final StringField<RawPosition, String> INSTRUMENT_NAME = new VirtualStringField<>(Identifier.INSTRUMENT_NAME, o -> o.getInstrumentNameOrEmpty(), new StringIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'instrument_symbol' derived
      * from the column 'symbol' in table 'instrument'.
@@ -55,12 +55,12 @@ public interface GeneratedRawPosition extends Entity<RawPosition> {
      * A field representation of the virtual field 'instrument_sector' derived
      * from the column 'sector' in table 'instrument'.
      */
-    final StringField<RawPosition, String> INSTRUMENT_SECTOR = new VirtualStringField<>(Identifier.INSTRUMENT_SECTOR, o -> o.getInstrumentSector().orElse(null), new StringIdentityMapper(), false);
+    final StringField<RawPosition, String> INSTRUMENT_SECTOR = new VirtualStringField<>(Identifier.INSTRUMENT_SECTOR, o -> o.getInstrumentSectorOrEmpty(), new StringIdentityMapper(), false);
     /**
      * A field representation of the virtual field 'instrument_industry' derived
      * from the column 'industry' in table 'instrument'.
      */
-    final StringField<RawPosition, String> INSTRUMENT_INDUSTRY = new VirtualStringField<>(Identifier.INSTRUMENT_INDUSTRY, o -> o.getInstrumentIndustry().orElse(null), new StringIdentityMapper(), false);
+    final StringField<RawPosition, String> INSTRUMENT_INDUSTRY = new VirtualStringField<>(Identifier.INSTRUMENT_INDUSTRY, o -> o.getInstrumentIndustryOrEmpty(), new StringIdentityMapper(), false);
     /**
      * This Field corresponds to the {@link RawPosition} field that can be
      * obtained using the {@link RawPosition#getId()} method.

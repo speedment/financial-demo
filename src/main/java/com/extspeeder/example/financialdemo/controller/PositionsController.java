@@ -5,6 +5,7 @@ import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.Ra
 import com.speedment.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
+import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -48,7 +49,7 @@ public class PositionsController {
         Stream<RawPosition> positions = rawPositions.stream()
             .parallel().filter(RawPosition.VALUE_DATE.between(iFrom, iTo));
         
-        final Function<RawPosition, String> classifier;
+        final Function<RawPosition, Object> classifier;
         final int usedGroups;
         
         if (aKeys == null || "root".equals(aKeys)) {
@@ -94,36 +95,67 @@ public class PositionsController {
     private static Function<RawPosition, String> identifier(String[] groups, int limit) {
         switch (limit) {
             case 0 : return pos -> "";
-            case 1 : return classifier(groups[0]);
-            case 2 : return pos -> 
-                classifier(groups[0]).apply(pos) + SEPARATOR + 
-                classifier(groups[1]).apply(pos);
-            case 3 : return pos -> 
-                classifier(groups[0]).apply(pos) + SEPARATOR + 
-                classifier(groups[1]).apply(pos) + SEPARATOR +
-                classifier(groups[2]).apply(pos);
-            case 4 : return pos -> 
-                classifier(groups[0]).apply(pos) + SEPARATOR + 
-                classifier(groups[1]).apply(pos) + SEPARATOR +
-                classifier(groups[2]).apply(pos) + SEPARATOR +
-                classifier(groups[3]).apply(pos);
-            case 5 : return pos -> 
-                classifier(groups[0]).apply(pos) + SEPARATOR + 
-                classifier(groups[1]).apply(pos) + SEPARATOR +
-                classifier(groups[2]).apply(pos) + SEPARATOR +
-                classifier(groups[3]).apply(pos) + SEPARATOR +
-                classifier(groups[4]).apply(pos);
-            default : return pos -> Stream.of(groups)
-                .limit(limit)
-                .map(PositionsController::classifier)
-                .map(c -> c.apply(pos))
-                .collect(joining(SEPARATOR));
+            
+            case 1 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                return pos -> f0.apply(pos).toString();
+            }
+            case 2 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                return pos -> f0.apply(pos) + SEPARATOR + f1.apply(pos);
+            }
+            case 3 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                final Function<RawPosition, Object> f2 = classifier(groups[2]);
+                
+                return pos -> f0.apply(pos) + SEPARATOR + 
+                              f1.apply(pos) + SEPARATOR + 
+                              f2.apply(pos);
+            }
+            case 4 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                final Function<RawPosition, Object> f2 = classifier(groups[2]);
+                final Function<RawPosition, Object> f3 = classifier(groups[3]);
+                
+                return pos -> f0.apply(pos) + SEPARATOR + 
+                              f1.apply(pos) + SEPARATOR + 
+                              f2.apply(pos) + SEPARATOR + 
+                              f3.apply(pos);
+            }
+            case 5 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                final Function<RawPosition, Object> f2 = classifier(groups[2]);
+                final Function<RawPosition, Object> f3 = classifier(groups[3]);
+                final Function<RawPosition, Object> f4 = classifier(groups[4]);
+                
+                return pos -> f0.apply(pos) + SEPARATOR + 
+                              f1.apply(pos) + SEPARATOR + 
+                              f2.apply(pos) + SEPARATOR + 
+                              f3.apply(pos) + SEPARATOR + 
+                              f4.apply(pos);
+            }
+            
+            default : {
+                final List<Function<RawPosition, Object>> f = Stream.of(groups)
+                    .limit(limit)
+                    .map(PositionsController::classifier)
+                    .collect(toList());
+                
+                return pos -> f.stream()
+                    .map(c -> c.apply(pos))
+                    .map(Object::toString)
+                    .collect(joining(SEPARATOR));
+            }
         }
     }
     
-    private static Function<RawPosition, String> classifier(String group) {
+    private static Function<RawPosition, Object> classifier(String group) {
         switch (group) {
-            case "valueDate"          : return RawPosition::getValueDateAsString;
+            case "valueDate"          : return RawPosition::getValueDate;
             case "traderName"         : return RawPosition::getTraderName;
             case "traderGroup"        : return RawPosition::getTraderGroup;
             case "traderGroupType"    : return RawPosition::getTraderGroupType;
