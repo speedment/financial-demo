@@ -1,7 +1,6 @@
 package com.extspeeder.example.financialdemo.controller;
 
 import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.fromEpochSecs;
-import static com.extspeeder.example.financialdemo.controller.util.TimeUtil.toEpochSecs;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
 import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
 import com.speedment.internal.util.testing.Stopwatch;
@@ -37,16 +36,14 @@ public class PositionsController {
     @RequestMapping(value = "/positions", method = GET, produces = APPLICATION_JSON_VALUE)
     public Collection<Result> handleGet(
             @RequestParam(name="callback", required=false) String callback,
-            @RequestParam(name="startDate") String startDate, 
-            @RequestParam(name="endDate") String endDate,
+            @RequestParam(name="startDate") Integer iFrom, 
+            @RequestParam(name="endDate") Integer iTo,
             @RequestParam(name="drillDownPath") String aGroups,
             @RequestParam(name="drillDownKey", required=false) String aKeys,
             HttpServletResponse response
     ) throws ParseException, NumberFormatException {
         
         final Stopwatch sw = Stopwatch.createStarted();
-        final int iFrom = toEpochSecs(startDate);
-        final int iTo   = toEpochSecs(endDate);
         final String[] groups = aGroups.split(SEPARATOR);
         
         Stream<RawPosition> positions = rawPositions.stream()
