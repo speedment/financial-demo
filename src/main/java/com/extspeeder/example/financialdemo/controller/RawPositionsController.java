@@ -87,7 +87,7 @@ public class RawPositionsController {
             }
         }
         
-        if (start != null) {
+        if (start != null && start > 0) {
             stream = stream.skip(start);
         }
         
