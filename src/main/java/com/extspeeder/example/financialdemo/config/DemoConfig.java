@@ -37,29 +37,14 @@ public class DemoConfig {
     }
 
     @Bean
-//    @Qualifier("onheap")
     public Speedment getOnheapSpeedment() {
         return new FinancialdemoApplication()
-//            .with(Table.class, ORDERS, DemoConfig::disable)
-//            .with(Table.class, PRICE_STORE, DemoConfig::disable)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
             .with(OffHeapReadOnlyCacheComponent::createOnHeap)
             .build();
     }
-    
-//    @Bean
-//    @Qualifier("offheap")
-//    public Speedment getOffheapSpeedment() {
-//        return new FinancialdemoApplication()
-//            .with(Table.class, POSITIONS, DemoConfig::disable)
-//            .withUsername(username)
-//            .withPassword(password)
-//            .withSchema(schema)
-//            .with(OffHeapReadOnlyCacheComponent::createOffHeap)
-//            .build();
-//    }
     
     @Bean
     public RawPositionManager getRawPositionManager(/*@Qualifier("onheap") */Speedment speedment) {
@@ -75,9 +60,4 @@ public class DemoConfig {
     public PriceStoreManager getPriceStoreManager(/*@Qualifier("offheap") */Speedment speedment) {
         return (PriceStoreManager) speedment.managerOf(PriceStore.class);
     }
-//    
-//    private static void disable(Table table) {
-//        System.out.println("Disabling " + table.getName());
-//        table.mutator().setEnabled(false);
-//    }
 }
