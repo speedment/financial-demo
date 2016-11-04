@@ -138,7 +138,38 @@ public class PositionsController {
                               f3.apply(pos) + SEPARATOR + 
                               f4.apply(pos);
             }
-            
+            case 6 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                final Function<RawPosition, Object> f2 = classifier(groups[2]);
+                final Function<RawPosition, Object> f3 = classifier(groups[3]);
+                final Function<RawPosition, Object> f4 = classifier(groups[4]);
+                final Function<RawPosition, Object> f5 = classifier(groups[5]);
+                
+                return pos -> f0.apply(pos) + SEPARATOR + 
+                              f1.apply(pos) + SEPARATOR + 
+                              f2.apply(pos) + SEPARATOR + 
+                              f3.apply(pos) + SEPARATOR + 
+                              f4.apply(pos) + SEPARATOR + 
+                              f5.apply(pos);
+            }
+            case 7 : {
+                final Function<RawPosition, Object> f0 = classifier(groups[0]);
+                final Function<RawPosition, Object> f1 = classifier(groups[1]);
+                final Function<RawPosition, Object> f2 = classifier(groups[2]);
+                final Function<RawPosition, Object> f3 = classifier(groups[3]);
+                final Function<RawPosition, Object> f4 = classifier(groups[4]);
+                final Function<RawPosition, Object> f5 = classifier(groups[5]);
+                final Function<RawPosition, Object> f6 = classifier(groups[6]);
+                
+                return pos -> f0.apply(pos) + SEPARATOR + 
+                              f1.apply(pos) + SEPARATOR + 
+                              f2.apply(pos) + SEPARATOR + 
+                              f3.apply(pos) + SEPARATOR + 
+                              f4.apply(pos) + SEPARATOR + 
+                              f5.apply(pos) + SEPARATOR + 
+                              f6.apply(pos);
+            }
             default : {
                 final List<Function<RawPosition, Object>> f = Stream.of(groups)
                     .limit(limit)
