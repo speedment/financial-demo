@@ -27,6 +27,8 @@ public class DemoConfig {
         PRICE_STORE = "financialdemo.db0.piq.price_store",
         POSITIONS   = "financialdemo.db0.piq.daily_position_performance";
     
+    private @Value("${dbms.host}") String host;
+    private @Value("${dbms.port}") int port;
     private @Value("${dbms.username}") String username;
     private @Value("${dbms.password}") String password;
     private @Value("${dbms.schema}") String schema;
@@ -39,6 +41,8 @@ public class DemoConfig {
     @Bean
     public Speedment getOnheapSpeedment() {
         return new FinancialdemoApplication()
+            .withIpAddress(host)
+            .withPort(port)
             .withUsername(username)
             .withPassword(password)
             .withSchema(schema)
