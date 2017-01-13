@@ -2,15 +2,19 @@ package com.extspeeder.example.financialdemo.controller;
 
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
+import com.extspeeder.example.financialdemo.aggregator.PositionResult;
+import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap;
+import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap.ObjLongFunction;
+import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.fastcache.runtime.function.EntityFunction;
 import com.speedment.runtime.core.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
-import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
+import java.util.function.LongFunction;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toConcurrentMap;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
 import javax.servlet.http.HttpServletResponse;
@@ -33,8 +37,11 @@ public class PositionsController {
     
     private @Autowired RawPositionManager rawPositions;
 
-    @RequestMapping(value = "/speeder/positions", method = GET, produces = APPLICATION_JSON_VALUE)
-    public Collection<Result> handleGet(
+    @RequestMapping(
+        value    = "/speeder/positions", 
+        method   = GET, 
+        produces = APPLICATION_JSON_VALUE
+    ) public Collection<PositionResult> handleGet(
             @RequestParam(name="callback", required=false) String callback,
             @RequestParam(name="startDate") Integer iFrom, 
             @RequestParam(name="endDate") Integer iTo,
@@ -50,11 +57,13 @@ public class PositionsController {
             .parallel().filter(RawPosition.VALUE_DATE.between(iFrom, iTo));
         
         final Function<RawPosition, Object> classifier;
+        final ObjLongFunction<EntityStore<RawPosition>, Object> refClassifier;
         final int usedGroups;
         
         if (aKeys == null || "root".equals(aKeys)) {
-            classifier = classifier(groups[0]);
-            usedGroups = 1;
+            classifier    = classifier(groups[0]);
+            refClassifier = refClassifier(groups[0]);
+            usedGroups    = 1;
         } else {
             final String[] keys = aKeys.split(SEPARATOR);
             usedGroups = Math.min(groups.length, keys.length + 1);
@@ -64,35 +73,57 @@ public class PositionsController {
             }
             
             if (groups.length > keys.length) {
-                classifier = classifier(groups[keys.length]);
+                classifier    = classifier(groups[keys.length]);
+                refClassifier = refClassifier(groups[keys.length]);
             } else {
-                classifier = null;
+                classifier    = null;
+                refClassifier = null;
             }
         }
-        
-        final ResultFactory factory = new ResultFactory(
-            identifier(groups, usedGroups)
-        );
-        
+
+        final Function<RawPosition, String> identifier =
+            identifier(groups, usedGroups);
+
         try {
             if (classifier == null) {
-                return positions.map(factory::createFrom).collect(toList());
+                return positions
+                    .map(new EntityFunction<RawPosition, PositionResult>() {
+                        @Override
+                        public LongFunction<PositionResult> asReferenceFunction(
+                                EntityStore<RawPosition> store) {
+                            
+                            return ref -> new PositionResult(identifier)
+                                .aggregate(store, ref);
+                        }
+
+                        @Override
+                        public PositionResult apply(RawPosition pos) {
+                            return new PositionResult(identifier)
+                                .aggregate(pos);
+                        }
+                    })
+                    .collect(toList());
+                
             } else {
-                return positions.collect(toConcurrentMap(
-                    classifier, 
-                    factory::createFrom, 
-                    Result::aggregate
+                return positions.collect(new RawPositionToConcurrentMap<>(
+                    refClassifier,
+                    identifier
                 )).values();
             }
         } finally {
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Request-Method", "*");
-            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+            response.setHeader(
+                "Access-Control-Allow-Headers", 
+                "X-Requested-With,Content-Type"
+            );
             System.out.println("Finished in: " + sw.stop());
         }
     }
     
-    private static Function<RawPosition, String> identifier(String[] groups, int limit) {
+    private static Function<RawPosition, String> identifier(
+            String[] groups, int limit) {
+        
         switch (limit) {
             case 0 : return pos -> "";
             
@@ -200,6 +231,22 @@ public class PositionsController {
         }
     }
     
+    private static ObjLongFunction<EntityStore<RawPosition>, Object> refClassifier(String group) {
+        switch (group) {
+            case "valueDate"          : return (store, ref) -> store.deserializeInt(ref, RawPosition.VALUE_DATE);
+            case "traderName"         : return (store, ref) -> store.deserialize(ref, RawPosition.TRADER_NAME);
+            case "traderGroup"        : return (store, ref) -> store.deserialize(ref, RawPosition.TRADER_GROUP);
+            case "traderGroupType"    : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.TRADER_GROUP_TYPE));   // Nullable
+            case "instrumentName"     : return (store, ref) -> store.deserialize(ref, RawPosition.INSTRUMENT_NAME);
+            case "instrumentSymbol"   : return (store, ref) -> store.deserialize(ref, RawPosition.INSTRUMENT_SYMBOL);
+            case "instrumentSector"   : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.INSTRUMENT_SECTOR));
+            case "instrumentIndustry" : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.INSTRUMENT_INDUSTRY));
+            default : throw new IllegalArgumentException(
+                "Unknown group '" + group + "'."
+            );
+        }
+    }
+    
     private static Predicate<RawPosition> filter(String group, String key) throws ParseException, NumberFormatException {
         switch (group) {
             case "valueDate"          : return RawPosition.VALUE_DATE.equal(Integer.parseInt(key));
@@ -216,101 +263,8 @@ public class PositionsController {
         }
     }
     
-    private final static class ResultFactory {
-        
-        private final Function<RawPosition, String> getId;
-
-        public ResultFactory(Function<RawPosition, String> getId) {
-            this.getId = requireNonNull(getId);
-        }
-        
-        public Result createFrom(RawPosition pos) {
-            return new Result(
-                getId.apply(pos),
-                pos.getInitiateTradingMktVal(),
-                pos.getLiquidateTradingMktVal(),
-                pos.getPnl(),
-                pos.getInstrumentNameOrNull(),
-                pos.getValueDate()
-            );
-        }
-    }
-    
-    public final static class Result {
-        
-        private final String id;
-        
-        private float initiateTradingMktValue;
-        private float liquidateTradingMktValue;
-        private float pnl;
-        private String instrumentName;
-        private int minDate;
-        private int maxDate;
-
-        public Result(String id,
-                      float initiateTradingMktValue, 
-                      float liquidateTradingMktValue, 
-                      float pnl,
-                      String instrumentName,
-                      int valueDate) {
-            
-            this.id                       = id;
-            this.initiateTradingMktValue  = initiateTradingMktValue;
-            this.liquidateTradingMktValue = liquidateTradingMktValue;
-            this.pnl                      = pnl;
-            this.instrumentName           = instrumentName;
-            
-            this.minDate = valueDate;
-            this.maxDate = valueDate;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public float getInitiateTradingMktValue() {
-            return initiateTradingMktValue;
-        }
-
-        public float getLiquidateTradingMktValue() {
-            return liquidateTradingMktValue;
-        }
-
-        public float getPnl() {
-            return pnl;
-        }
-
-        public String getInstrumentName() {
-            return instrumentName;
-        }
-
-        public int getMinDate() {
-            return minDate;
-        }
-        
-        public int getMaxDate() {
-            return maxDate;
-        }
-        
-        public Result aggregate(Result other) {
-            initiateTradingMktValue  += other.initiateTradingMktValue;
-            liquidateTradingMktValue += other.liquidateTradingMktValue;
-            pnl                      += other.pnl;
-            
-            instrumentName = aggregate(instrumentName, other.instrumentName);
-            
-            minDate = Math.min(minDate, other.minDate);
-            maxDate = Math.max(maxDate, other.maxDate);
-            
-            return this;
-        }
-
-        private static String aggregate(String a, String b) {
-            if (a == null || b == null) {
-                return null;
-            } else {
-                return a.equals(b) ? a : null;
-            }
-        }
+    private static String orEmpty(String value) {
+        if (value == null) return ""; 
+        else return value;
     }
 }
