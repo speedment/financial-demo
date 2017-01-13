@@ -4,15 +4,15 @@ import com.extspeeder.example.financialdemo.component.SizeCache;
 import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
 import com.extspeeder.example.financialdemo.controller.util.TimeUtil;
-import com.extspeeder.example.financialdemo.extra.BuySell;
-import com.extspeeder.example.financialdemo.extra.OrderType;
-import com.extspeeder.example.financialdemo.extra.Status;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.Order;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.order.OrderManager;
+import com.extspeeder.example.financialdemo.db.order.Order;
+import com.extspeeder.example.financialdemo.db.order.OrderManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.speedment.field.trait.ComparableFieldTrait;
-import com.speedment.field.trait.StringFieldTrait;
+import com.speedment.runtime.field.StringField;
+import com.speedment.runtime.field.trait.HasComparableOperators;
+import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
+import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.Collections;
@@ -113,7 +113,7 @@ public final class OrdersController {
         }
     }
     
-    private static ComparableFieldTrait<Order, ?, ?> findField(String property) {
+    private static HasComparableOperators<Order, ?> findField(String property) {
         switch (property) {
             case "id"                 : return Order.ID;
             case "dateCreated"        : return Order.DATE_CREATED;
@@ -127,7 +127,6 @@ public final class OrdersController {
             case "status"             : return Order.STATUS;
             case "traderName"         : return Order.TRADER_NAME;
             case "traderGroup"        : return Order.TRADER_GROUP;
-            case "traderGroupType"    : return Order.TRADER_GROUP_TYPE;
             case "execPrice"          : return Order.PRICE;
             case "limitPrice"         : return Order.LIMIT_PRICE;
             default : throw new IllegalArgumentException(
@@ -142,11 +141,13 @@ public final class OrdersController {
         } else {
             switch (filter.getProperty()) {
                 case "id"                 : return Long.parseLong(filter.getValue());
-                case "dateCreated"        : return Integer.parseInt(filter.getValue());
+                case "dateCreated"        : return Order.DATE_CREATED.typeMapper().toJavaType(
+                                                null, Order.class,
+                                                Integer.parseInt(filter.getValue())
+                                            );
                 case "direction"          : return BuySell.valueOf(filter.getValue());
                 case "traderName"         : // Fallthrough
                 case "traderGroup"        : // Fallthrough
-                case "traderGroupType"    : // Fallthrough
                 case "instrumentName"     : // Fallthrough
                 case "instrumentSymbol"   : // Fallthrough
                 case "instrumentSector"   : // Fallthrough
@@ -155,7 +156,7 @@ public final class OrdersController {
                 case "status"             : return Status.valueOf(filter.getValue());
                 case "quantity"           : return Integer.parseInt(filter.getValue());
                 case "execPrice"          : // Fallthrough
-                case "limitPrice"         : return Double.parseDouble(filter.getValue());
+                case "limitPrice"         : return Float.parseFloat(filter.getValue());
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -167,8 +168,8 @@ public final class OrdersController {
     findPredicate(Filter filter) throws ParseException, NumberFormatException {
         try {
             @SuppressWarnings("unchecked")
-            final ComparableFieldTrait<Order, ?, V> field = 
-                (ComparableFieldTrait<Order, ?, V>) findField(filter.getProperty());
+            final HasComparableOperators<Order, V> field = 
+                (HasComparableOperators<Order, V>) findField(filter.getProperty());
 
             @SuppressWarnings("unchecked")
             final V operand = (V) findOperand(filter);
@@ -183,8 +184,8 @@ public final class OrdersController {
                 case LIKE             : {
                     try {
                         @SuppressWarnings("unchecked")
-                        final StringFieldTrait<Order, ?> stringField =
-                            (StringFieldTrait<Order, ?>) field;
+                        final StringField<Order, ?> stringField =
+                            (StringField<Order, ?>) field;
 
                         return stringField.contains(filter.getValue());
                     } catch (final ClassCastException ex) {
@@ -207,7 +208,7 @@ public final class OrdersController {
     }
     
     private static Comparator<Order> sortToComparator(Sort sort) {
-        final ComparableFieldTrait<Order, ?, ?> field = findField(sort.getProperty());
+        final HasComparableOperators<Order, ?> field = findField(sort.getProperty());
         final Comparator<Order> comparator = field.comparator();
         if (sort.getDirection() == Sort.Direction.DESC) {
             return comparator.reversed();
@@ -256,9 +257,9 @@ public final class OrdersController {
         private final OrderType orderType;
         private final Status status;
         private final String traderName;
-        private final Double execPrice;
-        private final Double limitPrice;
-        private final Integer quantity;
+        private final float execPrice;
+        private final Float limitPrice;
+        private final int quantity;
         
         static OrderResult from(Order original) {
             String valueDate;
@@ -274,8 +275,8 @@ public final class OrdersController {
             return new OrderResult(
                 original.getId(),
                 valueDate,
-                original.getDateCreated(),
-                original.getDateExecuted(),
+                Order.DATE_CREATED.typeMapper().toDatabaseType(original.getDateCreated()),
+                Order.DATE_EXECUTED.typeMapper().toDatabaseType(original.getDateExecuted()),
                 original.getDirection(),
                 original.getInstrumentName().orElse(null),
                 original.getInstrumentSymbol(),
@@ -285,7 +286,7 @@ public final class OrdersController {
                 original.getStatus(),
                 original.getTraderName(),
                 original.getPrice(),
-                original.getLimitPrice().orElse(null),
+                original.getLimitPrice(),
                 original.getQuantity()
             );
         }
@@ -303,9 +304,9 @@ public final class OrdersController {
                 OrderType orderType, 
                 Status status, 
                 String traderName,
-                Double price,
-                Double limitPrice,
-                Integer quantity) {
+                float price,
+                Float limitPrice,
+                int quantity) {
             
             this.id                 = id;
             this.valueDate          = valueDate;
@@ -372,11 +373,11 @@ public final class OrdersController {
             return traderName;
         }
 
-        public Double getExecPrice() {
+        public float getExecPrice() {
             return execPrice;
         }
 
-        public Double getLimitPrice() {
+        public Float getLimitPrice() {
             return limitPrice;
         }
 

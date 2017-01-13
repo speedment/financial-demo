@@ -1,6 +1,6 @@
 package com.extspeeder.example.financialdemo.component;
 
-import static com.speedment.util.NullUtil.requireNonNulls;
+import static com.speedment.common.codegen.internal.util.NullUtil.requireNonNulls;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.LongSupplier;

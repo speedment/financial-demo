@@ -1,8 +1,8 @@
 package com.extspeeder.example.financialdemo.controller;
 
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
-import com.speedment.internal.util.testing.Stopwatch;
+import com.extspeeder.example.financialdemo.db.position.RawPosition;
+import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
+import com.speedment.runtime.core.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
@@ -230,7 +230,7 @@ public class PositionsController {
                 pos.getInitiateTradingMktVal(),
                 pos.getLiquidateTradingMktVal(),
                 pos.getPnl(),
-                pos.getInstrumentNameUnwrapped(),
+                pos.getInstrumentNameOrNull(),
                 pos.getValueDate()
             );
         }

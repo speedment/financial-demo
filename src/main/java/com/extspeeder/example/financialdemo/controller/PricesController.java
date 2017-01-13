@@ -3,12 +3,12 @@ package com.extspeeder.example.financialdemo.controller;
 import com.extspeeder.example.financialdemo.component.SizeCache;
 import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStore;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.price_store.PriceStoreManager;
+import com.extspeeder.example.financialdemo.db.prices.PriceStore;
+import com.extspeeder.example.financialdemo.db.prices.PriceStoreManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.speedment.field.trait.ComparableFieldTrait;
-import com.speedment.field.trait.StringFieldTrait;
+import com.speedment.runtime.field.StringField;
+import com.speedment.runtime.field.trait.HasComparableOperators;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -107,7 +107,7 @@ public final class PricesController {
         }
     }
     
-    private static ComparableFieldTrait<PriceStore, ?, ?> findField(String property) {
+    private static HasComparableOperators<PriceStore, ?> findField(String property) {
         switch (property) {
             case "id"        : return PriceStore.ID;
             case "valueDate" : return PriceStore.VALUE_DATE;
@@ -127,12 +127,12 @@ public final class PricesController {
             return null;
         } else {
             switch (filter.getProperty()) {
-                case "id"        :
-                case "valueDate" : return Long.parseLong(filter.getValue());
+                case "id"        : return Long.parseLong(filter.getValue());
+                case "valueDate" : return Integer.parseInt(filter.getValue());
                 case "open"      :
                 case "close"     :
                 case "high"      :
-                case "low"       : return Double.parseDouble(filter.getValue());
+                case "low"       : return Float.parseFloat(filter.getValue());
                 case "instrumentSymbol" : return filter.getValue();
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
@@ -145,8 +145,8 @@ public final class PricesController {
     findPredicate(Filter filter) {
         try {
             @SuppressWarnings("unchecked")
-            final ComparableFieldTrait<PriceStore, ?, V> field = 
-                (ComparableFieldTrait<PriceStore, ?, V>) findField(filter.getProperty());
+            final HasComparableOperators<PriceStore, V> field = 
+                (HasComparableOperators<PriceStore, V>) findField(filter.getProperty());
 
             @SuppressWarnings("unchecked")
             final V operand = (V) findOperand(filter);
@@ -161,8 +161,8 @@ public final class PricesController {
                 case LIKE             : {
                     try {
                         @SuppressWarnings("unchecked")
-                        final StringFieldTrait<PriceStore, ?> stringField =
-                            (StringFieldTrait<PriceStore, ?>) field;
+                        final StringField<PriceStore, ?> stringField =
+                            (StringField<PriceStore, ?>) field;
 
                         return stringField.contains(filter.getValue());
                     } catch (final ClassCastException ex) {
@@ -185,7 +185,7 @@ public final class PricesController {
     }
     
     private static Comparator<PriceStore> sortToComparator(Sort sort) {
-        final ComparableFieldTrait<PriceStore, ?, ?> field = findField(sort.getProperty());
+        final HasComparableOperators<PriceStore, ?> field = findField(sort.getProperty());
         final Comparator<PriceStore> comparator = field.comparator();
         if (sort.getDirection() == Sort.Direction.DESC) {
             return comparator.reversed();
@@ -223,21 +223,21 @@ public final class PricesController {
     public final static class PriceResult {
         
         private final long id;
-        private final long valueDate;
-        private final Double open;
-        private final Double close;
-        private final Double high;
-        private final Double low;
+        private final int valueDate;
+        private final float open;
+        private final Float close;
+        private final float high;
+        private final float low;
         private final String instrumentSymbol;
         
         static PriceResult from(PriceStore original) {
             return new PriceResult(
                 original.getId(),
                 original.getValueDate(),
-                original.getOpen().orElse(null),
-                original.getClose().orElse(null),
-                original.getHigh().orElse(null),
-                original.getLow().orElse(null),
+                original.getOpen(),
+                original.getClose(),
+                original.getHigh(),
+                original.getLow(),
                 original.getInstrumentSymbol()
             );
         }
@@ -250,19 +250,19 @@ public final class PricesController {
             return valueDate;
         }
 
-        public Double getOpen() {
+        public float getOpen() {
             return open;
         }
 
-        public Double getClose() {
+        public Float getClose() {
             return close;
         }
 
-        public Double getHigh() {
+        public float getHigh() {
             return high;
         }
 
-        public Double getLow() {
+        public float getLow() {
             return low;
         }
 
@@ -270,7 +270,7 @@ public final class PricesController {
             return instrumentSymbol;
         }
 
-        private PriceResult(long id, long valueDate, double open, Double close, double high, double low, String instrumentSymbol) {
+        private PriceResult(long id, int valueDate, float open, Float close, float high, float low, String instrumentSymbol) {
             this.id        = id;
             this.valueDate = valueDate;
             this.open      = open;

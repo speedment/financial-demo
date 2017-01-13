@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.extspeeder.example</groupId>
     <artifactId>financialdemo</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
     <packaging>war</packaging>
     
     <name>Financial Demo</name>
@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.1.RELEASE</version>
+        <version>1.4.2.RELEASE</version>
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
@@ -26,10 +26,12 @@
         <start-class>com.extspeeder.example.financialdemo.MainApp</start-class>
         <java.version>1.8</java.version>
         
-        <extspeeder.version>1.0.8</extspeeder.version>
+        <speedment.version>3.0.2-SNAPSHOT</speedment.version>
+        <speedment.enterprise.version>1.1.0-SNAPSHOT</speedment.enterprise.version>
+        
         <db.groupId>mysql</db.groupId>
         <db.artifactId>mysql-connector-java</db.artifactId>
-        <db.version>5.1.39</db.version>
+        <db.version>5.1.40</db.version>
     </properties>
     
     <dependencies>
@@ -43,17 +45,35 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.speedment</groupId>
-            <artifactId>extspeeder-runtime</artifactId>
-            <version>${extspeeder.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-simple</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>runtime</artifactId>
+            <version>${speedment.version}</version>
+            <type>pom</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>enterprise-fastcache</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>enterprise-virtualcolumn</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.web.licenseservice</groupId>
+            <artifactId>fastpiq-helper</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         
         <dependency>
@@ -73,6 +93,46 @@
                         -XX:+UseG1GC -Xmx10G -Xms10G
                     </jvmArguments>
                 </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+                
+                <configuration>
+                    <components>
+                        <component>com.speedment.enterprise.fastcache.tool.FastCacheToolBundle</component>
+                        <component>com.speedment.enterprise.virtualcolumn.tool.VirtualColumnToolBundle</component>
+                        <component>com.speedment.web.licenseservice.fastpiq.helper.ExtraComponent</component>
+                    </components>
+                </configuration>
+                
+                <dependencies>
+                    <dependency>
+                        <groupId>${db.groupId}</groupId>
+                        <artifactId>${db.artifactId}</artifactId>
+                        <version>${db.version}</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>com.speedment.enterprise</groupId>
+                        <artifactId>enterprise-fastcache-tool</artifactId>
+                        <version>${speedment.enterprise.version}</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>com.speedment.enterprise</groupId>
+                        <artifactId>enterprise-virtualcolumn-tool</artifactId>
+                        <version>${speedment.enterprise.version}</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>com.speedment.web.licenseservice</groupId>
+                        <artifactId>fastpiq-helper</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

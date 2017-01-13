@@ -3,12 +3,12 @@ package com.extspeeder.example.financialdemo.controller;
 import com.extspeeder.example.financialdemo.component.SizeCache;
 import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPosition;
-import com.extspeeder.example.financialdemo.financialdemo.db.piq.raw_position.RawPositionManager;
+import com.extspeeder.example.financialdemo.db.position.RawPosition;
+import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.speedment.field.trait.ComparableFieldTrait;
-import com.speedment.field.trait.StringFieldTrait;
+import com.speedment.runtime.field.StringField;
+import com.speedment.runtime.field.trait.HasComparableOperators;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.Collections;
@@ -110,7 +110,7 @@ public class RawPositionsController {
     }
     
     private static Comparator<RawPosition> sortToComparator(Sort sort) {
-        final ComparableFieldTrait<RawPosition, ?, ?> field = findField(sort.getProperty());
+        final HasComparableOperators<RawPosition, ?> field = findField(sort.getProperty());
         final Comparator<RawPosition> comparator = field.comparator();
         if (sort.getDirection() == Sort.Direction.DESC) {
             return comparator.reversed();
@@ -119,7 +119,7 @@ public class RawPositionsController {
         }
     }
     
-    private static ComparableFieldTrait<RawPosition, ?, ?> findField(String property) {
+    private static HasComparableOperators<RawPosition, ?> findField(String property) {
         switch (property) {
             case "id"                       : return RawPosition.ID;
             case "pnl"                      : return RawPosition.PNL;
@@ -151,11 +151,11 @@ public class RawPositionsController {
                 case "valueDate"              : return Integer.parseInt(filter.getValue());
                 case "traderName"             : // Fallthrough
                 case "traderGroup"            : // Fallthrough
-                case "traderGroupType"        : // Fallthrough
                 case "instrumentName"         : // Fallthrough
                 case "instrumentSymbol"       : // Fallthrough
                 case "instrumentSector"       : // Fallthrough
                 case "instrumentIndustry"     : return filter.getValue();
+                case "traderGroupType"        : // Fallthrough
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
@@ -167,8 +167,8 @@ public class RawPositionsController {
     findPredicate(Filter filter) throws ParseException, NumberFormatException {
         try {
             @SuppressWarnings("unchecked")
-            final ComparableFieldTrait<RawPosition, ?, V> field = 
-                (ComparableFieldTrait<RawPosition, ?, V>) findField(filter.getProperty());
+            final HasComparableOperators<RawPosition, V> field = 
+                (HasComparableOperators<RawPosition, V>) findField(filter.getProperty());
 
             @SuppressWarnings("unchecked")
             final V operand = (V) findOperand(filter);
@@ -183,8 +183,8 @@ public class RawPositionsController {
                 case LIKE             : {
                     try {
                         @SuppressWarnings("unchecked")
-                        final StringFieldTrait<RawPosition, ?> stringField =
-                            (StringFieldTrait<RawPosition, ?>) field;
+                        final StringField<RawPosition, ?> stringField =
+                            (StringField<RawPosition, ?>) field;
 
                         return stringField.contains(filter.getValue());
                     } catch (final ClassCastException ex) {
@@ -257,7 +257,7 @@ public class RawPositionsController {
                 pos.getTraderName(),
                 pos.getTraderGroup(),
                 pos.getTraderGroupType(),
-                pos.getInstrumentNameUnwrapped(),
+                pos.getInstrumentNameOrNull(),
                 pos.getInstrumentSymbol(),
                 pos.getInstrumentSector().orElse(null),
                 pos.getInstrumentIndustry().orElse(null)
