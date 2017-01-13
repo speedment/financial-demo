@@ -6,8 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.extspeeder.example</groupId>
     <artifactId>financialdemo</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.1.1</version>
+    <packaging>war</packaging>
     
     <name>Financial Demo</name>
     <description>Demo project Ext Speeder showing Financial Trading Data.</description>
