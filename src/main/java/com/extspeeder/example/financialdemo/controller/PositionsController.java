@@ -240,17 +240,17 @@ public class PositionsController {
         
         private final String id;
         
-        private double initiateTradingMktValue;
-        private double liquidateTradingMktValue;
-        private double pnl;
+        private float initiateTradingMktValue;
+        private float liquidateTradingMktValue;
+        private float pnl;
         private String instrumentName;
         private int minDate;
         private int maxDate;
 
         public Result(String id,
-                      double initiateTradingMktValue, 
-                      double liquidateTradingMktValue, 
-                      double pnl,
+                      float initiateTradingMktValue, 
+                      float liquidateTradingMktValue, 
+                      float pnl,
                       String instrumentName,
                       int valueDate) {
             
@@ -268,15 +268,15 @@ public class PositionsController {
             return id;
         }
 
-        public double getInitiateTradingMktValue() {
+        public float getInitiateTradingMktValue() {
             return initiateTradingMktValue;
         }
 
-        public double getLiquidateTradingMktValue() {
+        public float getLiquidateTradingMktValue() {
             return liquidateTradingMktValue;
         }
 
-        public double getPnl() {
+        public float getPnl() {
             return pnl;
         }
 

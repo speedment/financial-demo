@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.field.trait.HasComparableOperators;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.Collections;
@@ -155,7 +156,7 @@ public class RawPositionsController {
                 case "instrumentSymbol"       : // Fallthrough
                 case "instrumentSector"       : // Fallthrough
                 case "instrumentIndustry"     : return filter.getValue();
-                case "traderGroupType"        : // Fallthrough
+                case "traderGroupType"        : return CohortType.fromDatabase(filter.getValue());
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
