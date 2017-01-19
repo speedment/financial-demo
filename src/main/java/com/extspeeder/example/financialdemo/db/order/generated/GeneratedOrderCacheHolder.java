@@ -21,6 +21,7 @@ import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.StreamSupplierComponent;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.util.Map;
@@ -56,6 +57,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
     private final OfString<Order> fieldInstrumentIndustryCache;
     private final OfString<Order> fieldTraderNameCache;
     private final OfString<Order> fieldTraderGroupCache;
+    private final OfObject<Order, CohortType> fieldTraderGroupTypeCache;
     private final OfFloat<Order> fieldPriceCache;
     private final OfShort<Order> fieldDateExecutedCache;
     private final OfString<Order> fieldInstrumentNameCache;
@@ -74,6 +76,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
             OfString<Order> fieldInstrumentIndustryCache,
             OfString<Order> fieldTraderNameCache,
             OfString<Order> fieldTraderGroupCache,
+            OfObject<Order, CohortType> fieldTraderGroupTypeCache,
             OfFloat<Order> fieldPriceCache,
             OfShort<Order> fieldDateExecutedCache,
             OfString<Order> fieldInstrumentNameCache) {
@@ -91,6 +94,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
         this.fieldInstrumentIndustryCache = requireNonNull(fieldInstrumentIndustryCache);
         this.fieldTraderNameCache         = requireNonNull(fieldTraderNameCache);
         this.fieldTraderGroupCache        = requireNonNull(fieldTraderGroupCache);
+        this.fieldTraderGroupTypeCache    = requireNonNull(fieldTraderGroupTypeCache);
         this.fieldPriceCache              = requireNonNull(fieldPriceCache);
         this.fieldDateExecutedCache       = requireNonNull(fieldDateExecutedCache);
         this.fieldInstrumentNameCache     = requireNonNull(fieldInstrumentNameCache);
@@ -119,6 +123,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
                 case INSTRUMENT_INDUSTRY : return (FieldCache<ENTITY, T>) fieldInstrumentIndustryCache;
                 case TRADER_NAME         : return (FieldCache<ENTITY, T>) fieldTraderNameCache;
                 case TRADER_GROUP        : return (FieldCache<ENTITY, T>) fieldTraderGroupCache;
+                case TRADER_GROUP_TYPE   : return (FieldCache<ENTITY, T>) fieldTraderGroupTypeCache;
                 case PRICE               : return (FieldCache<ENTITY, T>) fieldPriceCache;
                 case DATE_EXECUTED       : return (FieldCache<ENTITY, T>) fieldDateExecutedCache;
                 case INSTRUMENT_NAME     : return (FieldCache<ENTITY, T>) fieldInstrumentNameCache;
@@ -141,6 +146,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
                 case "instrument_industry" : return (FieldCache<ENTITY, T>) fieldInstrumentIndustryCache;
                 case "trader_name"         : return (FieldCache<ENTITY, T>) fieldTraderNameCache;
                 case "trader_group"        : return (FieldCache<ENTITY, T>) fieldTraderGroupCache;
+                case "trader_group_type"   : return (FieldCache<ENTITY, T>) fieldTraderGroupTypeCache;
                 case "price"               : return (FieldCache<ENTITY, T>) fieldPriceCache;
                 case "date_executed"       : return (FieldCache<ENTITY, T>) fieldDateExecutedCache;
                 case "instrument_name"     : return (FieldCache<ENTITY, T>) fieldInstrumentNameCache;
@@ -193,6 +199,9 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
         final CompletableFuture<FieldCache.OfString<Order>> fieldTraderGroupCacheFuture =
             FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.TRADER_GROUP, 0, Encoding.UTF_8);
         
+        final CompletableFuture<FieldCache.OfObject<Order, CohortType>> fieldTraderGroupTypeCacheFuture =
+            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, Order.TRADER_GROUP_TYPE, 0);
+        
         final CompletableFuture<FieldCache.OfFloat<Order>> fieldPriceCacheFuture =
             FastCacheHolderUtil.buildFloatCache(entityStoreFuture, Order.PRICE, 0);
         
@@ -218,6 +227,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
                     fieldInstrumentIndustryCacheFuture.get(),
                     fieldTraderNameCacheFuture.get(),
                     fieldTraderGroupCacheFuture.get(),
+                    fieldTraderGroupTypeCacheFuture.get(),
                     fieldPriceCacheFuture.get(),
                     fieldDateExecutedCacheFuture.get(),
                     fieldInstrumentNameCacheFuture.get()
@@ -243,6 +253,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
         fieldInstrumentIndustryCache.close();
         fieldTraderNameCache.close();
         fieldTraderGroupCache.close();
+        fieldTraderGroupTypeCache.close();
         fieldPriceCache.close();
         fieldDateExecutedCache.close();
         fieldInstrumentNameCache.close();
@@ -265,6 +276,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
             Order.Identifier.INSTRUMENT_INDUSTRY,
             Order.Identifier.TRADER_NAME,
             Order.Identifier.TRADER_GROUP,
+            Order.Identifier.TRADER_GROUP_TYPE,
             Order.Identifier.PRICE,
             Order.Identifier.DATE_EXECUTED,
             Order.Identifier.INSTRUMENT_NAME

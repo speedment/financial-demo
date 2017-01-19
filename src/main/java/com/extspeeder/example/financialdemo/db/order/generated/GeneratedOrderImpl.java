@@ -3,6 +3,7 @@ package com.extspeeder.example.financialdemo.db.order.generated;
 import com.extspeeder.example.financialdemo.db.order.Order;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public abstract class GeneratedOrderImpl implements Order {
     private String instrumentIndustry;
     private String traderName;
     private String traderGroup;
+    private CohortType traderGroupType;
     private float price;
     private short dateExecuted;
     private String instrumentName;
@@ -100,6 +102,11 @@ public abstract class GeneratedOrderImpl implements Order {
     @Override
     public String getTraderGroup() {
         return traderGroup;
+    }
+    
+    @Override
+    public CohortType getTraderGroupType() {
+        return traderGroupType;
     }
     
     @Override
@@ -190,6 +197,12 @@ public abstract class GeneratedOrderImpl implements Order {
     }
     
     @Override
+    public Order setTraderGroupType(CohortType traderGroupType) {
+        this.traderGroupType = traderGroupType;
+        return this;
+    }
+    
+    @Override
     public Order setPrice(float price) {
         this.price = price;
         return this;
@@ -222,6 +235,7 @@ public abstract class GeneratedOrderImpl implements Order {
         sj.add("instrumentIndustry = " + Objects.toString(OptionalUtil.unwrap(getInstrumentIndustry())));
         sj.add("traderName = "         + Objects.toString(getTraderName()));
         sj.add("traderGroup = "        + Objects.toString(getTraderGroup()));
+        sj.add("traderGroupType = "    + Objects.toString(getTraderGroupType()));
         sj.add("price = "              + Objects.toString(getPrice()));
         sj.add("dateExecuted = "       + Objects.toString(getDateExecuted()));
         sj.add("instrumentName = "     + Objects.toString(OptionalUtil.unwrap(getInstrumentName())));
@@ -245,6 +259,7 @@ public abstract class GeneratedOrderImpl implements Order {
         if (!Objects.equals(this.getInstrumentIndustry(), thatOrder.getInstrumentIndustry())) {return false; }
         if (!Objects.equals(this.getTraderName(), thatOrder.getTraderName())) {return false; }
         if (!Objects.equals(this.getTraderGroup(), thatOrder.getTraderGroup())) {return false; }
+        if (!Objects.equals(this.getTraderGroupType(), thatOrder.getTraderGroupType())) {return false; }
         if (this.getPrice() != thatOrder.getPrice()) {return false; }
         if (this.getDateExecuted() != thatOrder.getDateExecuted()) {return false; }
         if (!Objects.equals(this.getInstrumentName(), thatOrder.getInstrumentName())) {return false; }
@@ -266,6 +281,7 @@ public abstract class GeneratedOrderImpl implements Order {
         hash = 31 * hash + Objects.hashCode(getInstrumentIndustry());
         hash = 31 * hash + Objects.hashCode(getTraderName());
         hash = 31 * hash + Objects.hashCode(getTraderGroup());
+        hash = 31 * hash + Objects.hashCode(getTraderGroupType());
         hash = 31 * hash + Float.hashCode(getPrice());
         hash = 31 * hash + Short.hashCode(getDateExecuted());
         hash = 31 * hash + Objects.hashCode(getInstrumentName());

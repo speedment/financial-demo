@@ -2835,7 +2835,7 @@ public class GeneratedFinancialdemoMetadata extends AbstractApplicationMetadata 
             "                    \"typeMapper\" : \"com.speedment.web.licenseservice.fastpiq.helper.CohortTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"name\" : \"trader_group_type\",",
-            "                    \"enabled\" : false",
+            "                    \"enabled\" : true",
             "                  },",
             "                  {"
         ).forEachOrdered(sb::append);
@@ -3098,7 +3098,7 @@ public class GeneratedFinancialdemoMetadata extends AbstractApplicationMetadata 
             "                      }",
             "                    ],",
             "                    \"encoding\" : \"UTF_8\",",
-            "                    \"enabled\" : false",
+            "                    \"enabled\" : true",
             "                  },",
             "                  {",
             "                    \"expanded\" : true,",

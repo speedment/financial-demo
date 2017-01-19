@@ -2707,7 +2707,7 @@
                       }
                     ],
                     "encoding" : "UTF_8",
-                    "enabled" : false
+                    "enabled" : true
                   },
                   {
                     "expanded" : true,

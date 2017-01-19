@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.field.trait.HasComparableOperators;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.text.ParseException;
@@ -127,6 +128,7 @@ public final class OrdersController {
             case "status"             : return Order.STATUS;
             case "traderName"         : return Order.TRADER_NAME;
             case "traderGroup"        : return Order.TRADER_GROUP;
+            case "traderGroupType"    : return Order.TRADER_GROUP_TYPE;
             case "execPrice"          : return Order.PRICE;
             case "limitPrice"         : return Order.LIMIT_PRICE;
             default : throw new IllegalArgumentException(
@@ -157,6 +159,7 @@ public final class OrdersController {
                 case "quantity"           : return Integer.parseInt(filter.getValue());
                 case "execPrice"          : // Fallthrough
                 case "limitPrice"         : return Float.parseFloat(filter.getValue());
+                case "traderGroupType"    : return CohortType.fromDatabase(filter.getValue());
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );

@@ -15,6 +15,8 @@ import com.speedment.runtime.typemapper.doubles.DoubleToFloatMapper;
 import com.speedment.runtime.typemapper.doubles.PrimitiveDoubleToFloatMapper;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySellMapper;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortTypeMapper;
 import com.speedment.web.licenseservice.fastpiq.helper.DateIntToShortMapper;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderTypeMapper;
@@ -170,6 +172,17 @@ public interface GeneratedOrder {
     );
     /**
      * This Field corresponds to the {@link Order} field that can be obtained
+     * using the {@link Order#getTraderGroupType()} method.
+     */
+    final ComparableField<Order, String, CohortType> TRADER_GROUP_TYPE = ComparableField.create(
+        Identifier.TRADER_GROUP_TYPE,
+        Order::getTraderGroupType,
+        Order::setTraderGroupType,
+        new CohortTypeMapper(), 
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getPrice()} method.
      */
     final FloatField<Order, Double> PRICE = FloatField.create(
@@ -298,6 +311,14 @@ public interface GeneratedOrder {
      * @return the traderGroup of this Order
      */
     String getTraderGroup();
+    
+    /**
+     * Returns the traderGroupType of this Order. The traderGroupType field
+     * corresponds to the database column db0.piq.orders.trader_group_type.
+     * 
+     * @return the traderGroupType of this Order
+     */
+    CohortType getTraderGroupType();
     
     /**
      * Returns the price of this Order. The price field corresponds to the
@@ -432,6 +453,15 @@ public interface GeneratedOrder {
     Order setTraderGroup(String traderGroup);
     
     /**
+     * Sets the traderGroupType of this Order. The traderGroupType field
+     * corresponds to the database column db0.piq.orders.trader_group_type.
+     * 
+     * @param traderGroupType to set of this Order
+     * @return                this Order instance
+     */
+    Order setTraderGroupType(CohortType traderGroupType);
+    
+    /**
      * Sets the price of this Order. The price field corresponds to the database
      * column db0.piq.orders.price.
      * 
@@ -472,6 +502,7 @@ public interface GeneratedOrder {
         INSTRUMENT_INDUSTRY ("instrument_industry"),
         TRADER_NAME         ("trader_name"),
         TRADER_GROUP        ("trader_group"),
+        TRADER_GROUP_TYPE   ("trader_group_type"),
         PRICE               ("price"),
         DATE_EXECUTED       ("date_executed"),
         INSTRUMENT_NAME     ("instrument_name");

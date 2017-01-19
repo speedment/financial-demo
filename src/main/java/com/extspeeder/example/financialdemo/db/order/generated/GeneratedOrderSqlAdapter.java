@@ -11,6 +11,7 @@ import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
 import com.speedment.runtime.core.component.sql.SqlTypeMapperHelper;
 import com.speedment.runtime.core.exception.SpeedmentException;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.sql.ResultSet;
@@ -37,6 +38,7 @@ public abstract class GeneratedOrderSqlAdapter {
     private SqlTypeMapperHelper<String, OrderType> orderTypeHelper;
     private SqlTypeMapperHelper<String, Status> statusHelper;
     private SqlTypeMapperHelper<Double, Float> limitPriceHelper;
+    private SqlTypeMapperHelper<String, CohortType> traderGroupTypeHelper;
     private SqlTypeMapperHelper<Double, Float> priceHelper;
     private SqlTypeMapperHelper<Integer, Short> dateExecutedHelper;
     
@@ -53,21 +55,22 @@ public abstract class GeneratedOrderSqlAdapter {
     protected Order apply(ResultSet resultSet) throws SpeedmentException {
         final Order entity = createEntity();
         try {
-            entity.setId(                 resultSet.getLong(1)                            );
-            entity.setDateCreated(        dateCreatedHelper.apply(resultSet.getInt(2))    );
-            entity.setDirection(          directionHelper.apply(resultSet.getString(3))   );
-            entity.setOrderType(          orderTypeHelper.apply(resultSet.getString(4))   );
-            entity.setQuantity(           resultSet.getInt(5)                             );
-            entity.setStatus(             statusHelper.apply(resultSet.getString(6))      );
-            entity.setLimitPrice(         limitPriceHelper.apply(getDouble(resultSet, 7)) );
-            entity.setInstrumentSymbol(   resultSet.getString(8)                          );
-            entity.setInstrumentSector(   getString(resultSet, 9)                         );
-            entity.setInstrumentIndustry( getString(resultSet, 10)                        );
-            entity.setTraderName(         resultSet.getString(11)                         );
-            entity.setTraderGroup(        resultSet.getString(12)                         );
-            entity.setPrice(              priceHelper.apply(resultSet.getDouble(13))      );
-            entity.setDateExecuted(       dateExecutedHelper.apply(resultSet.getInt(14))  );
-            entity.setInstrumentName(     getString(resultSet, 15)                        );
+            entity.setId(                 resultSet.getLong(1)                                 );
+            entity.setDateCreated(        dateCreatedHelper.apply(resultSet.getInt(2))         );
+            entity.setDirection(          directionHelper.apply(resultSet.getString(3))        );
+            entity.setOrderType(          orderTypeHelper.apply(resultSet.getString(4))        );
+            entity.setQuantity(           resultSet.getInt(5)                                  );
+            entity.setStatus(             statusHelper.apply(resultSet.getString(6))           );
+            entity.setLimitPrice(         limitPriceHelper.apply(getDouble(resultSet, 7))      );
+            entity.setInstrumentSymbol(   resultSet.getString(8)                               );
+            entity.setInstrumentSector(   getString(resultSet, 9)                              );
+            entity.setInstrumentIndustry( getString(resultSet, 10)                             );
+            entity.setTraderName(         resultSet.getString(11)                              );
+            entity.setTraderGroup(        resultSet.getString(12)                              );
+            entity.setTraderGroupType(    traderGroupTypeHelper.apply(resultSet.getString(13)) );
+            entity.setPrice(              priceHelper.apply(resultSet.getDouble(14))           );
+            entity.setDateExecuted(       dateExecutedHelper.apply(resultSet.getInt(15))       );
+            entity.setInstrumentName(     getString(resultSet, 16)                             );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }
@@ -86,6 +89,7 @@ public abstract class GeneratedOrderSqlAdapter {
         orderTypeHelper = SqlTypeMapperHelper.create(project, Order.ORDER_TYPE, Order.class);
         statusHelper = SqlTypeMapperHelper.create(project, Order.STATUS, Order.class);
         limitPriceHelper = SqlTypeMapperHelper.create(project, Order.LIMIT_PRICE, Order.class);
+        traderGroupTypeHelper = SqlTypeMapperHelper.create(project, Order.TRADER_GROUP_TYPE, Order.class);
         priceHelper = SqlTypeMapperHelper.create(project, Order.PRICE, Order.class);
         dateExecutedHelper = SqlTypeMapperHelper.create(project, Order.DATE_EXECUTED, Order.class);
     }

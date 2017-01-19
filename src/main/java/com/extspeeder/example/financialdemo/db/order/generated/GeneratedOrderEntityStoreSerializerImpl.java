@@ -19,6 +19,7 @@ import com.speedment.runtime.field.trait.HasLongValue;
 import com.speedment.runtime.field.trait.HasReferenceValue;
 import com.speedment.runtime.field.trait.HasShortValue;
 import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
+import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
 import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
 import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.math.BigDecimal;
@@ -40,30 +41,31 @@ import javax.annotation.Generated;
  * +--------+--------+------+--------------------+--------+------------------+
  * |                      Constant Non-Nullable Fields                       |
  * +--------+--------+------+--------------------+--------+------------------+
- * | 0x0000 | 0x0003 | 0x04 |              price |   data |            float |
- * | 0x0004 | 0x0005 | 0x02 |      date_executed |   data |            short |
- * | 0x0006 | 0x000D | 0x08 |                 id |   data |             long |
- * | 0x000E | 0x000F | 0x02 |   date_created_int |   data |            short |
- * | 0x0010 | 0x0010 | 0x01 |          direction |   data |          BuySell |
- * | 0x0011 | 0x0011 | 0x01 |         order_type |   data |        OrderType |
- * | 0x0012 | 0x0015 | 0x04 |           quantity |   data |              int |
- * | 0x0016 | 0x0016 | 0x01 |             status |   data |           Status |
+ * | 0x0000 | 0x0000 | 0x01 |  trader_group_type |   data |       CohortType |
+ * | 0x0001 | 0x0004 | 0x04 |              price |   data |            float |
+ * | 0x0005 | 0x0006 | 0x02 |      date_executed |   data |            short |
+ * | 0x0007 | 0x000E | 0x08 |                 id |   data |             long |
+ * | 0x000F | 0x0010 | 0x02 |   date_created_int |   data |            short |
+ * | 0x0011 | 0x0011 | 0x01 |          direction |   data |          BuySell |
+ * | 0x0012 | 0x0012 | 0x01 |         order_type |   data |        OrderType |
+ * | 0x0013 | 0x0016 | 0x04 |           quantity |   data |              int |
+ * | 0x0017 | 0x0017 | 0x01 |             status |   data |           Status |
  * +--------+--------+------+--------------------+--------+------------------+
  * |                              End Positions                              |
  * +--------+--------+------+--------------------+--------+------------------+
- * | 0x001B | 0x001B | 0x01 |        limit_price | endpos |            Float |
- * | 0x001C | 0x001F | 0x04 |  instrument_symbol | endpos |           String |
- * | 0x0020 | 0x0023 | 0x04 |  instrument_sector | endpos |           String |
- * | 0x0024 | 0x0027 | 0x04 | instrument_industry | endpos |           String |
- * | 0x0028 | 0x002B | 0x04 |        trader_name | endpos |           String |
- * | 0x002C | 0x002F | 0x04 |       trader_group | endpos |           String |
- * | 0x0030 | 0x0033 | 0x04 |    instrument_name | endpos |           String |
+ * | 0x001C | 0x001C | 0x01 |        limit_price | endpos |            Float |
+ * | 0x001D | 0x0020 | 0x04 |  instrument_symbol | endpos |           String |
+ * | 0x0021 | 0x0024 | 0x04 |  instrument_sector | endpos |           String |
+ * | 0x0025 | 0x0028 | 0x04 | instrument_industry | endpos |           String |
+ * | 0x0029 | 0x002C | 0x04 |        trader_name | endpos |           String |
+ * | 0x002D | 0x0030 | 0x04 |       trader_group | endpos |           String |
+ * | 0x0031 | 0x0034 | 0x04 |    instrument_name | endpos |           String |
  * +--------+--------+------+--------------------+--------+------------------+
  * |                               Row Storage                               |
  * +--------+--------+------+--------------------+--------+------------------+
  * |                 Constant Nullables and Variable Fields                  |
  * +--------+--------+------+--------------------+--------+------------------+
- * | 0x0034 | 0x7FFE | 0x00 | Variable data area |   data |           byte[] |
+ * | 0x0035 | 0x7FFE | 0x00 | Variable data area |   data |           byte[] |
  * +--------+--------+------+--------------------+--------+------------------+
  * </pre>
  * <p>
@@ -77,6 +79,43 @@ import javax.annotation.Generated;
 public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSerializer<Order> {
     
     /**
+     * Serializes and writes the trader_group_type of the orders to the
+     * specified buffer.
+     * 
+     * @param out       the byte buffer to write to
+     * @param rowOffset index where the row should start
+     * @param value     value to serialize and write
+     */
+    protected void serializeTraderGroupType(ByteBuffer out, int rowOffset, CohortType value) {
+        switch (value) {
+            case SYSTEMATIC : out.put(0, (byte) 0); return;
+            case DISCRETIONARY : out.put(0, (byte) 1); return;
+            case INTERNAL : out.put(0, (byte) 2); return;
+            case HEDGE : out.put(0, (byte) 3); return;
+            case AGGRESSIVE_ALPHA : out.put(0, (byte) 4); return;
+        }
+        throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
+    }
+    
+    /**
+     * Returns the trader_group_type of the orders.
+     * 
+     * @param in        the byte buffer to read from
+     * @param rowOffset index in buffer where the value starts
+     * @return          the deserialized value
+     */
+    protected CohortType deserializeTraderGroupType(ByteBuffer in, int rowOffset) {
+        switch (in.get(0) + 0) {
+            case 0 : return CohortType.SYSTEMATIC;
+            case 1 : return CohortType.DISCRETIONARY;
+            case 2 : return CohortType.INTERNAL;
+            case 3 : return CohortType.HEDGE;
+            case 4 : return CohortType.AGGRESSIVE_ALPHA;
+        }
+        throw new IllegalStateException("Unexpected CohortType ordinal in serialized data.");
+    }
+    
+    /**
      * Serializes and writes the price of the orders to the specified buffer.
      * 
      * @param out       the byte buffer to write to
@@ -84,7 +123,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @param value     value to serialize and write
      */
     protected void serializePrice(ByteBuffer out, int rowOffset, float value) {
-        out.putFloat(0 + rowOffset, value);
+        out.putFloat(1 + rowOffset, value);
     }
     
     /**
@@ -95,7 +134,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected float deserializePrice(ByteBuffer in, int rowOffset) {
-        return in.getFloat(0 + rowOffset);
+        return in.getFloat(1 + rowOffset);
     }
     
     /**
@@ -107,7 +146,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @param value     value to serialize and write
      */
     protected void serializeDateExecuted(ByteBuffer out, int rowOffset, short value) {
-        out.putShort(4 + rowOffset, value);
+        out.putShort(5 + rowOffset, value);
     }
     
     /**
@@ -118,7 +157,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected short deserializeDateExecuted(ByteBuffer in, int rowOffset) {
-        return in.getShort(4 + rowOffset);
+        return in.getShort(5 + rowOffset);
     }
     
     /**
@@ -129,7 +168,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @param value     value to serialize and write
      */
     protected void serializeId(ByteBuffer out, int rowOffset, long value) {
-        out.putLong(6 + rowOffset, value);
+        out.putLong(7 + rowOffset, value);
     }
     
     /**
@@ -140,7 +179,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected long deserializeId(ByteBuffer in, int rowOffset) {
-        return in.getLong(6 + rowOffset);
+        return in.getLong(7 + rowOffset);
     }
     
     /**
@@ -152,7 +191,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @param value     value to serialize and write
      */
     protected void serializeDateCreated(ByteBuffer out, int rowOffset, short value) {
-        out.putShort(14 + rowOffset, value);
+        out.putShort(15 + rowOffset, value);
     }
     
     /**
@@ -163,7 +202,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected short deserializeDateCreated(ByteBuffer in, int rowOffset) {
-        return in.getShort(14 + rowOffset);
+        return in.getShort(15 + rowOffset);
     }
     
     /**
@@ -176,8 +215,8 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeDirection(ByteBuffer out, int rowOffset, BuySell value) {
         switch (value) {
-            case BUY : out.put(16, (byte) 0); return;
-            case SELL : out.put(16, (byte) 1); return;
+            case BUY : out.put(17, (byte) 0); return;
+            case SELL : out.put(17, (byte) 1); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }
@@ -190,7 +229,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected BuySell deserializeDirection(ByteBuffer in, int rowOffset) {
-        switch (in.get(16) + 0) {
+        switch (in.get(17) + 0) {
             case 0 : return BuySell.BUY;
             case 1 : return BuySell.SELL;
         }
@@ -207,9 +246,9 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeOrderType(ByteBuffer out, int rowOffset, OrderType value) {
         switch (value) {
-            case MARKET : out.put(17, (byte) 0); return;
-            case LIMIT : out.put(17, (byte) 1); return;
-            case STOP : out.put(17, (byte) 2); return;
+            case MARKET : out.put(18, (byte) 0); return;
+            case LIMIT : out.put(18, (byte) 1); return;
+            case STOP : out.put(18, (byte) 2); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }
@@ -222,7 +261,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected OrderType deserializeOrderType(ByteBuffer in, int rowOffset) {
-        switch (in.get(17) + 0) {
+        switch (in.get(18) + 0) {
             case 0 : return OrderType.MARKET;
             case 1 : return OrderType.LIMIT;
             case 2 : return OrderType.STOP;
@@ -238,7 +277,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @param value     value to serialize and write
      */
     protected void serializeQuantity(ByteBuffer out, int rowOffset, int value) {
-        out.putInt(18 + rowOffset, value);
+        out.putInt(19 + rowOffset, value);
     }
     
     /**
@@ -249,7 +288,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected int deserializeQuantity(ByteBuffer in, int rowOffset) {
-        return in.getInt(18 + rowOffset);
+        return in.getInt(19 + rowOffset);
     }
     
     /**
@@ -261,11 +300,11 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeStatus(ByteBuffer out, int rowOffset, Status value) {
         switch (value) {
-            case FILLED : out.put(22, (byte) 0); return;
-            case CANCELLED : out.put(22, (byte) 1); return;
-            case EXPIRED : out.put(22, (byte) 2); return;
-            case OPEN : out.put(22, (byte) 3); return;
-            case REJECTED : out.put(22, (byte) 4); return;
+            case FILLED : out.put(23, (byte) 0); return;
+            case CANCELLED : out.put(23, (byte) 1); return;
+            case EXPIRED : out.put(23, (byte) 2); return;
+            case OPEN : out.put(23, (byte) 3); return;
+            case REJECTED : out.put(23, (byte) 4); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }
@@ -278,7 +317,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      * @return          the deserialized value
      */
     protected Status deserializeStatus(ByteBuffer in, int rowOffset) {
-        switch (in.get(22) + 0) {
+        switch (in.get(23) + 0) {
             case 0 : return Status.FILLED;
             case 1 : return Status.CANCELLED;
             case 2 : return Status.EXPIRED;
@@ -577,12 +616,12 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         if (colId instanceof Order.Identifier) {
             final Order.Identifier _id = (Order.Identifier) colId;
             switch (_id) {
-                case INSTRUMENT_SYMBOL   : return selectStringInstrumentSymbol(in,     rowOffset, Math.abs(in.get(rowOffset + 27)),    in.getInt(rowOffset + 28));
-                case INSTRUMENT_SECTOR   : return selectStringInstrumentSector(in,     rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
-                case INSTRUMENT_INDUSTRY : return selectStringInstrumentIndustry(in,   rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));
-                case TRADER_NAME         : return selectStringTraderName(in,           rowOffset, Math.abs(in.getInt(rowOffset + 36)), in.getInt(rowOffset + 40));
-                case TRADER_GROUP        : return selectStringTraderGroup(in,          rowOffset, Math.abs(in.getInt(rowOffset + 40)), in.getInt(rowOffset + 44));
-                case INSTRUMENT_NAME     : return selectStringInstrumentName(in,       rowOffset, Math.abs(in.getInt(rowOffset + 44)), in.getInt(rowOffset + 48));
+                case INSTRUMENT_SYMBOL   : return selectStringInstrumentSymbol(in,     rowOffset, Math.abs(in.get(rowOffset + 28)),    in.getInt(rowOffset + 29));
+                case INSTRUMENT_SECTOR   : return selectStringInstrumentSector(in,     rowOffset, Math.abs(in.getInt(rowOffset + 29)), in.getInt(rowOffset + 33));
+                case INSTRUMENT_INDUSTRY : return selectStringInstrumentIndustry(in,   rowOffset, Math.abs(in.getInt(rowOffset + 33)), in.getInt(rowOffset + 37));
+                case TRADER_NAME         : return selectStringTraderName(in,           rowOffset, Math.abs(in.getInt(rowOffset + 37)), in.getInt(rowOffset + 41));
+                case TRADER_GROUP        : return selectStringTraderGroup(in,          rowOffset, Math.abs(in.getInt(rowOffset + 41)), in.getInt(rowOffset + 45));
+                case INSTRUMENT_NAME     : return selectStringInstrumentName(in,       rowOffset, Math.abs(in.getInt(rowOffset + 45)), in.getInt(rowOffset + 49));
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown enum constant '%s'.", _id)
                 );
@@ -590,12 +629,12 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         } else {
             final String _colName = colId.getColumnName();
             switch (_colName) {
-                case "instrument_symbol"   : return selectStringInstrumentSymbol(in,   rowOffset, Math.abs(in.get(rowOffset + 27)),    in.getInt(rowOffset + 28));
-                case "instrument_sector"   : return selectStringInstrumentSector(in,   rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
-                case "instrument_industry" : return selectStringInstrumentIndustry(in, rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));
-                case "trader_name"         : return selectStringTraderName(in,         rowOffset, Math.abs(in.getInt(rowOffset + 36)), in.getInt(rowOffset + 40));
-                case "trader_group"        : return selectStringTraderGroup(in,        rowOffset, Math.abs(in.getInt(rowOffset + 40)), in.getInt(rowOffset + 44));
-                case "instrument_name"     : return selectStringInstrumentName(in,     rowOffset, Math.abs(in.getInt(rowOffset + 44)), in.getInt(rowOffset + 48));
+                case "instrument_symbol"   : return selectStringInstrumentSymbol(in,   rowOffset, Math.abs(in.get(rowOffset + 28)),    in.getInt(rowOffset + 29));
+                case "instrument_sector"   : return selectStringInstrumentSector(in,   rowOffset, Math.abs(in.getInt(rowOffset + 29)), in.getInt(rowOffset + 33));
+                case "instrument_industry" : return selectStringInstrumentIndustry(in, rowOffset, Math.abs(in.getInt(rowOffset + 33)), in.getInt(rowOffset + 37));
+                case "trader_name"         : return selectStringTraderName(in,         rowOffset, Math.abs(in.getInt(rowOffset + 37)), in.getInt(rowOffset + 41));
+                case "trader_group"        : return selectStringTraderGroup(in,        rowOffset, Math.abs(in.getInt(rowOffset + 41)), in.getInt(rowOffset + 45));
+                case "instrument_name"     : return selectStringInstrumentName(in,     rowOffset, Math.abs(in.getInt(rowOffset + 45)), in.getInt(rowOffset + 49));
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown column name '%s'.", _colName)
                 );
@@ -610,16 +649,17 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         if (colId instanceof Order.Identifier) {
             final Order.Identifier _id = (Order.Identifier) colId;
             switch (_id) {
+                case TRADER_GROUP_TYPE   : return (T) deserializeTraderGroupType(in,      rowOffset);
                 case DIRECTION           : return (T) deserializeDirection(in,            rowOffset);
                 case ORDER_TYPE          : return (T) deserializeOrderType(in,            rowOffset);
                 case STATUS              : return (T) deserializeStatus(in,               rowOffset);
-                case LIMIT_PRICE         : return (T) deserializeLimitPrice(in,           rowOffset, in.get(rowOffset + 27));
-                case INSTRUMENT_SYMBOL   : return (T) deserializeInstrumentSymbol(in,     rowOffset, Math.abs(in.get(rowOffset + 27)),    in.getInt(rowOffset + 28));
-                case INSTRUMENT_SECTOR   : return (T) deserializeInstrumentSector(in,     rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
-                case INSTRUMENT_INDUSTRY : return (T) deserializeInstrumentIndustry(in,   rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));
-                case TRADER_NAME         : return (T) deserializeTraderName(in,           rowOffset, Math.abs(in.getInt(rowOffset + 36)), in.getInt(rowOffset + 40));
-                case TRADER_GROUP        : return (T) deserializeTraderGroup(in,          rowOffset, Math.abs(in.getInt(rowOffset + 40)), in.getInt(rowOffset + 44));
-                case INSTRUMENT_NAME     : return (T) deserializeInstrumentName(in,       rowOffset, Math.abs(in.getInt(rowOffset + 44)), in.getInt(rowOffset + 48));
+                case LIMIT_PRICE         : return (T) deserializeLimitPrice(in,           rowOffset, in.get(rowOffset + 28));
+                case INSTRUMENT_SYMBOL   : return (T) deserializeInstrumentSymbol(in,     rowOffset, Math.abs(in.get(rowOffset + 28)),    in.getInt(rowOffset + 29));
+                case INSTRUMENT_SECTOR   : return (T) deserializeInstrumentSector(in,     rowOffset, Math.abs(in.getInt(rowOffset + 29)), in.getInt(rowOffset + 33));
+                case INSTRUMENT_INDUSTRY : return (T) deserializeInstrumentIndustry(in,   rowOffset, Math.abs(in.getInt(rowOffset + 33)), in.getInt(rowOffset + 37));
+                case TRADER_NAME         : return (T) deserializeTraderName(in,           rowOffset, Math.abs(in.getInt(rowOffset + 37)), in.getInt(rowOffset + 41));
+                case TRADER_GROUP        : return (T) deserializeTraderGroup(in,          rowOffset, Math.abs(in.getInt(rowOffset + 41)), in.getInt(rowOffset + 45));
+                case INSTRUMENT_NAME     : return (T) deserializeInstrumentName(in,       rowOffset, Math.abs(in.getInt(rowOffset + 45)), in.getInt(rowOffset + 49));
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown enum constant '%s'.", _id)
                 );
@@ -627,16 +667,17 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         } else {
             final String _colName = colId.getColumnName();
             switch (_colName) {
+                case "trader_group_type"   : return (T) deserializeTraderGroupType(in,    rowOffset);
                 case "direction"           : return (T) deserializeDirection(in,          rowOffset);
                 case "order_type"          : return (T) deserializeOrderType(in,          rowOffset);
                 case "status"              : return (T) deserializeStatus(in,             rowOffset);
-                case "limit_price"         : return (T) deserializeLimitPrice(in,         rowOffset, in.get(rowOffset + 27));
-                case "instrument_symbol"   : return (T) deserializeInstrumentSymbol(in,   rowOffset, Math.abs(in.get(rowOffset + 27)),    in.getInt(rowOffset + 28));
-                case "instrument_sector"   : return (T) deserializeInstrumentSector(in,   rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
-                case "instrument_industry" : return (T) deserializeInstrumentIndustry(in, rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));
-                case "trader_name"         : return (T) deserializeTraderName(in,         rowOffset, Math.abs(in.getInt(rowOffset + 36)), in.getInt(rowOffset + 40));
-                case "trader_group"        : return (T) deserializeTraderGroup(in,        rowOffset, Math.abs(in.getInt(rowOffset + 40)), in.getInt(rowOffset + 44));
-                case "instrument_name"     : return (T) deserializeInstrumentName(in,     rowOffset, Math.abs(in.getInt(rowOffset + 44)), in.getInt(rowOffset + 48));
+                case "limit_price"         : return (T) deserializeLimitPrice(in,         rowOffset, in.get(rowOffset + 28));
+                case "instrument_symbol"   : return (T) deserializeInstrumentSymbol(in,   rowOffset, Math.abs(in.get(rowOffset + 28)),    in.getInt(rowOffset + 29));
+                case "instrument_sector"   : return (T) deserializeInstrumentSector(in,   rowOffset, Math.abs(in.getInt(rowOffset + 29)), in.getInt(rowOffset + 33));
+                case "instrument_industry" : return (T) deserializeInstrumentIndustry(in, rowOffset, Math.abs(in.getInt(rowOffset + 33)), in.getInt(rowOffset + 37));
+                case "trader_name"         : return (T) deserializeTraderName(in,         rowOffset, Math.abs(in.getInt(rowOffset + 37)), in.getInt(rowOffset + 41));
+                case "trader_group"        : return (T) deserializeTraderGroup(in,        rowOffset, Math.abs(in.getInt(rowOffset + 41)), in.getInt(rowOffset + 45));
+                case "instrument_name"     : return (T) deserializeInstrumentName(in,     rowOffset, Math.abs(in.getInt(rowOffset + 45)), in.getInt(rowOffset + 49));
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown column name '%s'.", _colName)
                 );
@@ -738,15 +779,16 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
     
     @Override
     public Order deserialize(ByteBuffer in, int rowOffset) {
-        final int limitPriceEnd         = in.get(rowOffset + 27);
-        final int instrumentSymbolEnd   = in.getInt(rowOffset + 28);
-        final int instrumentSectorEnd   = in.getInt(rowOffset + 32);
-        final int instrumentIndustryEnd = in.getInt(rowOffset + 36);
-        final int traderNameEnd         = in.getInt(rowOffset + 40);
-        final int traderGroupEnd        = in.getInt(rowOffset + 44);
-        final int instrumentNameEnd     = in.getInt(rowOffset + 48);
+        final int limitPriceEnd         = in.get(rowOffset + 28);
+        final int instrumentSymbolEnd   = in.getInt(rowOffset + 29);
+        final int instrumentSectorEnd   = in.getInt(rowOffset + 33);
+        final int instrumentIndustryEnd = in.getInt(rowOffset + 37);
+        final int traderNameEnd         = in.getInt(rowOffset + 41);
+        final int traderGroupEnd        = in.getInt(rowOffset + 45);
+        final int instrumentNameEnd     = in.getInt(rowOffset + 49);
         
         final Order entity = newEntity();
+        entity.setTraderGroupType(deserializeTraderGroupType(in, rowOffset));
         entity.setPrice(deserializePrice(in, rowOffset));
         entity.setDateExecuted(deserializeDateExecuted(in, rowOffset));
         entity.setId(deserializeId(in, rowOffset));
@@ -767,8 +809,9 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
     
     @Override
     public int serialize(ByteBuffer out, int rowOffset, Order entity) throws BufferOverflowException {
-        int startPos = 52;
+        int startPos = 53;
         
+        serializeTraderGroupType(out, rowOffset, entity.getTraderGroupType());
         serializePrice(out, rowOffset, entity.getPrice());
         serializeDateExecuted(out, rowOffset, entity.getDateExecuted());
         serializeId(out, rowOffset, entity.getId());
@@ -777,13 +820,13 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         serializeOrderType(out, rowOffset, entity.getOrderType());
         serializeQuantity(out, rowOffset, entity.getQuantity());
         serializeStatus(out, rowOffset, entity.getStatus());
-        startPos = serializeLimitPrice(out, rowOffset, startPos, 27, entity.getLimitPrice());
-        startPos = serializeInstrumentSymbol(out, rowOffset, startPos, 28, entity.getInstrumentSymbol());
-        startPos = serializeInstrumentSector(out, rowOffset, startPos, 32, OptionalUtil.unwrap(entity.getInstrumentSector()));
-        startPos = serializeInstrumentIndustry(out, rowOffset, startPos, 36, OptionalUtil.unwrap(entity.getInstrumentIndustry()));
-        startPos = serializeTraderName(out, rowOffset, startPos, 40, entity.getTraderName());
-        startPos = serializeTraderGroup(out, rowOffset, startPos, 44, entity.getTraderGroup());
-        startPos = serializeInstrumentName(out, rowOffset, startPos, 48, OptionalUtil.unwrap(entity.getInstrumentName()));
+        startPos = serializeLimitPrice(out, rowOffset, startPos, 28, entity.getLimitPrice());
+        startPos = serializeInstrumentSymbol(out, rowOffset, startPos, 29, entity.getInstrumentSymbol());
+        startPos = serializeInstrumentSector(out, rowOffset, startPos, 33, OptionalUtil.unwrap(entity.getInstrumentSector()));
+        startPos = serializeInstrumentIndustry(out, rowOffset, startPos, 37, OptionalUtil.unwrap(entity.getInstrumentIndustry()));
+        startPos = serializeTraderName(out, rowOffset, startPos, 41, entity.getTraderName());
+        startPos = serializeTraderGroup(out, rowOffset, startPos, 45, entity.getTraderGroup());
+        startPos = serializeInstrumentName(out, rowOffset, startPos, 49, OptionalUtil.unwrap(entity.getInstrumentName()));
         return startPos;
     }
     
@@ -905,6 +948,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         if (colId instanceof Order.Identifier) {
             final Order.Identifier _id = (Order.Identifier) colId;
             switch (_id) {
+                case TRADER_GROUP_TYPE   : return false;
                 case PRICE               : return false;
                 case DATE_EXECUTED       : return false;
                 case ID                  : return false;
@@ -913,13 +957,13 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
                 case ORDER_TYPE          : return false;
                 case QUANTITY            : return false;
                 case STATUS              : return false;
-                case LIMIT_PRICE         : return in.getInt(rowOffset + 27) < 0;
+                case LIMIT_PRICE         : return in.getInt(rowOffset + 28) < 0;
                 case INSTRUMENT_SYMBOL   : return false;
-                case INSTRUMENT_SECTOR   : return in.getInt(rowOffset + 32) < 0;
-                case INSTRUMENT_INDUSTRY : return in.getInt(rowOffset + 36) < 0;
+                case INSTRUMENT_SECTOR   : return in.getInt(rowOffset + 33) < 0;
+                case INSTRUMENT_INDUSTRY : return in.getInt(rowOffset + 37) < 0;
                 case TRADER_NAME         : return false;
                 case TRADER_GROUP        : return false;
-                case INSTRUMENT_NAME     : return in.getInt(rowOffset + 48) < 0;
+                case INSTRUMENT_NAME     : return in.getInt(rowOffset + 49) < 0;
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown enum constant '%s'.", _id)
                 );
@@ -927,6 +971,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         } else {
             final String _colName = colId.getColumnName();
             switch (_colName) {
+                case "trader_group_type"   : return false;
                 case "price"               : return false;
                 case "date_executed"       : return false;
                 case "id"                  : return false;
@@ -935,13 +980,13 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
                 case "order_type"          : return false;
                 case "quantity"            : return false;
                 case "status"              : return false;
-                case "limit_price"         : return in.getInt(rowOffset + 27) < 0;
+                case "limit_price"         : return in.getInt(rowOffset + 28) < 0;
                 case "instrument_symbol"   : return false;
-                case "instrument_sector"   : return in.getInt(rowOffset + 32) < 0;
-                case "instrument_industry" : return in.getInt(rowOffset + 36) < 0;
+                case "instrument_sector"   : return in.getInt(rowOffset + 33) < 0;
+                case "instrument_industry" : return in.getInt(rowOffset + 37) < 0;
                 case "trader_name"         : return false;
                 case "trader_group"        : return false;
-                case "instrument_name"     : return in.getInt(rowOffset + 48) < 0;
+                case "instrument_name"     : return in.getInt(rowOffset + 49) < 0;
                 default : throw new UnsupportedOperationException(
                     String.format("Unknown column name '%s'.", _colName)
                 );

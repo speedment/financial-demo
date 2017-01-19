@@ -45,6 +45,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractManager<Order> i
             Order.INSTRUMENT_INDUSTRY,
             Order.TRADER_NAME,
             Order.TRADER_GROUP,
+            Order.TRADER_GROUP_TYPE,
             Order.PRICE,
             Order.DATE_EXECUTED,
             Order.INSTRUMENT_NAME
