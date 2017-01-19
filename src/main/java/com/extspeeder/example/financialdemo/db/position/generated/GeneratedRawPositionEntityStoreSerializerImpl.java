@@ -646,12 +646,12 @@ public class GeneratedRawPositionEntityStoreSerializerImpl implements EntityStor
         entity.setLiquidateTradingMktVal(deserializeLiquidateTradingMktVal(in, rowOffset));
         entity.setValueDate(deserializeValueDate(in, rowOffset));
         entity.setTraderName(deserializeTraderName(in, rowOffset, 52, traderNameEnd));
-        entity.setTraderGroup(deserializeTraderGroup(in, rowOffset, traderNameEnd, traderGroupEnd));
-        entity.setTraderGroupType(deserializeTraderGroupType(in, rowOffset, traderGroupEnd, traderGroupTypeEnd));
-        entity.setInstrumentName(deserializeInstrumentName(in, rowOffset, traderGroupTypeEnd, instrumentNameEnd));
-        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, instrumentNameEnd, instrumentSymbolEnd));
-        entity.setInstrumentSector(deserializeInstrumentSector(in, rowOffset, instrumentSymbolEnd, instrumentSectorEnd));
-        entity.setInstrumentIndustry(deserializeInstrumentIndustry(in, rowOffset, instrumentSectorEnd, instrumentIndustryEnd));
+        entity.setTraderGroup(deserializeTraderGroup(in, rowOffset, Math.abs(traderNameEnd), traderGroupEnd));
+        entity.setTraderGroupType(deserializeTraderGroupType(in, rowOffset, Math.abs(traderGroupEnd), traderGroupTypeEnd));
+        entity.setInstrumentName(deserializeInstrumentName(in, rowOffset, Math.abs(traderGroupTypeEnd), instrumentNameEnd));
+        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, Math.abs(instrumentNameEnd), instrumentSymbolEnd));
+        entity.setInstrumentSector(deserializeInstrumentSector(in, rowOffset, Math.abs(instrumentSymbolEnd), instrumentSectorEnd));
+        entity.setInstrumentIndustry(deserializeInstrumentIndustry(in, rowOffset, Math.abs(instrumentSectorEnd), instrumentIndustryEnd));
         return entity;
     }
     

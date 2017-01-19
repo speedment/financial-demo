@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.extspeeder.example</groupId>
     <artifactId>financialdemo</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>war</packaging>
     
     <name>Financial Demo</name>
@@ -60,6 +60,12 @@
         
         <dependency>
             <groupId>com.speedment.enterprise</groupId>
+            <artifactId>license-runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
             <artifactId>enterprise-fastcache</artifactId>
             <version>${speedment.enterprise.version}</version>
         </dependency>
@@ -102,6 +108,7 @@
                 
                 <configuration>
                     <components>
+                        <component>com.speedment.enterprise.license.runtime.component.SpeedmentLicenseComponent</component>
                         <component>com.speedment.enterprise.fastcache.tool.FastCacheToolBundle</component>
                         <component>com.speedment.enterprise.virtualcolumn.tool.VirtualColumnToolBundle</component>
                         <component>com.speedment.web.licenseservice.fastpiq.helper.ExtraComponent</component>
@@ -113,6 +120,12 @@
                         <groupId>${db.groupId}</groupId>
                         <artifactId>${db.artifactId}</artifactId>
                         <version>${db.version}</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>com.speedment.enterprise</groupId>
+                        <artifactId>enterprise-core</artifactId>
+                        <version>${speedment.enterprise.version}</version>
                     </dependency>
                     
                     <dependency>
@@ -131,6 +144,12 @@
                         <groupId>com.speedment.web.licenseservice</groupId>
                         <artifactId>fastpiq-helper</artifactId>
                         <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>com.speedment.enterprise</groupId>
+                        <artifactId>license-runtime</artifactId>
+                        <version>${speedment.enterprise.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

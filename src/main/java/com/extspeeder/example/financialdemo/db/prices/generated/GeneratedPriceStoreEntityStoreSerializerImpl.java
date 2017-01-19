@@ -396,7 +396,7 @@ public class GeneratedPriceStoreEntityStoreSerializerImpl implements EntityStore
         entity.setHigh(deserializeHigh(in, rowOffset));
         entity.setLow(deserializeLow(in, rowOffset));
         entity.setClose(deserializeClose(in, rowOffset, closeEnd));
-        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, closeEnd, instrumentSymbolEnd));
+        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, Math.abs(closeEnd), instrumentSymbolEnd));
         return entity;
     }
     

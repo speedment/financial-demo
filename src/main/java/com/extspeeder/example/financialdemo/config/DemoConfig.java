@@ -6,8 +6,14 @@ import com.extspeeder.example.financialdemo.db.order.OrderManager;
 import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreManager;
 import com.google.gson.Gson;
+import com.speedment.common.logger.Level;
+import com.speedment.common.logger.LoggerManager;
 import com.speedment.enterprise.fastcache.runtime.FastCacheBundle;
 import com.speedment.enterprise.fastcache.runtime.FastCacheStreamSupplierComponent;
+import com.speedment.enterprise.license.runtime.component.AbstractLicenseComponent;
+import com.speedment.enterprise.license.runtime.component.LicenseComponent;
+import com.speedment.enterprise.license.runtime.component.SpeedmentLicenseComponent;
+import com.speedment.enterprise.license.runtime.internal.io.LicenseIOUtil;
 import com.speedment.enterprise.virtualcolumn.runtime.VirtualColumnBundle;
 import com.speedment.runtime.core.ApplicationBuilder;
 import java.util.concurrent.ExecutorService;
@@ -31,7 +37,6 @@ public class DemoConfig {
     private @Value("${dbms.schema}") String schema;
     
     private @Value("${reload.cores}") int reloadingCores;
-    private @Value("${reload.interval}") int reloadInterval; // Seconds
     
     @Bean
     public Gson getGson() {
@@ -40,12 +45,15 @@ public class DemoConfig {
     
     @Bean
     public ExecutorService getExecutorService() {
-//        return Executors.newScheduledThreadPool(reloadingCores);
         return Executors.newFixedThreadPool(reloadingCores);
     }
 
     @Bean
     public FinancialdemoApplication getApplication(ExecutorService scheduler) {
+        
+        LoggerManager.getLogger(AbstractLicenseComponent.class).setLevel(Level.DEBUG);
+        LoggerManager.getLogger(LicenseIOUtil.class).setLevel(Level.DEBUG);
+        
         final FinancialdemoApplication app = new FinancialdemoApplicationBuilder()
             .withIpAddress(host)
             .withPort(port)
@@ -56,6 +64,14 @@ public class DemoConfig {
             // The order of the following two is important.
             .withBundle(VirtualColumnBundle.class)
             .withBundle(FastCacheBundle.class)
+            .withComponent(SpeedmentLicenseComponent.class)
+            
+            .withParam(LicenseComponent.LICENSE_KEY, 
+                "zyabOXWnkqJDD0R8ZmFzdGNhY2hlLHZpcnR1YWwtY29sdW1uczs8Khijp5zP" + 
+                "zY2jeERJ8SEH3bFYx+m1kRRoOiBXa194pF0xb5pNpYDOmCYyw/9e/c8X7iB3" + 
+                "heWkK6RtFOhIVhINvrP7BSDDk8yl7veJGNVaHqJyt3qdH+qn30NUW/XgcbOu" + 
+                "ADfsALvUNhJJ71lXH+eZ1HcX0yu24fFRYeWt5IuacQ=="
+            )
             
             .withLogging(ApplicationBuilder.LogType.PERSIST)
             .withLogging(ApplicationBuilder.LogType.UPDATE)
@@ -68,12 +84,6 @@ public class DemoConfig {
             app.getOrThrow(FastCacheStreamSupplierComponent.class);
         
         scheduler.submit(() -> streamSupplier.reload(scheduler));
-        
-//        scheduler.scheduleAtFixedRate(
-//            () -> streamSupplier.reload(scheduler),
-//            0, reloadInterval, 
-//            TimeUnit.SECONDS
-//        );
         
         return app;
     }

@@ -756,12 +756,12 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
         entity.setQuantity(deserializeQuantity(in, rowOffset));
         entity.setStatus(deserializeStatus(in, rowOffset));
         entity.setLimitPrice(deserializeLimitPrice(in, rowOffset, limitPriceEnd));
-        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, limitPriceEnd, instrumentSymbolEnd));
-        entity.setInstrumentSector(deserializeInstrumentSector(in, rowOffset, instrumentSymbolEnd, instrumentSectorEnd));
-        entity.setInstrumentIndustry(deserializeInstrumentIndustry(in, rowOffset, instrumentSectorEnd, instrumentIndustryEnd));
-        entity.setTraderName(deserializeTraderName(in, rowOffset, instrumentIndustryEnd, traderNameEnd));
-        entity.setTraderGroup(deserializeTraderGroup(in, rowOffset, traderNameEnd, traderGroupEnd));
-        entity.setInstrumentName(deserializeInstrumentName(in, rowOffset, traderGroupEnd, instrumentNameEnd));
+        entity.setInstrumentSymbol(deserializeInstrumentSymbol(in, rowOffset, Math.abs(limitPriceEnd), instrumentSymbolEnd));
+        entity.setInstrumentSector(deserializeInstrumentSector(in, rowOffset, Math.abs(instrumentSymbolEnd), instrumentSectorEnd));
+        entity.setInstrumentIndustry(deserializeInstrumentIndustry(in, rowOffset, Math.abs(instrumentSectorEnd), instrumentIndustryEnd));
+        entity.setTraderName(deserializeTraderName(in, rowOffset, Math.abs(instrumentIndustryEnd), traderNameEnd));
+        entity.setTraderGroup(deserializeTraderGroup(in, rowOffset, Math.abs(traderNameEnd), traderGroupEnd));
+        entity.setInstrumentName(deserializeInstrumentName(in, rowOffset, Math.abs(traderGroupEnd), instrumentNameEnd));
         return entity;
     }
     
