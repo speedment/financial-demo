@@ -164,52 +164,52 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
             FastCacheHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
         
         final CompletableFuture<FieldCache.OfLong<Order>> fieldIdCacheFuture =
-            FastCacheHolderUtil.buildLongCache(entityStoreFuture, Order.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
+            FastCacheHolderUtil.buildLongCache(entityStoreFuture, executor, Order.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
         
         final CompletableFuture<FieldCache.OfShort<Order>> fieldDateCreatedCacheFuture =
-            FastCacheHolderUtil.buildShortCache(entityStoreFuture, Order.DATE_CREATED, 0);
+            FastCacheHolderUtil.buildShortCache(entityStoreFuture, executor, Order.DATE_CREATED, 0);
         
         final CompletableFuture<FieldCache.OfObject<Order, BuySell>> fieldDirectionCacheFuture =
-            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, Order.DIRECTION, 0);
+            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, executor, Order.DIRECTION, 0);
         
         final CompletableFuture<FieldCache.OfObject<Order, OrderType>> fieldOrderTypeCacheFuture =
-            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, Order.ORDER_TYPE, 0);
+            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, executor, Order.ORDER_TYPE, 0);
         
         final CompletableFuture<FieldCache.OfInt<Order>> fieldQuantityCacheFuture =
-            FastCacheHolderUtil.buildIntCache(entityStoreFuture, Order.QUANTITY, 0);
+            FastCacheHolderUtil.buildIntCache(entityStoreFuture, executor, Order.QUANTITY, 0);
         
         final CompletableFuture<FieldCache.OfObject<Order, Status>> fieldStatusCacheFuture =
-            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, Order.STATUS, 0);
+            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, executor, Order.STATUS, 0);
         
         final CompletableFuture<FieldCache.OfFloat<Order>> fieldLimitPriceCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, Order.LIMIT_PRICE, 0);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, Order.LIMIT_PRICE, 0);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldInstrumentSymbolCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldInstrumentSectorCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldInstrumentIndustryCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldTraderNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.TRADER_NAME, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.TRADER_NAME, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldTraderGroupCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.TRADER_GROUP, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.TRADER_GROUP, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfObject<Order, CohortType>> fieldTraderGroupTypeCacheFuture =
-            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, Order.TRADER_GROUP_TYPE, 0);
+            FastCacheHolderUtil.buildObjectCache(entityStoreFuture, executor, Order.TRADER_GROUP_TYPE, 0);
         
         final CompletableFuture<FieldCache.OfFloat<Order>> fieldPriceCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, Order.PRICE, 0);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, Order.PRICE, 0);
         
         final CompletableFuture<FieldCache.OfShort<Order>> fieldDateExecutedCacheFuture =
-            FastCacheHolderUtil.buildShortCache(entityStoreFuture, Order.DATE_EXECUTED, 0);
+            FastCacheHolderUtil.buildShortCache(entityStoreFuture, executor, Order.DATE_EXECUTED, 0);
         
         final CompletableFuture<FieldCache.OfString<Order>> fieldInstrumentNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, Order.INSTRUMENT_NAME, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, Order.INSTRUMENT_NAME, 0, Encoding.UTF_8);
         
         return entityStoreFuture.thenApplyAsync(entityStore -> {
             try {

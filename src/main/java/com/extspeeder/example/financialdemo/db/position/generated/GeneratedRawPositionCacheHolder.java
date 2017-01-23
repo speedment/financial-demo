@@ -138,40 +138,40 @@ public final class GeneratedRawPositionCacheHolder implements EntityStoreHolder<
             FastCacheHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
         
         final CompletableFuture<FieldCache.OfLong<RawPosition>> fieldIdCacheFuture =
-            FastCacheHolderUtil.buildLongCache(entityStoreFuture, RawPosition.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
+            FastCacheHolderUtil.buildLongCache(entityStoreFuture, executor, RawPosition.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldPnlCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, RawPosition.PNL, 0);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.PNL, 0);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldInitiateTradingMktValCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, RawPosition.INITIATE_TRADING_MKT_VAL, 0);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.INITIATE_TRADING_MKT_VAL, 0);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldLiquidateTradingMktValCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, RawPosition.LIQUIDATE_TRADING_MKT_VAL, 0);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.LIQUIDATE_TRADING_MKT_VAL, 0);
         
         final CompletableFuture<FieldCache.OfInt<RawPosition>> fieldValueDateCacheFuture =
-            FastCacheHolderUtil.buildIntCache(entityStoreFuture, RawPosition.VALUE_DATE, 0);
+            FastCacheHolderUtil.buildIntCache(entityStoreFuture, executor, RawPosition.VALUE_DATE, 0);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.TRADER_NAME, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_NAME, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderGroupCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.TRADER_GROUP, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderGroupTypeCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.TRADER_GROUP_TYPE, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP_TYPE, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.INSTRUMENT_NAME, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_NAME, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentSymbolCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentSectorCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentIndustryCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, RawPosition.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
         
         return entityStoreFuture.thenApplyAsync(entityStore -> {
             try {

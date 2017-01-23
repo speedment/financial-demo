@@ -113,25 +113,25 @@ public final class GeneratedPriceStoreCacheHolder implements EntityStoreHolder<P
             FastCacheHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
         
         final CompletableFuture<FieldCache.OfLong<PriceStore>> fieldIdCacheFuture =
-            FastCacheHolderUtil.buildLongCache(entityStoreFuture, PriceStore.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER);
+            FastCacheHolderUtil.buildLongCache(entityStoreFuture, executor, PriceStore.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER);
         
         final CompletableFuture<FieldCache.OfInt<PriceStore>> fieldValueDateCacheFuture =
-            FastCacheHolderUtil.buildIntCache(entityStoreFuture, PriceStore.VALUE_DATE, 0);
+            FastCacheHolderUtil.buildIntCache(entityStoreFuture, executor, PriceStore.VALUE_DATE, 0);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldOpenCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, PriceStore.OPEN, FieldCache.UNINDEXED);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.OPEN, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldHighCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, PriceStore.HIGH, FieldCache.UNINDEXED);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.HIGH, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldLowCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, PriceStore.LOW, FieldCache.UNINDEXED);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.LOW, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldCloseCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, PriceStore.CLOSE, FieldCache.UNINDEXED);
+            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.CLOSE, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfString<PriceStore>> fieldInstrumentSymbolCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, PriceStore.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
+            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, PriceStore.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
         
         return entityStoreFuture.thenApplyAsync(entityStore -> {
             try {
