@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.speedment.common.logger.Level;
 import com.speedment.common.logger.LoggerManager;
 import com.speedment.enterprise.datastore.runtime.DataStoreBundle;
-import com.speedment.enterprise.datastore.runtime.DataStoreStreamSupplierComponent;
 import com.speedment.enterprise.license.runtime.component.AbstractLicenseComponent;
 import com.speedment.enterprise.license.runtime.component.LicenseComponent;
 import com.speedment.enterprise.license.runtime.component.SpeedmentLicenseComponent;
@@ -21,6 +20,7 @@ import java.util.concurrent.Executors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.speedment.enterprise.datastore.runtime.DataStoreComponent;
 
 /**
  *
@@ -80,8 +80,8 @@ public class DemoConfig {
             .withLogging(ApplicationBuilder.LogType.STREAM)
             .build();
         
-        final DataStoreStreamSupplierComponent streamSupplier =
-            app.getOrThrow(DataStoreStreamSupplierComponent.class);
+        final DataStoreComponent streamSupplier =
+            app.getOrThrow(DataStoreComponent.class);
         
         scheduler.submit(() -> streamSupplier.reload(scheduler));
         
@@ -104,7 +104,7 @@ public class DemoConfig {
     }
     
     @Bean
-    public DataStoreStreamSupplierComponent getStreamSupplier(FinancialdemoApplication app) {
-        return app.getOrThrow(DataStoreStreamSupplierComponent.class);
+    public DataStoreComponent getStreamSupplier(FinancialdemoApplication app) {
+        return app.getOrThrow(DataStoreComponent.class);
     }
 }
