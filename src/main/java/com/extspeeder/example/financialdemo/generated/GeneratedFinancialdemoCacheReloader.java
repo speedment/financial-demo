@@ -3,8 +3,8 @@ package com.extspeeder.example.financialdemo.generated;
 import com.extspeeder.example.financialdemo.db.order.generated.GeneratedOrderCacheHolder;
 import com.extspeeder.example.financialdemo.db.position.generated.GeneratedRawPositionCacheHolder;
 import com.extspeeder.example.financialdemo.db.prices.generated.GeneratedPriceStoreCacheHolder;
-import com.speedment.enterprise.fastcache.runtime.FastCacheHolder;
-import com.speedment.enterprise.fastcache.runtime.FastCacheReloader;
+import com.speedment.enterprise.datastore.runtime.DataStoreHolder;
+import com.speedment.enterprise.datastore.runtime.DataStoreReloader;
 import com.speedment.runtime.core.component.StreamSupplierComponent;
 import com.speedment.runtime.core.internal.util.testing.Stopwatch;
 import java.util.concurrent.CompletableFuture;
@@ -22,10 +22,10 @@ import javax.annotation.Generated;
  * @author Speedment
  */
 @Generated("Speedment")
-public final class GeneratedFinancialdemoCacheReloader implements FastCacheReloader {
+public final class GeneratedFinancialdemoCacheReloader implements DataStoreReloader {
     
     @Override
-    public FastCacheHolder reload(StreamSupplierComponent streamSupplier, ExecutorService executor) {
+    public DataStoreHolder reload(StreamSupplierComponent streamSupplier, ExecutorService executor) {
         final Stopwatch sw = Stopwatch.createStarted();
         final CompletableFuture<GeneratedRawPositionCacheHolder> rawPositionHolder = 
             GeneratedRawPositionCacheHolder.reload(streamSupplier, executor);

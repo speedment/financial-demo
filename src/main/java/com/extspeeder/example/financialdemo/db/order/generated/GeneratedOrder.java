@@ -1,6 +1,15 @@
 package com.extspeeder.example.financialdemo.db.order.generated;
 
 import com.extspeeder.example.financialdemo.db.order.Order;
+import com.extspeeder.example.financialdemo.extra.BuySell;
+import com.extspeeder.example.financialdemo.extra.BuySellMapper;
+import com.extspeeder.example.financialdemo.extra.CohortType;
+import com.extspeeder.example.financialdemo.extra.CohortTypeMapper;
+import com.extspeeder.example.financialdemo.extra.DateIntToShortMapper;
+import com.extspeeder.example.financialdemo.extra.OrderType;
+import com.extspeeder.example.financialdemo.extra.OrderTypeMapper;
+import com.extspeeder.example.financialdemo.extra.Status;
+import com.extspeeder.example.financialdemo.extra.StatusMapper;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.util.OptionalUtil;
@@ -13,15 +22,6 @@ import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import com.speedment.runtime.typemapper.doubles.DoubleToFloatMapper;
 import com.speedment.runtime.typemapper.doubles.PrimitiveDoubleToFloatMapper;
-import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
-import com.speedment.web.licenseservice.fastpiq.helper.BuySellMapper;
-import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
-import com.speedment.web.licenseservice.fastpiq.helper.CohortTypeMapper;
-import com.speedment.web.licenseservice.fastpiq.helper.DateIntToShortMapper;
-import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
-import com.speedment.web.licenseservice.fastpiq.helper.OrderTypeMapper;
-import com.speedment.web.licenseservice.fastpiq.helper.Status;
-import com.speedment.web.licenseservice.fastpiq.helper.StatusMapper;
 import java.util.Optional;
 import javax.annotation.Generated;
 

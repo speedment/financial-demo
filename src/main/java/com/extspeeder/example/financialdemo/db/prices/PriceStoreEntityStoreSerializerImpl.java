@@ -4,7 +4,7 @@ import com.extspeeder.example.financialdemo.db.prices.generated.GeneratedPriceSt
 
 /**
  * An {@link
- * com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreSerializer}
+ * com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreSerializer}
  * class for table {@link com.speedment.runtime.config.Table} named price_store.
  * <p>
  * This file is safe to edit. It will not be overwritten by the code generator.

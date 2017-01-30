@@ -8,8 +8,8 @@ import com.extspeeder.example.financialdemo.db.prices.PriceStoreManager;
 import com.google.gson.Gson;
 import com.speedment.common.logger.Level;
 import com.speedment.common.logger.LoggerManager;
-import com.speedment.enterprise.fastcache.runtime.FastCacheBundle;
-import com.speedment.enterprise.fastcache.runtime.FastCacheStreamSupplierComponent;
+import com.speedment.enterprise.datastore.runtime.DataStoreBundle;
+import com.speedment.enterprise.datastore.runtime.DataStoreStreamSupplierComponent;
 import com.speedment.enterprise.license.runtime.component.AbstractLicenseComponent;
 import com.speedment.enterprise.license.runtime.component.LicenseComponent;
 import com.speedment.enterprise.license.runtime.component.SpeedmentLicenseComponent;
@@ -63,7 +63,7 @@ public class DemoConfig {
             
             // The order of the following two is important.
             .withBundle(VirtualColumnBundle.class)
-            .withBundle(FastCacheBundle.class)
+            .withBundle(DataStoreBundle.class)
             .withComponent(SpeedmentLicenseComponent.class)
             
             .withParam(LicenseComponent.LICENSE_KEY, 
@@ -80,8 +80,8 @@ public class DemoConfig {
             .withLogging(ApplicationBuilder.LogType.STREAM)
             .build();
         
-        final FastCacheStreamSupplierComponent streamSupplier =
-            app.getOrThrow(FastCacheStreamSupplierComponent.class);
+        final DataStoreStreamSupplierComponent streamSupplier =
+            app.getOrThrow(DataStoreStreamSupplierComponent.class);
         
         scheduler.submit(() -> streamSupplier.reload(scheduler));
         
@@ -104,7 +104,7 @@ public class DemoConfig {
     }
     
     @Bean
-    public FastCacheStreamSupplierComponent getStreamSupplier(FinancialdemoApplication app) {
-        return app.getOrThrow(FastCacheStreamSupplierComponent.class);
+    public DataStoreStreamSupplierComponent getStreamSupplier(FinancialdemoApplication app) {
+        return app.getOrThrow(DataStoreStreamSupplierComponent.class);
     }
 }

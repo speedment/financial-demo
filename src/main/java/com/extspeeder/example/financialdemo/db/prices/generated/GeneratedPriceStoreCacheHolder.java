@@ -3,18 +3,18 @@ package com.extspeeder.example.financialdemo.db.prices.generated;
 import com.extspeeder.example.financialdemo.db.prices.PriceStore;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreEntityStoreSerializerImpl;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreManager;
-import com.speedment.enterprise.fastcache.runtime.HasStatistics.Statistics;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreHolder;
-import com.speedment.enterprise.fastcache.runtime.entitystore.StringSelection.Encoding;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfFloat;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfInt;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfLong;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfString;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCacheBuilder;
-import com.speedment.enterprise.fastcache.runtime.internal.util.StatisticsInternalUtil;
-import com.speedment.enterprise.fastcache.runtime.util.FastCacheHolderUtil;
+import com.speedment.enterprise.datastore.runtime.HasStatistics.Statistics;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreHolder;
+import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection.Encoding;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfFloat;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfInt;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfLong;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfString;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCacheBuilder;
+import com.speedment.enterprise.datastore.runtime.internal.util.StatisticsInternalUtil;
+import com.speedment.enterprise.datastore.runtime.util.DataStoreHolderUtil;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.StreamSupplierComponent;
@@ -110,28 +110,28 @@ public final class GeneratedPriceStoreCacheHolder implements EntityStoreHolder<P
         final PriceStoreEntityStoreSerializerImpl serializer = 
             new PriceStoreEntityStoreSerializerImpl();
         final CompletableFuture<EntityStore<PriceStore>> entityStoreFuture = 
-            FastCacheHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
+            DataStoreHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
         
         final CompletableFuture<FieldCache.OfLong<PriceStore>> fieldIdCacheFuture =
-            FastCacheHolderUtil.buildLongCache(entityStoreFuture, executor, PriceStore.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER);
+            DataStoreHolderUtil.buildLongCache(entityStoreFuture, executor, PriceStore.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER);
         
         final CompletableFuture<FieldCache.OfInt<PriceStore>> fieldValueDateCacheFuture =
-            FastCacheHolderUtil.buildIntCache(entityStoreFuture, executor, PriceStore.VALUE_DATE, 0);
+            DataStoreHolderUtil.buildIntCache(entityStoreFuture, executor, PriceStore.VALUE_DATE, 0);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldOpenCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.OPEN, FieldCache.UNINDEXED);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.OPEN, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldHighCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.HIGH, FieldCache.UNINDEXED);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.HIGH, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldLowCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.LOW, FieldCache.UNINDEXED);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.LOW, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfFloat<PriceStore>> fieldCloseCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.CLOSE, FieldCache.UNINDEXED);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, PriceStore.CLOSE, FieldCache.UNINDEXED);
         
         final CompletableFuture<FieldCache.OfString<PriceStore>> fieldInstrumentSymbolCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, PriceStore.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, PriceStore.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
         
         return entityStoreFuture.thenApplyAsync(entityStore -> {
             try {

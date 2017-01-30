@@ -4,7 +4,7 @@ import com.extspeeder.example.financialdemo.db.position.generated.GeneratedRawPo
 
 /**
  * An {@link
- * com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreSerializer}
+ * com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreSerializer}
  * class for table {@link com.speedment.runtime.config.Table} named
  * daily_position_performance.
  * <p>

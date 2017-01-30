@@ -1,12 +1,12 @@
 package com.extspeeder.example.financialdemo.controller;
 
-import com.extspeeder.example.financialdemo.db.position.RawPosition;
-import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
 import com.extspeeder.example.financialdemo.aggregator.PositionResult;
 import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap;
 import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap.ObjLongFunction;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.function.EntityFunction;
+import com.extspeeder.example.financialdemo.db.position.RawPosition;
+import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.function.EntityFunction;
 import com.speedment.runtime.core.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;

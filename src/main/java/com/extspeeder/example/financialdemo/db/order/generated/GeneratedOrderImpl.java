@@ -1,11 +1,11 @@
 package com.extspeeder.example.financialdemo.db.order.generated;
 
 import com.extspeeder.example.financialdemo.db.order.Order;
+import com.extspeeder.example.financialdemo.extra.BuySell;
+import com.extspeeder.example.financialdemo.extra.CohortType;
+import com.extspeeder.example.financialdemo.extra.OrderType;
+import com.extspeeder.example.financialdemo.extra.Status;
 import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.web.licenseservice.fastpiq.helper.BuySell;
-import com.speedment.web.licenseservice.fastpiq.helper.CohortType;
-import com.speedment.web.licenseservice.fastpiq.helper.OrderType;
-import com.speedment.web.licenseservice.fastpiq.helper.Status;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;

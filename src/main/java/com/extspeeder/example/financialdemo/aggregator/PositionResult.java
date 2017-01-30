@@ -1,8 +1,8 @@
 package com.extspeeder.example.financialdemo.aggregator;
 
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.entitystore.StringSelection;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
 

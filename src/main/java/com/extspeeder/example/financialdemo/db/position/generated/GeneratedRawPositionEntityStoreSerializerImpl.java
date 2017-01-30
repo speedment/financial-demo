@@ -2,9 +2,9 @@ package com.extspeeder.example.financialdemo.db.position.generated;
 
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionImpl;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreSerializer;
-import com.speedment.enterprise.fastcache.runtime.entitystore.StringSelection;
-import com.speedment.enterprise.fastcache.runtime.util.SerializerUtil;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreSerializer;
+import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection;
+import com.speedment.enterprise.datastore.runtime.util.SerializerUtil;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.Field;

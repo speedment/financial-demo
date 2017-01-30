@@ -2,9 +2,9 @@ package com.extspeeder.example.financialdemo.db.prices.generated;
 
 import com.extspeeder.example.financialdemo.db.prices.PriceStore;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreImpl;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreSerializer;
-import com.speedment.enterprise.fastcache.runtime.entitystore.StringSelection;
-import com.speedment.enterprise.fastcache.runtime.util.SerializerUtil;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreSerializer;
+import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection;
+import com.speedment.enterprise.datastore.runtime.util.SerializerUtil;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.field.Field;
 import com.speedment.runtime.field.StringField;

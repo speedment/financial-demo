@@ -1,8 +1,8 @@
 package com.extspeeder.example.financialdemo.aggregator;
 
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.function.EntityCollector;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.function.EntityCollector;
 import static java.util.Collections.singleton;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
@@ -14,6 +14,7 @@ import java.util.function.Function;
 import java.util.function.ObjLongConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
+import java.util.stream.Collector.Characteristics;
 
 /**
  *

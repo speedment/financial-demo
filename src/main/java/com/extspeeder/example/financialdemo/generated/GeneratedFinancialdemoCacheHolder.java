@@ -6,11 +6,11 @@ import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.generated.GeneratedRawPositionCacheHolder;
 import com.extspeeder.example.financialdemo.db.prices.PriceStore;
 import com.extspeeder.example.financialdemo.db.prices.generated.GeneratedPriceStoreCacheHolder;
-import com.speedment.enterprise.fastcache.runtime.FastCacheHolder;
-import com.speedment.enterprise.fastcache.runtime.HasStatistics.Statistics;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache;
-import com.speedment.enterprise.fastcache.runtime.internal.util.StatisticsInternalUtil;
+import com.speedment.enterprise.datastore.runtime.DataStoreHolder;
+import com.speedment.enterprise.datastore.runtime.HasStatistics.Statistics;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache;
+import com.speedment.enterprise.datastore.runtime.internal.util.StatisticsInternalUtil;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import java.util.Map;
 import javax.annotation.Generated;
@@ -25,7 +25,7 @@ import static java.util.Objects.requireNonNull;
  * @author Speedment
  */
 @Generated("Speedment")
-public final class GeneratedFinancialdemoCacheHolder implements FastCacheHolder {
+public final class GeneratedFinancialdemoCacheHolder implements DataStoreHolder {
     
     private final GeneratedRawPositionCacheHolder rawPositionHolder;
     private final GeneratedOrderCacheHolder orderHolder;

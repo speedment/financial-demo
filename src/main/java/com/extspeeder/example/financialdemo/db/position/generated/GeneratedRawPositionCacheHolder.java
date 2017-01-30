@@ -3,18 +3,18 @@ package com.extspeeder.example.financialdemo.db.position.generated;
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionEntityStoreSerializerImpl;
 import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
-import com.speedment.enterprise.fastcache.runtime.HasStatistics.Statistics;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStore;
-import com.speedment.enterprise.fastcache.runtime.entitystore.EntityStoreHolder;
-import com.speedment.enterprise.fastcache.runtime.entitystore.StringSelection.Encoding;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfFloat;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfInt;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfLong;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache.OfString;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCache;
-import com.speedment.enterprise.fastcache.runtime.fieldcache.FieldCacheBuilder;
-import com.speedment.enterprise.fastcache.runtime.internal.util.StatisticsInternalUtil;
-import com.speedment.enterprise.fastcache.runtime.util.FastCacheHolderUtil;
+import com.speedment.enterprise.datastore.runtime.HasStatistics.Statistics;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
+import com.speedment.enterprise.datastore.runtime.entitystore.EntityStoreHolder;
+import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection.Encoding;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfFloat;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfInt;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfLong;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache.OfString;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCache;
+import com.speedment.enterprise.datastore.runtime.fieldcache.FieldCacheBuilder;
+import com.speedment.enterprise.datastore.runtime.internal.util.StatisticsInternalUtil;
+import com.speedment.enterprise.datastore.runtime.util.DataStoreHolderUtil;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.StreamSupplierComponent;
@@ -135,43 +135,43 @@ public final class GeneratedRawPositionCacheHolder implements EntityStoreHolder<
         final RawPositionEntityStoreSerializerImpl serializer = 
             new RawPositionEntityStoreSerializerImpl();
         final CompletableFuture<EntityStore<RawPosition>> entityStoreFuture = 
-            FastCacheHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
+            DataStoreHolderUtil.buildEntityStore(streamSupplier, executor, serializer, TABLE_IDENTIFIER);
         
         final CompletableFuture<FieldCache.OfLong<RawPosition>> fieldIdCacheFuture =
-            FastCacheHolderUtil.buildLongCache(entityStoreFuture, executor, RawPosition.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
+            DataStoreHolderUtil.buildLongCache(entityStoreFuture, executor, RawPosition.ID, FieldCache.UNINDEXED | FieldCache.REFERENCE_ORDER | FieldCache.DISTINCT);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldPnlCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.PNL, 0);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.PNL, 0);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldInitiateTradingMktValCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.INITIATE_TRADING_MKT_VAL, 0);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.INITIATE_TRADING_MKT_VAL, 0);
         
         final CompletableFuture<FieldCache.OfFloat<RawPosition>> fieldLiquidateTradingMktValCacheFuture =
-            FastCacheHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.LIQUIDATE_TRADING_MKT_VAL, 0);
+            DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, RawPosition.LIQUIDATE_TRADING_MKT_VAL, 0);
         
         final CompletableFuture<FieldCache.OfInt<RawPosition>> fieldValueDateCacheFuture =
-            FastCacheHolderUtil.buildIntCache(entityStoreFuture, executor, RawPosition.VALUE_DATE, 0);
+            DataStoreHolderUtil.buildIntCache(entityStoreFuture, executor, RawPosition.VALUE_DATE, 0);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_NAME, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_NAME, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderGroupCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldTraderGroupTypeCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP_TYPE, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.TRADER_GROUP_TYPE, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentNameCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_NAME, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_NAME, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentSymbolCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SYMBOL, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentSectorCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_SECTOR, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfString<RawPosition>> fieldInstrumentIndustryCacheFuture =
-            FastCacheHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, RawPosition.INSTRUMENT_INDUSTRY, 0, Encoding.UTF_8);
         
         return entityStoreFuture.thenApplyAsync(entityStore -> {
             try {

@@ -2318,7 +2318,7 @@
                     "enabled" : true,
                     "databaseType" : "java.lang.Integer",
                     "expanded" : true,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.DateIntToShortMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.DateIntToShortMapper",
                     "name" : "date_created_int",
                     "alias" : "date_created",
                     "nullableImplementation" : "OPTIONAL",
@@ -2334,7 +2334,7 @@
                     "enabled" : true,
                     "databaseType" : "java.lang.String",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.BuySellMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.BuySellMapper",
                     "name" : "direction",
                     "nullableImplementation" : "OPTIONAL",
                     "exposedInRest" : true
@@ -2381,7 +2381,7 @@
                     "enabled" : true,
                     "databaseType" : "java.lang.String",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.OrderTypeMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.OrderTypeMapper",
                     "name" : "order_type",
                     "nullableImplementation" : "OPTIONAL",
                     "exposedInRest" : true
@@ -2411,7 +2411,7 @@
                     "enabled" : true,
                     "databaseType" : "java.lang.String",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.StatusMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.StatusMapper",
                     "name" : "status",
                     "nullableImplementation" : "OPTIONAL",
                     "exposedInRest" : true
@@ -2682,7 +2682,7 @@
                   },
                   {
                     "expanded" : true,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.CohortTypeMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.CohortTypeMapper",
                     "unindexed" : true,
                     "name" : "trader_group_type",
                     "biDirectional" : false,
@@ -2734,7 +2734,7 @@
                   },
                   {
                     "expanded" : true,
-                    "typeMapper" : "com.speedment.web.licenseservice.fastpiq.helper.DateIntToShortMapper",
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.DateIntToShortMapper",
                     "unindexed" : true,
                     "name" : "date_executed",
                     "biDirectional" : false,
