@@ -102,6 +102,12 @@
                 
                 <configuration>
                     <debug>true</debug>
+                    <parameters>
+                        <parameter>
+                            <name>licenseKey</name>
+                            <value>aOkINrKGOmBDLESZZGF0YXN0b3JlLHZpcnR1YWwtY29sdW1ucztkcsDDzd+HXcB+o8U3PmgsrcyD6OICfRJIKOn57c2juAZ/rToykN+v7NicqcFr3Y/1kMMp5wRseLAqXOdtXZ/r9+PXJqktL+NHkZ7m0Vy4/1MMRyezkJeJ+todZci761hikz6SSy0zN73TvnCfBkiokqSR17k8HQUYHaeK0BC1XA==</value>
+                        </parameter>
+                    </parameters>
                     <components>
                         <component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
                         <component>com.speedment.enterprise.virtualcolumn.tool.VirtualColumnToolBundle</component>

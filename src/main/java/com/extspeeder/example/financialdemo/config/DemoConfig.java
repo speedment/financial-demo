@@ -9,9 +9,9 @@ import com.google.gson.Gson;
 import com.speedment.common.logger.Level;
 import com.speedment.common.logger.LoggerManager;
 import com.speedment.enterprise.datastore.runtime.DataStoreBundle;
+import com.speedment.enterprise.datastore.runtime.DataStoreComponent;
 import com.speedment.enterprise.license.runtime.component.AbstractLicenseComponent;
 import com.speedment.enterprise.license.runtime.component.LicenseComponent;
-import com.speedment.enterprise.license.runtime.component.SpeedmentLicenseComponent;
 import com.speedment.enterprise.license.runtime.internal.io.LicenseIOUtil;
 import com.speedment.enterprise.virtualcolumn.runtime.VirtualColumnBundle;
 import com.speedment.runtime.core.ApplicationBuilder;
@@ -20,7 +20,6 @@ import java.util.concurrent.Executors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.speedment.enterprise.datastore.runtime.DataStoreComponent;
 
 /**
  *
@@ -64,13 +63,12 @@ public class DemoConfig {
             // The order of the following two is important.
             .withBundle(VirtualColumnBundle.class)
             .withBundle(DataStoreBundle.class)
-            .withComponent(SpeedmentLicenseComponent.class)
             
             .withParam(LicenseComponent.LICENSE_KEY, 
-                "zyabOXWnkqJDD0R8ZmFzdGNhY2hlLHZpcnR1YWwtY29sdW1uczs8Khijp5zP" + 
-                "zY2jeERJ8SEH3bFYx+m1kRRoOiBXa194pF0xb5pNpYDOmCYyw/9e/c8X7iB3" + 
-                "heWkK6RtFOhIVhINvrP7BSDDk8yl7veJGNVaHqJyt3qdH+qn30NUW/XgcbOu" + 
-                "ADfsALvUNhJJ71lXH+eZ1HcX0yu24fFRYeWt5IuacQ=="
+                "aOkINrKGOmBDLESZZGF0YXN0b3JlLHZpcnR1YWwtY29sdW1ucztkcsDDzd+H" +
+                "XcB+o8U3PmgsrcyD6OICfRJIKOn57c2juAZ/rToykN+v7NicqcFr3Y/1kMMp" + 
+                "5wRseLAqXOdtXZ/r9+PXJqktL+NHkZ7m0Vy4/1MMRyezkJeJ+todZci761hi" + 
+                "kz6SSy0zN73TvnCfBkiokqSR17k8HQUYHaeK0BC1XA=="
             )
             
             .withLogging(ApplicationBuilder.LogType.PERSIST)
