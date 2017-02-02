@@ -7,11 +7,11 @@ package com.extspeeder.example.financialdemo.extra;
  */
 public enum CohortType {
 
-    SYSTEMATIC,
-    DISCRETIONARY,
-    INTERNAL,
-    HEDGE,
-    AGGRESSIVE_ALPHA;
+    BOSTON,
+    WASHINGTON,
+    NEW_YORK,
+    QUANT_MODELS,
+    SAN_FRANSISCO;
     
     public String toDatabase() {
         return name();
@@ -20,11 +20,11 @@ public enum CohortType {
     public static CohortType fromDatabase(String value) {
         if (value == null) return null; 
         else switch (value) {
-            case "Systematic"       : return SYSTEMATIC;
-            case "Discretionary"    : return DISCRETIONARY;
-            case "Internal"         : return INTERNAL;
-            case "Hedge"            : return HEDGE;
-            case "Aggressive Alpha" : return AGGRESSIVE_ALPHA;
+            case "Boston"        : return BOSTON;
+            case "Washington"    : return WASHINGTON;
+            case "New York"      : return NEW_YORK;
+            case "Quant Models"  : return QUANT_MODELS;
+            case "San Francisco" : return SAN_FRANSISCO;
             default : throw new IllegalArgumentException(
                 "Unknown CohortType constant '" + value + "'."
             );

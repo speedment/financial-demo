@@ -47,7 +47,7 @@ public class DemoConfig {
         return Executors.newFixedThreadPool(reloadingCores);
     }
 
-    @Bean
+    @Bean(destroyMethod = "stop")
     public FinancialdemoApplication getApplication(ExecutorService scheduler) {
         
         LoggerManager.getLogger(AbstractLicenseComponent.class).setLevel(Level.DEBUG);

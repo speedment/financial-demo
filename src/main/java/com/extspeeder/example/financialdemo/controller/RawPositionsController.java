@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -34,13 +35,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RawPositionsController {
 
+    private final Gson gson;
+    private final RawPositionManager manager;
     private final SizeCache sizeCache;
     
-    private @Autowired Gson gson;
-    private @Autowired RawPositionManager manager;
-    
-    RawPositionsController() {
-        sizeCache = new SizeCache();
+    @Autowired
+    RawPositionsController(Gson gson, RawPositionManager manager) {
+        this.gson      = requireNonNull(gson);
+        this.manager   = requireNonNull(manager);
+        this.sizeCache = new SizeCache();
     }
     
     @RequestMapping(value = "/speeder/rawpositions", method = GET, produces = APPLICATION_JSON_VALUE)

@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -26,8 +27,7 @@ import java.util.stream.Stream;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import org.springframework.web.bind.annotation.RequestMapping;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,16 +39,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public final class OrdersController {
     
+    private final Gson gson;
+    private final OrderManager manager;
     private final SizeCache sizeCache;
     
-    private @Autowired Gson gson;
-    private @Autowired OrderManager manager;
-    
-    OrdersController() {
-        sizeCache = new SizeCache();
+    @Autowired
+    OrdersController(Gson gson, OrderManager manager) {
+        this.gson      = requireNonNull(gson);
+        this.manager   = requireNonNull(manager);
+        this.sizeCache = new SizeCache();
     }
     
-    @RequestMapping(value = "/speeder/orders", method = GET, produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/speeder/orders", produces = APPLICATION_JSON_VALUE)
     public OrderTotalResult handleGet(
             @RequestParam(name="callback", required=false) String callback,
             @RequestParam(name="start", required=false) Long start,

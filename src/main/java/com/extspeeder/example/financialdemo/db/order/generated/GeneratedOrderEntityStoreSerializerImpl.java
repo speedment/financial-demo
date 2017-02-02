@@ -88,11 +88,11 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeTraderGroupType(ByteBuffer out, int rowOffset, CohortType value) {
         switch (value) {
-            case SYSTEMATIC : out.put(0, (byte) 0); return;
-            case DISCRETIONARY : out.put(0, (byte) 1); return;
-            case INTERNAL : out.put(0, (byte) 2); return;
-            case HEDGE : out.put(0, (byte) 3); return;
-            case AGGRESSIVE_ALPHA : out.put(0, (byte) 4); return;
+            case BOSTON : out.put(0, (byte) 0); return;
+            case WASHINGTON : out.put(0, (byte) 1); return;
+            case NEW_YORK : out.put(0, (byte) 2); return;
+            case QUANT_MODELS : out.put(0, (byte) 3); return;
+            case SAN_FRANSISCO : out.put(0, (byte) 4); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }
@@ -106,11 +106,11 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected CohortType deserializeTraderGroupType(ByteBuffer in, int rowOffset) {
         switch (in.get(0) + 0) {
-            case 0 : return CohortType.SYSTEMATIC;
-            case 1 : return CohortType.DISCRETIONARY;
-            case 2 : return CohortType.INTERNAL;
-            case 3 : return CohortType.HEDGE;
-            case 4 : return CohortType.AGGRESSIVE_ALPHA;
+            case 0 : return CohortType.BOSTON;
+            case 1 : return CohortType.WASHINGTON;
+            case 2 : return CohortType.NEW_YORK;
+            case 3 : return CohortType.QUANT_MODELS;
+            case 4 : return CohortType.SAN_FRANSISCO;
         }
         throw new IllegalStateException("Unexpected CohortType ordinal in serialized data.");
     }

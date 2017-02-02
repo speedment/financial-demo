@@ -11,6 +11,7 @@ import com.speedment.runtime.core.internal.util.testing.Stopwatch;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
+import static java.util.Objects.requireNonNull;
 import java.util.function.Function;
 import java.util.function.LongFunction;
 import java.util.function.Predicate;
@@ -35,7 +36,12 @@ public class PositionsController {
     
     private final static String SEPARATOR  = ">>";
     
-    private @Autowired RawPositionManager rawPositions;
+    private final RawPositionManager rawPositions;
+    
+    @Autowired
+    PositionsController(RawPositionManager rawPositions) {
+        this.rawPositions = requireNonNull(rawPositions);
+    }
 
     @RequestMapping(
         value    = "/speeder/positions", 

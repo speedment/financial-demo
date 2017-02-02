@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -35,11 +36,14 @@ public final class PricesController {
 
     private final SizeCache sizeCache;
     
-    private @Autowired Gson gson;
-    private @Autowired PriceStoreManager manager;
+    private final Gson gson;
+    private final PriceStoreManager manager;
     
-    PricesController() {
-        sizeCache = new SizeCache();
+    @Autowired
+    PricesController(Gson gson, PriceStoreManager manager) {
+        this.gson      = requireNonNull(gson);
+        this.manager   = requireNonNull(manager);
+        this.sizeCache = new SizeCache();
     }
     
     @RequestMapping(value = "/speeder/prices", method = GET, produces = APPLICATION_JSON_VALUE)
