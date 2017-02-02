@@ -5,7 +5,6 @@ import com.extspeeder.example.financialdemo.controller.param.Filter;
 import com.extspeeder.example.financialdemo.controller.param.Sort;
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
-import com.extspeeder.example.financialdemo.extra.CohortType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.speedment.runtime.field.StringField;
@@ -156,7 +155,7 @@ public class RawPositionsController {
                 case "instrumentSymbol"       : // Fallthrough
                 case "instrumentSector"       : // Fallthrough
                 case "instrumentIndustry"     : return filter.getValue();
-                case "traderGroupType"        : return CohortType.fromDatabase(filter.getValue());
+                case "traderGroupType"        : return filter.getValue();
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );
