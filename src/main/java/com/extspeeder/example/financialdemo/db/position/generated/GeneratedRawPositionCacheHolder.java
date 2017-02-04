@@ -37,7 +37,7 @@ import static java.util.Objects.requireNonNull;
 @Generated("Speedment")
 public final class GeneratedRawPositionCacheHolder implements EntityStoreHolder<RawPosition> {
     
-    private final static TableIdentifier<RawPosition> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq", "daily_position_performance");
+    private final static TableIdentifier<RawPosition> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq2", "daily_position_performance");
     private final EntityStore<RawPosition> entityStore;
     private final OfLong<RawPosition> fieldIdCache;
     private final OfFloat<RawPosition> fieldPnlCache;

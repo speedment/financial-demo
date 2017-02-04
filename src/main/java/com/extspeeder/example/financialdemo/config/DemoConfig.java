@@ -33,7 +33,6 @@ public class DemoConfig {
     private @Value("${dbms.port}") int port;
     private @Value("${dbms.username}") String username;
     private @Value("${dbms.password}") String password;
-    private @Value("${dbms.schema}") String schema;
     
     private @Value("${reload.cores}") int reloadingCores;
     
@@ -58,7 +57,6 @@ public class DemoConfig {
             .withPort(port)
             .withUsername(username)
             .withPassword(password)
-            .withSchema(schema)
             
             // The order of the following two is important.
             .withBundle(VirtualColumnBundle.class)

@@ -88,7 +88,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/benchmark",
+                "customRestPath" : "financialdemo/db/piq2/benchmark",
                 "name" : "benchmark",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -100,7 +100,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "benchmark_id",
                         "foreignColumnName" : "id",
@@ -273,7 +273,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/benchmark_daily",
+                "customRestPath" : "financialdemo/db/piq2/benchmark_daily",
                 "name" : "benchmark_daily",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -285,7 +285,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trading_metrics_id",
                         "foreignColumnName" : "id",
@@ -488,7 +488,7 @@
                     "exposedInRest" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/cohort",
+                "customRestPath" : "financialdemo/db/piq2/cohort",
                 "name" : "cohort",
                 "enabled" : false,
                 "exposedInRest" : false
@@ -716,7 +716,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/cohort_trading_metrics",
+                "customRestPath" : "financialdemo/db/piq2/cohort_trading_metrics",
                 "name" : "cohort_trading_metrics",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -728,7 +728,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trader_id",
                         "foreignColumnName" : "id",
@@ -944,7 +944,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/daily_portfolio_performance",
+                "customRestPath" : "financialdemo/db/piq2/daily_portfolio_performance",
                 "name" : "daily_portfolio_performance",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -956,7 +956,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "position_identifier_id",
                         "foreignColumnName" : "id",
@@ -1226,20 +1226,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.name",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "name"
                       }
@@ -1254,26 +1254,26 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.cohort_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.cohort_id",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "cohort_id"
                       },
                       {
-                        "name" : "piq.cohort.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.cohort.name",
+                        "schemaName" : "piq2",
                         "tableName" : "cohort",
                         "columnName" : "name"
                       }
@@ -1288,26 +1288,26 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.cohort_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.cohort_id",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "cohort_id"
                       },
                       {
-                        "name" : "piq.cohort.cohort_type",
-                        "schemaName" : "piq",
+                        "name" : "piq2.cohort.cohort_type",
+                        "schemaName" : "piq2",
                         "tableName" : "cohort",
                         "columnName" : "cohort_type"
                       }
@@ -1322,20 +1322,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.name",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "name"
                       }
@@ -1350,20 +1350,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.symbol",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.symbol",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "symbol"
                       }
@@ -1378,20 +1378,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.sector",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.sector",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "sector"
                       }
@@ -1406,20 +1406,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.daily_position_performance.position_identifier_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.daily_position_performance.position_identifier_id",
+                        "schemaName" : "piq2",
                         "tableName" : "daily_position_performance",
                         "columnName" : "position_identifier_id"
                       },
                       {
-                        "name" : "piq.position_identifier.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.position_identifier.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "position_identifier",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.industry",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.industry",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "industry"
                       }
@@ -1440,7 +1440,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -1591,7 +1591,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/dividend",
+                "customRestPath" : "financialdemo/db/piq2/dividend",
                 "name" : "dividend",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -1603,7 +1603,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "order_id",
                         "foreignColumnName" : "id",
@@ -1619,7 +1619,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -1635,7 +1635,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trader_id",
                         "foreignColumnName" : "id",
@@ -1842,7 +1842,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/execution",
+                "customRestPath" : "financialdemo/db/piq2/execution",
                 "name" : "execution",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -2148,7 +2148,7 @@
                     "exposedInRest" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/instrument",
+                "customRestPath" : "financialdemo/db/piq2/instrument",
                 "name" : "instrument",
                 "enabled" : false,
                 "exposedInRest" : false
@@ -2215,7 +2215,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/market_holiday",
+                "customRestPath" : "financialdemo/db/piq2/market_holiday",
                 "name" : "market_holiday",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -2227,7 +2227,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -2243,7 +2243,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "execution_id",
                         "foreignColumnName" : "id",
@@ -2259,7 +2259,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trader_id",
                         "foreignColumnName" : "id",
@@ -2571,14 +2571,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.symbol",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.symbol",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "symbol"
                       }
@@ -2593,14 +2593,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.sector",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.sector",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "sector"
                       }
@@ -2615,14 +2615,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.industry",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.industry",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "industry"
                       }
@@ -2637,14 +2637,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.name",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "name"
                       }
@@ -2659,20 +2659,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.cohort_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.cohort_id",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "cohort_id"
                       },
                       {
-                        "name" : "piq.cohort.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.cohort.name",
+                        "schemaName" : "piq2",
                         "tableName" : "cohort",
                         "columnName" : "name"
                       }
@@ -2688,20 +2688,20 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.trader_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.trader_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "trader_id"
                       },
                       {
-                        "name" : "piq.trader.cohort_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.trader.cohort_id",
+                        "schemaName" : "piq2",
                         "tableName" : "trader",
                         "columnName" : "cohort_id"
                       },
                       {
-                        "name" : "piq.cohort.cohort_type",
-                        "schemaName" : "piq",
+                        "name" : "piq2.cohort.cohort_type",
+                        "schemaName" : "piq2",
                         "tableName" : "cohort",
                         "columnName" : "cohort_type"
                       }
@@ -2717,14 +2717,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.execution_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.execution_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "execution_id"
                       },
                       {
-                        "name" : "piq.execution.price",
-                        "schemaName" : "piq",
+                        "name" : "piq2.execution.price",
+                        "schemaName" : "piq2",
                         "tableName" : "execution",
                         "columnName" : "price"
                       }
@@ -2740,14 +2740,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.execution_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.execution_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "execution_id"
                       },
                       {
-                        "name" : "piq.execution.transact_time_int",
-                        "schemaName" : "piq",
+                        "name" : "piq2.execution.transact_time_int",
+                        "schemaName" : "piq2",
                         "tableName" : "execution",
                         "columnName" : "transact_time_int"
                       }
@@ -2762,14 +2762,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.orders.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.orders.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "orders",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.name",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.name",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "name"
                       }
@@ -2790,7 +2790,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "position_identifier_id",
                         "foreignColumnName" : "id",
@@ -3013,7 +3013,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/position",
+                "customRestPath" : "financialdemo/db/piq2/position",
                 "name" : "position",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3025,7 +3025,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "position_processed_dividends_id",
                         "foreignColumnName" : "id",
@@ -3041,7 +3041,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "dividend_id",
                         "foreignColumnName" : "id",
@@ -3104,7 +3104,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/position_dividend",
+                "customRestPath" : "financialdemo/db/piq2/position_dividend",
                 "name" : "position_dividend",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3116,7 +3116,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "position_executions_id",
                         "foreignColumnName" : "id",
@@ -3132,7 +3132,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "execution_id",
                         "foreignColumnName" : "id",
@@ -3195,7 +3195,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/position_execution",
+                "customRestPath" : "financialdemo/db/piq2/position_execution",
                 "name" : "position_execution",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3207,7 +3207,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trader_id",
                         "foreignColumnName" : "id",
@@ -3223,7 +3223,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -3339,7 +3339,7 @@
                     "exposedInRest" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/position_identifier",
+                "customRestPath" : "financialdemo/db/piq2/position_identifier",
                 "name" : "position_identifier",
                 "enabled" : false,
                 "exposedInRest" : false
@@ -3351,7 +3351,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "position_processed_splits_id",
                         "foreignColumnName" : "id",
@@ -3367,7 +3367,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "split_id",
                         "foreignColumnName" : "id",
@@ -3430,7 +3430,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/position_split",
+                "customRestPath" : "financialdemo/db/piq2/position_split",
                 "name" : "position_split",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3443,7 +3443,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : true,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -3512,14 +3512,14 @@
                     "biDirectional" : false,
                     "columnReferences" : [
                       {
-                        "name" : "piq.price_store.instrument_id",
-                        "schemaName" : "piq",
+                        "name" : "piq2.price_store.instrument_id",
+                        "schemaName" : "piq2",
                         "tableName" : "price_store",
                         "columnName" : "instrument_id"
                       },
                       {
-                        "name" : "piq.instrument.symbol",
-                        "schemaName" : "piq",
+                        "name" : "piq2.instrument.symbol",
+                        "schemaName" : "piq2",
                         "tableName" : "instrument",
                         "columnName" : "symbol"
                       }
@@ -3782,7 +3782,7 @@
                     "enabled" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/role",
+                "customRestPath" : "financialdemo/db/piq2/role",
                 "name" : "role",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3794,7 +3794,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "instrument_id",
                         "foreignColumnName" : "id",
@@ -3948,7 +3948,7 @@
                     "ordinalPosition" : 7.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/split",
+                "customRestPath" : "financialdemo/db/piq2/split",
                 "name" : "split",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -3960,7 +3960,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "cohort_id",
                         "foreignColumnName" : "id",
@@ -3976,7 +3976,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "trading_metrics_id",
                         "foreignColumnName" : "id",
@@ -4116,7 +4116,7 @@
                     "exposedInRest" : true
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/trader",
+                "customRestPath" : "financialdemo/db/piq2/trader",
                 "name" : "trader",
                 "enabled" : false,
                 "exposedInRest" : false
@@ -4505,7 +4505,7 @@
                     "ordinalPosition" : 45.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/trading_metrics",
+                "customRestPath" : "financialdemo/db/piq2/trading_metrics",
                 "name" : "trading_metrics",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -4626,7 +4626,7 @@
                     "ordinalPosition" : 10.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/user",
+                "customRestPath" : "financialdemo/db/piq2/user",
                 "name" : "user",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -4638,7 +4638,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "user_id",
                         "foreignColumnName" : "id",
@@ -4653,7 +4653,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "role_id",
                         "foreignColumnName" : "id",
@@ -4729,7 +4729,7 @@
                     "ordinalPosition" : 2.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/user_role",
+                "customRestPath" : "financialdemo/db/piq2/user_role",
                 "name" : "user_role",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -4812,7 +4812,7 @@
                     "ordinalPosition" : 7.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_component_state",
+                "customRestPath" : "financialdemo/db/piq2/xh_component_state",
                 "name" : "xh_component_state",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -4930,7 +4930,7 @@
                     "ordinalPosition" : 10.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_config",
+                "customRestPath" : "financialdemo/db/piq2/xh_config",
                 "name" : "xh_config",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -5005,7 +5005,7 @@
                     "ordinalPosition" : 4.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_log_level",
+                "customRestPath" : "financialdemo/db/piq2/xh_log_level",
                 "name" : "xh_log_level",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -5108,7 +5108,7 @@
                     "ordinalPosition" : 8.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_preference",
+                "customRestPath" : "financialdemo/db/piq2/xh_preference",
                 "name" : "xh_preference",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -5212,7 +5212,7 @@
                     "ordinalPosition" : 10.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_track_log",
+                "customRestPath" : "financialdemo/db/piq2/xh_track_log",
                 "name" : "xh_track_log",
                 "enabled" : false,
                 "exposedInRest" : true
@@ -5224,7 +5224,7 @@
                     "foreignKeyColumns" : [
                       {
                         "foreignDatabaseName" : "db0",
-                        "foreignSchemaName" : "piq",
+                        "foreignSchemaName" : "piq2",
                         "expanded" : false,
                         "name" : "preference_id",
                         "foreignColumnName" : "id",
@@ -5351,14 +5351,14 @@
                     "ordinalPosition" : 7.0
                   }
                 ],
-                "customRestPath" : "financialdemo/db/piq/xh_user_preference",
+                "customRestPath" : "financialdemo/db/piq2/xh_user_preference",
                 "name" : "xh_user_preference",
                 "enabled" : false,
                 "exposedInRest" : true
               }
             ],
             "expanded" : true,
-            "name" : "piq",
+            "name" : "piq2",
             "enabled" : true,
             "exposedInRest" : true
           }

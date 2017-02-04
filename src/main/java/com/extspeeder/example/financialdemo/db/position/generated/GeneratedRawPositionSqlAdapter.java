@@ -3,6 +3,7 @@ package com.extspeeder.example.financialdemo.db.position.generated;
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionImpl;
 import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.injector.annotation.WithState;
 import com.speedment.runtime.config.Project;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.ProjectComponent;
@@ -34,11 +35,11 @@ public abstract class GeneratedRawPositionSqlAdapter {
     private SqlTypeMapperHelper<Double, Float> liquidateTradingMktValHelper;
     
     protected GeneratedRawPositionSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq", "daily_position_performance");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "daily_position_performance");
     }
     
     @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
+    void installMethodName(@WithState(RESOLVED) SqlStreamSupplierComponent streamSupplierComponent, @WithState(RESOLVED) SqlPersistenceComponent persistenceComponent) {
         streamSupplierComponent.install(tableIdentifier, this::apply);
         persistenceComponent.install(tableIdentifier);
     }

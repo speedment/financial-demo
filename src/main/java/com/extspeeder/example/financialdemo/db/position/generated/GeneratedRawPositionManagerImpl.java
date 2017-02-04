@@ -22,7 +22,7 @@ public abstract class GeneratedRawPositionManagerImpl extends AbstractManager<Ra
     private final TableIdentifier<RawPosition> tableIdentifier;
     
     protected GeneratedRawPositionManagerImpl() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq", "daily_position_performance");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "daily_position_performance");
     }
     
     @Override

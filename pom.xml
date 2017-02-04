@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.extspeeder.example</groupId>
     <artifactId>financialdemo</artifactId>
-    <version>1.1.10-SNAPSHOT</version>
+    <version>1.1.10</version>
     <packaging>war</packaging>
     
     <name>Financial Demo</name>

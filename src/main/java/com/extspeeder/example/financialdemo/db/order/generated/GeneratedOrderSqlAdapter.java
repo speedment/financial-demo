@@ -7,6 +7,7 @@ import com.extspeeder.example.financialdemo.extra.CohortType;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.injector.annotation.WithState;
 import com.speedment.runtime.config.Project;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.ProjectComponent;
@@ -43,11 +44,11 @@ public abstract class GeneratedOrderSqlAdapter {
     private SqlTypeMapperHelper<Integer, Short> dateExecutedHelper;
     
     protected GeneratedOrderSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq", "orders");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "orders");
     }
     
     @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
+    void installMethodName(@WithState(RESOLVED) SqlStreamSupplierComponent streamSupplierComponent, @WithState(RESOLVED) SqlPersistenceComponent persistenceComponent) {
         streamSupplierComponent.install(tableIdentifier, this::apply);
         persistenceComponent.install(tableIdentifier);
     }

@@ -3,6 +3,7 @@ package com.extspeeder.example.financialdemo.db.prices.generated;
 import com.extspeeder.example.financialdemo.db.prices.PriceStore;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreImpl;
 import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.injector.annotation.WithState;
 import com.speedment.runtime.config.Project;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.component.ProjectComponent;
@@ -36,11 +37,11 @@ public abstract class GeneratedPriceStoreSqlAdapter {
     private SqlTypeMapperHelper<Double, Float> closeHelper;
     
     protected GeneratedPriceStoreSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq", "price_store");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "price_store");
     }
     
     @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
+    void installMethodName(@WithState(RESOLVED) SqlStreamSupplierComponent streamSupplierComponent, @WithState(RESOLVED) SqlPersistenceComponent persistenceComponent) {
         streamSupplierComponent.install(tableIdentifier, this::apply);
         persistenceComponent.install(tableIdentifier);
     }

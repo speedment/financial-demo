@@ -43,7 +43,7 @@ import static java.util.Objects.requireNonNull;
 @Generated("Speedment")
 public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order> {
     
-    private final static TableIdentifier<Order> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq", "orders");
+    private final static TableIdentifier<Order> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq2", "orders");
     private final EntityStore<Order> entityStore;
     private final OfLong<Order> fieldIdCache;
     private final OfShort<Order> fieldDateCreatedCache;

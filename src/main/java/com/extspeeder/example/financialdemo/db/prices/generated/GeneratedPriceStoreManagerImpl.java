@@ -22,7 +22,7 @@ public abstract class GeneratedPriceStoreManagerImpl extends AbstractManager<Pri
     private final TableIdentifier<PriceStore> tableIdentifier;
     
     protected GeneratedPriceStoreManagerImpl() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq", "price_store");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "price_store");
     }
     
     @Override
