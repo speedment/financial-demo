@@ -1,5 +1,6 @@
 package com.extspeeder.example.financialdemo.controller;
 
+import com.speedment.enterprise.datastore.runtime.DataStoreNotLoadedException;
 import com.speedment.runtime.core.manager.Manager;
 
 /**
@@ -14,7 +15,7 @@ abstract class AbstractSpeedmentTest {
             try {
                 final long count = manager.stream().count();
                 break;
-            } catch (final NullPointerException ex) {}
+            } catch (final DataStoreNotLoadedException ex) {}
             
             try {
                 Thread.sleep(500);
