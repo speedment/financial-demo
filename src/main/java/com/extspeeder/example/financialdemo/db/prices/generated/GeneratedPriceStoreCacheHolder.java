@@ -37,7 +37,7 @@ import static java.util.Objects.requireNonNull;
 @Generated("Speedment")
 public final class GeneratedPriceStoreCacheHolder implements EntityStoreHolder<PriceStore> {
     
-    private final static TableIdentifier<PriceStore> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq2", "price_store");
+    private final static TableIdentifier<PriceStore> TABLE_IDENTIFIER = TableIdentifier.of("db0", "piq", "price_store");
     private final EntityStore<PriceStore> entityStore;
     private final OfLong<PriceStore> fieldIdCache;
     private final OfInt<PriceStore> fieldValueDateCache;

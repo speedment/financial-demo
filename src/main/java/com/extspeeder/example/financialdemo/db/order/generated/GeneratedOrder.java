@@ -217,7 +217,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the id of this Order. The id field corresponds to the database
-     * column db0.piq2.orders.id.
+     * column db0.piq.orders.id.
      * 
      * @return the id of this Order
      */
@@ -225,7 +225,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the dateCreated of this Order. The dateCreated field corresponds
-     * to the database column db0.piq2.orders.date_created_int.
+     * to the database column db0.piq.orders.date_created_int.
      * 
      * @return the dateCreated of this Order
      */
@@ -233,7 +233,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the direction of this Order. The direction field corresponds to
-     * the database column db0.piq2.orders.direction.
+     * the database column db0.piq.orders.direction.
      * 
      * @return the direction of this Order
      */
@@ -241,7 +241,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the orderType of this Order. The orderType field corresponds to
-     * the database column db0.piq2.orders.order_type.
+     * the database column db0.piq.orders.order_type.
      * 
      * @return the orderType of this Order
      */
@@ -249,7 +249,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the quantity of this Order. The quantity field corresponds to the
-     * database column db0.piq2.orders.quantity.
+     * database column db0.piq.orders.quantity.
      * 
      * @return the quantity of this Order
      */
@@ -257,7 +257,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the status of this Order. The status field corresponds to the
-     * database column db0.piq2.orders.status.
+     * database column db0.piq.orders.status.
      * 
      * @return the status of this Order
      */
@@ -265,7 +265,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the limitPrice of this Order. The limitPrice field corresponds to
-     * the database column db0.piq2.orders.limit_price.
+     * the database column db0.piq.orders.limit_price.
      * 
      * @return the limitPrice of this Order
      */
@@ -273,7 +273,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the instrumentSymbol of this Order. The instrumentSymbol field
-     * corresponds to the database column db0.piq2.orders.instrument_symbol.
+     * corresponds to the database column db0.piq.orders.instrument_symbol.
      * 
      * @return the instrumentSymbol of this Order
      */
@@ -281,7 +281,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the instrumentSector of this Order. The instrumentSector field
-     * corresponds to the database column db0.piq2.orders.instrument_sector.
+     * corresponds to the database column db0.piq.orders.instrument_sector.
      * 
      * @return the instrumentSector of this Order
      */
@@ -290,7 +290,7 @@ public interface GeneratedOrder {
     /**
      * Returns the instrumentIndustry of this Order. The instrumentIndustry
      * field corresponds to the database column
-     * db0.piq2.orders.instrument_industry.
+     * db0.piq.orders.instrument_industry.
      * 
      * @return the instrumentIndustry of this Order
      */
@@ -298,7 +298,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the traderName of this Order. The traderName field corresponds to
-     * the database column db0.piq2.orders.trader_name.
+     * the database column db0.piq.orders.trader_name.
      * 
      * @return the traderName of this Order
      */
@@ -306,7 +306,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the traderGroup of this Order. The traderGroup field corresponds
-     * to the database column db0.piq2.orders.trader_group.
+     * to the database column db0.piq.orders.trader_group.
      * 
      * @return the traderGroup of this Order
      */
@@ -314,7 +314,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the traderGroupType of this Order. The traderGroupType field
-     * corresponds to the database column db0.piq2.orders.trader_group_type.
+     * corresponds to the database column db0.piq.orders.trader_group_type.
      * 
      * @return the traderGroupType of this Order
      */
@@ -322,7 +322,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the price of this Order. The price field corresponds to the
-     * database column db0.piq2.orders.price.
+     * database column db0.piq.orders.price.
      * 
      * @return the price of this Order
      */
@@ -330,7 +330,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the dateExecuted of this Order. The dateExecuted field
-     * corresponds to the database column db0.piq2.orders.date_executed.
+     * corresponds to the database column db0.piq.orders.date_executed.
      * 
      * @return the dateExecuted of this Order
      */
@@ -338,7 +338,7 @@ public interface GeneratedOrder {
     
     /**
      * Returns the instrumentName of this Order. The instrumentName field
-     * corresponds to the database column db0.piq2.orders.instrument_name.
+     * corresponds to the database column db0.piq.orders.instrument_name.
      * 
      * @return the instrumentName of this Order
      */
@@ -346,7 +346,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the id of this Order. The id field corresponds to the database
-     * column db0.piq2.orders.id.
+     * column db0.piq.orders.id.
      * 
      * @param id to set of this Order
      * @return   this Order instance
@@ -355,7 +355,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the dateCreated of this Order. The dateCreated field corresponds to
-     * the database column db0.piq2.orders.date_created_int.
+     * the database column db0.piq.orders.date_created_int.
      * 
      * @param dateCreated to set of this Order
      * @return            this Order instance
@@ -364,7 +364,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the direction of this Order. The direction field corresponds to the
-     * database column db0.piq2.orders.direction.
+     * database column db0.piq.orders.direction.
      * 
      * @param direction to set of this Order
      * @return          this Order instance
@@ -373,7 +373,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the orderType of this Order. The orderType field corresponds to the
-     * database column db0.piq2.orders.order_type.
+     * database column db0.piq.orders.order_type.
      * 
      * @param orderType to set of this Order
      * @return          this Order instance
@@ -382,7 +382,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the quantity of this Order. The quantity field corresponds to the
-     * database column db0.piq2.orders.quantity.
+     * database column db0.piq.orders.quantity.
      * 
      * @param quantity to set of this Order
      * @return         this Order instance
@@ -391,7 +391,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the status of this Order. The status field corresponds to the
-     * database column db0.piq2.orders.status.
+     * database column db0.piq.orders.status.
      * 
      * @param status to set of this Order
      * @return       this Order instance
@@ -400,7 +400,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the limitPrice of this Order. The limitPrice field corresponds to
-     * the database column db0.piq2.orders.limit_price.
+     * the database column db0.piq.orders.limit_price.
      * 
      * @param limitPrice to set of this Order
      * @return           this Order instance
@@ -409,7 +409,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the instrumentSymbol of this Order. The instrumentSymbol field
-     * corresponds to the database column db0.piq2.orders.instrument_symbol.
+     * corresponds to the database column db0.piq.orders.instrument_symbol.
      * 
      * @param instrumentSymbol to set of this Order
      * @return                 this Order instance
@@ -418,7 +418,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the instrumentSector of this Order. The instrumentSector field
-     * corresponds to the database column db0.piq2.orders.instrument_sector.
+     * corresponds to the database column db0.piq.orders.instrument_sector.
      * 
      * @param instrumentSector to set of this Order
      * @return                 this Order instance
@@ -427,7 +427,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the instrumentIndustry of this Order. The instrumentIndustry field
-     * corresponds to the database column db0.piq2.orders.instrument_industry.
+     * corresponds to the database column db0.piq.orders.instrument_industry.
      * 
      * @param instrumentIndustry to set of this Order
      * @return                   this Order instance
@@ -436,7 +436,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the traderName of this Order. The traderName field corresponds to
-     * the database column db0.piq2.orders.trader_name.
+     * the database column db0.piq.orders.trader_name.
      * 
      * @param traderName to set of this Order
      * @return           this Order instance
@@ -445,7 +445,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the traderGroup of this Order. The traderGroup field corresponds to
-     * the database column db0.piq2.orders.trader_group.
+     * the database column db0.piq.orders.trader_group.
      * 
      * @param traderGroup to set of this Order
      * @return            this Order instance
@@ -454,7 +454,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the traderGroupType of this Order. The traderGroupType field
-     * corresponds to the database column db0.piq2.orders.trader_group_type.
+     * corresponds to the database column db0.piq.orders.trader_group_type.
      * 
      * @param traderGroupType to set of this Order
      * @return                this Order instance
@@ -463,7 +463,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the price of this Order. The price field corresponds to the database
-     * column db0.piq2.orders.price.
+     * column db0.piq.orders.price.
      * 
      * @param price to set of this Order
      * @return      this Order instance
@@ -472,7 +472,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the dateExecuted of this Order. The dateExecuted field corresponds
-     * to the database column db0.piq2.orders.date_executed.
+     * to the database column db0.piq.orders.date_executed.
      * 
      * @param dateExecuted to set of this Order
      * @return             this Order instance
@@ -481,7 +481,7 @@ public interface GeneratedOrder {
     
     /**
      * Sets the instrumentName of this Order. The instrumentName field
-     * corresponds to the database column db0.piq2.orders.instrument_name.
+     * corresponds to the database column db0.piq.orders.instrument_name.
      * 
      * @param instrumentName to set of this Order
      * @return               this Order instance
@@ -524,7 +524,7 @@ public interface GeneratedOrder {
         
         @Override
         public String getSchemaName() {
-            return "piq2";
+            return "piq";
         }
         
         @Override

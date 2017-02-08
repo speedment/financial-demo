@@ -22,7 +22,7 @@ public abstract class GeneratedOrderManagerImpl extends AbstractManager<Order> i
     private final TableIdentifier<Order> tableIdentifier;
     
     protected GeneratedOrderManagerImpl() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "orders");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq", "orders");
     }
     
     @Override

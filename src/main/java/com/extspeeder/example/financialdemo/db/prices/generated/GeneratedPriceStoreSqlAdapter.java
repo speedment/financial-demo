@@ -37,7 +37,7 @@ public abstract class GeneratedPriceStoreSqlAdapter {
     private SqlTypeMapperHelper<Double, Float> closeHelper;
     
     protected GeneratedPriceStoreSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "price_store");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq", "price_store");
     }
     
     @ExecuteBefore(RESOLVED)

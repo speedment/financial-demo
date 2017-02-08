@@ -35,7 +35,7 @@ public abstract class GeneratedRawPositionSqlAdapter {
     private SqlTypeMapperHelper<Double, Float> liquidateTradingMktValHelper;
     
     protected GeneratedRawPositionSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "daily_position_performance");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq", "daily_position_performance");
     }
     
     @ExecuteBefore(RESOLVED)

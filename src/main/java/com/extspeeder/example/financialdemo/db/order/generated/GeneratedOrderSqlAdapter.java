@@ -44,7 +44,7 @@ public abstract class GeneratedOrderSqlAdapter {
     private SqlTypeMapperHelper<Integer, Short> dateExecutedHelper;
     
     protected GeneratedOrderSqlAdapter() {
-        this.tableIdentifier = TableIdentifier.of("db0", "piq2", "orders");
+        this.tableIdentifier = TableIdentifier.of("db0", "piq", "orders");
     }
     
     @ExecuteBefore(RESOLVED)

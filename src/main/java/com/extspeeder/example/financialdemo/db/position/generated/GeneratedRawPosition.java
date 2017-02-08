@@ -163,7 +163,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Returns the id of this RawPosition. The id field corresponds to the
-     * database column db0.piq2.daily_position_performance.id.
+     * database column db0.piq.daily_position_performance.id.
      * 
      * @return the id of this RawPosition
      */
@@ -171,7 +171,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Returns the pnl of this RawPosition. The pnl field corresponds to the
-     * database column db0.piq2.daily_position_performance.pnl.
+     * database column db0.piq.daily_position_performance.pnl.
      * 
      * @return the pnl of this RawPosition
      */
@@ -180,7 +180,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the initiateTradingMktVal of this RawPosition. The
      * initiateTradingMktVal field corresponds to the database column
-     * db0.piq2.daily_position_performance.total_initiate_mkt_val.
+     * db0.piq.daily_position_performance.total_initiate_mkt_val.
      * 
      * @return the initiateTradingMktVal of this RawPosition
      */
@@ -189,7 +189,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the liquidateTradingMktVal of this RawPosition. The
      * liquidateTradingMktVal field corresponds to the database column
-     * db0.piq2.daily_position_performance.total_liquidate_mkt_val.
+     * db0.piq.daily_position_performance.total_liquidate_mkt_val.
      * 
      * @return the liquidateTradingMktVal of this RawPosition
      */
@@ -198,7 +198,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the valueDate of this RawPosition. The valueDate field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.value_date_int.
+     * db0.piq.daily_position_performance.value_date_int.
      * 
      * @return the valueDate of this RawPosition
      */
@@ -207,7 +207,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the traderName of this RawPosition. The traderName field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.trader_name.
+     * db0.piq.daily_position_performance.trader_name.
      * 
      * @return the traderName of this RawPosition
      */
@@ -216,7 +216,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the traderGroup of this RawPosition. The traderGroup field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.trader_group.
+     * db0.piq.daily_position_performance.trader_group.
      * 
      * @return the traderGroup of this RawPosition
      */
@@ -225,7 +225,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the traderGroupType of this RawPosition. The traderGroupType
      * field corresponds to the database column
-     * db0.piq2.daily_position_performance.trader_group_type.
+     * db0.piq.daily_position_performance.trader_group_type.
      * 
      * @return the traderGroupType of this RawPosition
      */
@@ -234,7 +234,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the instrumentName of this RawPosition. The instrumentName field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_name.
+     * db0.piq.daily_position_performance.instrument_name.
      * 
      * @return the instrumentName of this RawPosition
      */
@@ -243,7 +243,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the instrumentSymbol of this RawPosition. The instrumentSymbol
      * field corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_symbol.
+     * db0.piq.daily_position_performance.instrument_symbol.
      * 
      * @return the instrumentSymbol of this RawPosition
      */
@@ -252,7 +252,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the instrumentSector of this RawPosition. The instrumentSector
      * field corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_sector.
+     * db0.piq.daily_position_performance.instrument_sector.
      * 
      * @return the instrumentSector of this RawPosition
      */
@@ -261,7 +261,7 @@ public interface GeneratedRawPosition {
     /**
      * Returns the instrumentIndustry of this RawPosition. The
      * instrumentIndustry field corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_industry.
+     * db0.piq.daily_position_performance.instrument_industry.
      * 
      * @return the instrumentIndustry of this RawPosition
      */
@@ -269,7 +269,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Sets the id of this RawPosition. The id field corresponds to the database
-     * column db0.piq2.daily_position_performance.id.
+     * column db0.piq.daily_position_performance.id.
      * 
      * @param id to set of this RawPosition
      * @return   this RawPosition instance
@@ -278,7 +278,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Sets the pnl of this RawPosition. The pnl field corresponds to the
-     * database column db0.piq2.daily_position_performance.pnl.
+     * database column db0.piq.daily_position_performance.pnl.
      * 
      * @param pnl to set of this RawPosition
      * @return    this RawPosition instance
@@ -288,7 +288,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the initiateTradingMktVal of this RawPosition. The
      * initiateTradingMktVal field corresponds to the database column
-     * db0.piq2.daily_position_performance.total_initiate_mkt_val.
+     * db0.piq.daily_position_performance.total_initiate_mkt_val.
      * 
      * @param initiateTradingMktVal to set of this RawPosition
      * @return                      this RawPosition instance
@@ -298,7 +298,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the liquidateTradingMktVal of this RawPosition. The
      * liquidateTradingMktVal field corresponds to the database column
-     * db0.piq2.daily_position_performance.total_liquidate_mkt_val.
+     * db0.piq.daily_position_performance.total_liquidate_mkt_val.
      * 
      * @param liquidateTradingMktVal to set of this RawPosition
      * @return                       this RawPosition instance
@@ -307,8 +307,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Sets the valueDate of this RawPosition. The valueDate field corresponds
-     * to the database column
-     * db0.piq2.daily_position_performance.value_date_int.
+     * to the database column db0.piq.daily_position_performance.value_date_int.
      * 
      * @param valueDate to set of this RawPosition
      * @return          this RawPosition instance
@@ -317,7 +316,7 @@ public interface GeneratedRawPosition {
     
     /**
      * Sets the traderName of this RawPosition. The traderName field corresponds
-     * to the database column db0.piq2.daily_position_performance.trader_name.
+     * to the database column db0.piq.daily_position_performance.trader_name.
      * 
      * @param traderName to set of this RawPosition
      * @return           this RawPosition instance
@@ -327,7 +326,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the traderGroup of this RawPosition. The traderGroup field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.trader_group.
+     * db0.piq.daily_position_performance.trader_group.
      * 
      * @param traderGroup to set of this RawPosition
      * @return            this RawPosition instance
@@ -337,7 +336,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the traderGroupType of this RawPosition. The traderGroupType field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.trader_group_type.
+     * db0.piq.daily_position_performance.trader_group_type.
      * 
      * @param traderGroupType to set of this RawPosition
      * @return                this RawPosition instance
@@ -347,7 +346,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the instrumentName of this RawPosition. The instrumentName field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_name.
+     * db0.piq.daily_position_performance.instrument_name.
      * 
      * @param instrumentName to set of this RawPosition
      * @return               this RawPosition instance
@@ -357,7 +356,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the instrumentSymbol of this RawPosition. The instrumentSymbol field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_symbol.
+     * db0.piq.daily_position_performance.instrument_symbol.
      * 
      * @param instrumentSymbol to set of this RawPosition
      * @return                 this RawPosition instance
@@ -367,7 +366,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the instrumentSector of this RawPosition. The instrumentSector field
      * corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_sector.
+     * db0.piq.daily_position_performance.instrument_sector.
      * 
      * @param instrumentSector to set of this RawPosition
      * @return                 this RawPosition instance
@@ -377,7 +376,7 @@ public interface GeneratedRawPosition {
     /**
      * Sets the instrumentIndustry of this RawPosition. The instrumentIndustry
      * field corresponds to the database column
-     * db0.piq2.daily_position_performance.instrument_industry.
+     * db0.piq.daily_position_performance.instrument_industry.
      * 
      * @param instrumentIndustry to set of this RawPosition
      * @return                   this RawPosition instance
@@ -416,7 +415,7 @@ public interface GeneratedRawPosition {
         
         @Override
         public String getSchemaName() {
-            return "piq2";
+            return "piq";
         }
         
         @Override

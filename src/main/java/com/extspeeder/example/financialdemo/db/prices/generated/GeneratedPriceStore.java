@@ -107,7 +107,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the id of this PriceStore. The id field corresponds to the
-     * database column db0.piq2.price_store.id.
+     * database column db0.piq.price_store.id.
      * 
      * @return the id of this PriceStore
      */
@@ -115,7 +115,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the valueDate of this PriceStore. The valueDate field corresponds
-     * to the database column db0.piq2.price_store.value_date.
+     * to the database column db0.piq.price_store.value_date.
      * 
      * @return the valueDate of this PriceStore
      */
@@ -123,7 +123,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the open of this PriceStore. The open field corresponds to the
-     * database column db0.piq2.price_store.open.
+     * database column db0.piq.price_store.open.
      * 
      * @return the open of this PriceStore
      */
@@ -131,7 +131,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the high of this PriceStore. The high field corresponds to the
-     * database column db0.piq2.price_store.high.
+     * database column db0.piq.price_store.high.
      * 
      * @return the high of this PriceStore
      */
@@ -139,7 +139,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the low of this PriceStore. The low field corresponds to the
-     * database column db0.piq2.price_store.low.
+     * database column db0.piq.price_store.low.
      * 
      * @return the low of this PriceStore
      */
@@ -147,7 +147,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Returns the close of this PriceStore. The close field corresponds to the
-     * database column db0.piq2.price_store.close.
+     * database column db0.piq.price_store.close.
      * 
      * @return the close of this PriceStore
      */
@@ -156,7 +156,7 @@ public interface GeneratedPriceStore {
     /**
      * Returns the instrumentSymbol of this PriceStore. The instrumentSymbol
      * field corresponds to the database column
-     * db0.piq2.price_store.instrument_symbol.
+     * db0.piq.price_store.instrument_symbol.
      * 
      * @return the instrumentSymbol of this PriceStore
      */
@@ -164,7 +164,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the id of this PriceStore. The id field corresponds to the database
-     * column db0.piq2.price_store.id.
+     * column db0.piq.price_store.id.
      * 
      * @param id to set of this PriceStore
      * @return   this PriceStore instance
@@ -173,7 +173,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the valueDate of this PriceStore. The valueDate field corresponds to
-     * the database column db0.piq2.price_store.value_date.
+     * the database column db0.piq.price_store.value_date.
      * 
      * @param valueDate to set of this PriceStore
      * @return          this PriceStore instance
@@ -182,7 +182,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the open of this PriceStore. The open field corresponds to the
-     * database column db0.piq2.price_store.open.
+     * database column db0.piq.price_store.open.
      * 
      * @param open to set of this PriceStore
      * @return     this PriceStore instance
@@ -191,7 +191,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the high of this PriceStore. The high field corresponds to the
-     * database column db0.piq2.price_store.high.
+     * database column db0.piq.price_store.high.
      * 
      * @param high to set of this PriceStore
      * @return     this PriceStore instance
@@ -200,7 +200,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the low of this PriceStore. The low field corresponds to the
-     * database column db0.piq2.price_store.low.
+     * database column db0.piq.price_store.low.
      * 
      * @param low to set of this PriceStore
      * @return    this PriceStore instance
@@ -209,7 +209,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the close of this PriceStore. The close field corresponds to the
-     * database column db0.piq2.price_store.close.
+     * database column db0.piq.price_store.close.
      * 
      * @param close to set of this PriceStore
      * @return      this PriceStore instance
@@ -218,8 +218,7 @@ public interface GeneratedPriceStore {
     
     /**
      * Sets the instrumentSymbol of this PriceStore. The instrumentSymbol field
-     * corresponds to the database column
-     * db0.piq2.price_store.instrument_symbol.
+     * corresponds to the database column db0.piq.price_store.instrument_symbol.
      * 
      * @param instrumentSymbol to set of this PriceStore
      * @return                 this PriceStore instance
@@ -253,7 +252,7 @@ public interface GeneratedPriceStore {
         
         @Override
         public String getSchemaName() {
-            return "piq2";
+            return "piq";
         }
         
         @Override
