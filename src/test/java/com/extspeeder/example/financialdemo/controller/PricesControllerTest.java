@@ -5,8 +5,9 @@ import com.extspeeder.example.financialdemo.controller.har.HarTester;
 import com.extspeeder.example.financialdemo.db.prices.PriceStoreManager;
 import com.google.gson.Gson;
 import java.net.URISyntaxException;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,8 +78,8 @@ public class PricesControllerTest extends AbstractSpeedmentTest {
             .param("limit", "5000")
             .param("filter", "[{\"property\":\"instrumentSymbol\",\"operator\":\"eq\",\"value\":\"SPY\"},{\"property\":\"valueDate\",\"operator\":\"ge\",\"value\":\"20140101\"},{\"property\":\"valueDate\",\"operator\":\"le\",\"value\":\"20160930\"}]")
         ).andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.data[*].instrumentSymbol", is("SPY")))
-            .andExpect(jsonPath("$.data[*].valueDate", greaterThanOrEqualTo("20140101")))
-            .andExpect(jsonPath("$.data[*].valueDate", lessThanOrEqualTo("20160930")));
+            .andExpect(jsonPath("$.data[*].instrumentSymbol", everyItem(equalTo("SPY"))))
+            .andExpect(jsonPath("$.data[*].valueDate", everyItem(greaterThanOrEqualTo(20140101))))
+            .andExpect(jsonPath("$.data[*].valueDate", everyItem(lessThanOrEqualTo(20160930))));
     }
 }

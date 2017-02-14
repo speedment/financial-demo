@@ -51,7 +51,7 @@ public class DemoConfig {
         
         LoggerManager.getLogger(AbstractLicenseComponent.class).setLevel(Level.DEBUG);
         LoggerManager.getLogger(LicenseIOUtil.class).setLevel(Level.DEBUG);
-        
+
         final FinancialdemoApplication app = new FinancialdemoApplicationBuilder()
             .withIpAddress(host)
             .withPort(port)
