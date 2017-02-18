@@ -2682,6 +2682,7 @@
                   },
                   {
                     "expanded" : true,
+                    "typeMapper" : "com.extspeeder.example.financialdemo.extra.CohortTypeMapper",
                     "unindexed" : false,
                     "name" : "trader_group_type",
                     "biDirectional" : false,

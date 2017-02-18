@@ -7,7 +7,6 @@ import com.extspeeder.example.financialdemo.controller.util.TimeUtil;
 import com.extspeeder.example.financialdemo.db.order.Order;
 import com.extspeeder.example.financialdemo.db.order.OrderManager;
 import com.extspeeder.example.financialdemo.extra.BuySell;
-import com.extspeeder.example.financialdemo.extra.CohortType;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.google.gson.Gson;
@@ -161,7 +160,7 @@ public final class OrdersController {
                 case "quantity"           : return Integer.parseInt(filter.getValue());
                 case "execPrice"          : // Fallthrough
                 case "limitPrice"         : return Float.parseFloat(filter.getValue());
-                case "traderGroupType"    : return CohortType.fromDatabase(filter.getValue());
+                case "traderGroupType"    : return filter.getValue();
                 default : throw new IllegalArgumentException(
                     "Unknown property: " + filter.getProperty() + "."
                 );

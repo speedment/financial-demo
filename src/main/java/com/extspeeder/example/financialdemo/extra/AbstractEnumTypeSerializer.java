@@ -8,6 +8,7 @@ import com.speedment.enterprise.datastore.generator.serializer.AllocationOffset;
 import com.speedment.enterprise.datastore.generator.serializer.EndPointerType;
 import static com.speedment.enterprise.datastore.generator.serializer.TypeSerializerUtil.PARAM_IN;
 import static com.speedment.enterprise.datastore.generator.serializer.TypeSerializerUtil.PARAM_OUT;
+import static com.speedment.enterprise.datastore.generator.serializer.TypeSerializerUtil.PARAM_ROW_OFFSET;
 import static com.speedment.enterprise.datastore.generator.serializer.TypeSerializerUtil.PARAM_VALUE;
 import com.speedment.runtime.config.Column;
 import java.nio.charset.StandardCharsets;
@@ -63,7 +64,7 @@ abstract class AbstractEnumTypeSerializer<E extends Enum<E>> extends AbstractTyp
     @Override
     public Method makeDeserialize(Column column, AllocationOffset offset, EndPointerType endPointerType) {
         return newConstantSizeDeserializer(column)
-            .add("switch (" + PARAM_IN + ".get" + bufferMethodName() + "(" + offset.cellOffset() + ") + " + offset.tableOffset() + ") " + block(
+            .add("switch (" + PARAM_IN + ".get" + bufferMethodName() + "(" + offset.cellOffset() + " + " + PARAM_ROW_OFFSET + ")) " + block(
                 Stream.of(values)
                     .map(value -> "case " + value.ordinal() + " : return " + enumClass.getSimpleName() + "." + value.name() + ";")
             ), "throw new IllegalStateException(\"Unexpected " + enumClass.getSimpleName() + " ordinal in serialized data.\");");
@@ -82,7 +83,7 @@ abstract class AbstractEnumTypeSerializer<E extends Enum<E>> extends AbstractTyp
         final String name  = value.name();
         
         return "case " + name + " : " + 
-            PARAM_OUT + ".put" + bufferMethodName() + "(" + offset.cellOffset() + ", " + conversion() + value.ordinal() + "); return;"
+            PARAM_OUT + ".put" + bufferMethodName() + "(" + offset.cellOffset() + " + " + PARAM_ROW_OFFSET + ", " + conversion() + value.ordinal() + "); return;"
         ;
     }
 
