@@ -511,7 +511,7 @@ public class GeneratedRawPositionEntityStoreSerializerImpl implements EntityStor
         if (colId instanceof RawPosition.Identifier) {
             final RawPosition.Identifier _id = (RawPosition.Identifier) colId;
             switch (_id) {
-                case TRADER_NAME         : return (T) deserializeTraderName(in,           rowOffset, 52,                                  in.getInt(rowOffset + 24));
+                case TRADER_NAME         : return (T) deserializeTraderName(in,           rowOffset, 0,                                   in.getInt(rowOffset + 24));
                 case TRADER_GROUP        : return (T) deserializeTraderGroup(in,          rowOffset, Math.abs(in.getInt(rowOffset + 24)), in.getInt(rowOffset + 28));
                 case TRADER_GROUP_TYPE   : return (T) deserializeTraderGroupType(in,      rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
                 case INSTRUMENT_NAME     : return (T) deserializeInstrumentName(in,       rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));
@@ -525,7 +525,7 @@ public class GeneratedRawPositionEntityStoreSerializerImpl implements EntityStor
         } else {
             final String _colName = colId.getColumnName();
             switch (_colName) {
-                case "trader_name"         : return (T) deserializeTraderName(in,         rowOffset, 52,                                  in.getInt(rowOffset + 24));
+                case "trader_name"         : return (T) deserializeTraderName(in,         rowOffset, 0,                                   in.getInt(rowOffset + 24));
                 case "trader_group"        : return (T) deserializeTraderGroup(in,        rowOffset, Math.abs(in.getInt(rowOffset + 24)), in.getInt(rowOffset + 28));
                 case "trader_group_type"   : return (T) deserializeTraderGroupType(in,    rowOffset, Math.abs(in.getInt(rowOffset + 28)), in.getInt(rowOffset + 32));
                 case "instrument_name"     : return (T) deserializeInstrumentName(in,     rowOffset, Math.abs(in.getInt(rowOffset + 32)), in.getInt(rowOffset + 36));

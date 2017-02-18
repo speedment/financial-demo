@@ -4,7 +4,6 @@ import com.extspeeder.example.financialdemo.db.order.Order;
 import com.extspeeder.example.financialdemo.db.order.OrderEntityStoreSerializerImpl;
 import com.extspeeder.example.financialdemo.db.order.OrderManager;
 import com.extspeeder.example.financialdemo.extra.BuySell;
-import com.extspeeder.example.financialdemo.extra.CohortType;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.speedment.enterprise.datastore.runtime.HasStatistics.Statistics;
@@ -57,7 +56,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
     private final OfString<Order> fieldInstrumentIndustryCache;
     private final OfString<Order> fieldTraderNameCache;
     private final OfString<Order> fieldTraderGroupCache;
-    private final OfObject<Order, CohortType> fieldTraderGroupTypeCache;
+    private final OfString<Order> fieldTraderGroupTypeCache;
     private final OfFloat<Order> fieldPriceCache;
     private final OfShort<Order> fieldDateExecutedCache;
     private final OfString<Order> fieldInstrumentNameCache;
@@ -76,7 +75,7 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
             OfString<Order> fieldInstrumentIndustryCache,
             OfString<Order> fieldTraderNameCache,
             OfString<Order> fieldTraderGroupCache,
-            OfObject<Order, CohortType> fieldTraderGroupTypeCache,
+            OfString<Order> fieldTraderGroupTypeCache,
             OfFloat<Order> fieldPriceCache,
             OfShort<Order> fieldDateExecutedCache,
             OfString<Order> fieldInstrumentNameCache) {
@@ -199,8 +198,8 @@ public final class GeneratedOrderCacheHolder implements EntityStoreHolder<Order>
         final CompletableFuture<FieldCache.OfString<Order>> fieldTraderGroupCacheFuture =
             DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, Order.TRADER_GROUP, 0, Encoding.UTF_8);
         
-        final CompletableFuture<FieldCache.OfObject<Order, CohortType>> fieldTraderGroupTypeCacheFuture =
-            DataStoreHolderUtil.buildObjectCache(entityStoreFuture, executor, Order.TRADER_GROUP_TYPE, 0);
+        final CompletableFuture<FieldCache.OfString<Order>> fieldTraderGroupTypeCacheFuture =
+            DataStoreHolderUtil.buildStringCache(entityStoreFuture, executor, Order.TRADER_GROUP_TYPE, 0, Encoding.UTF_8);
         
         final CompletableFuture<FieldCache.OfFloat<Order>> fieldPriceCacheFuture =
             DataStoreHolderUtil.buildFloatCache(entityStoreFuture, executor, Order.PRICE, 0);

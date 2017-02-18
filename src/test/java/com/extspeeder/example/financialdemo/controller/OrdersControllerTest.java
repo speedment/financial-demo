@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 /**
@@ -57,5 +59,17 @@ public class OrdersControllerTest extends AbstractSpeedmentTest {
                 System.out.println("Testing " + test.getRequest().getMethod() + ": " + test.getRequest().getPath() + " " + test.getRequest().getParams());
                 test.execute(mockMvc);
             });
+    }
+    
+    @Test
+    public void testVerifyCohortTypeBug() throws Exception {
+
+        mockMvc.perform(get("/speeder/orders")
+            .param("_dc", "1487373594073")
+            .param("start", "0")
+            .param("limit", "300")
+            .param("sort", "[{\"property\":\"dateCreated\",\"direction\":\"DESC\"}]")
+            .param("filter", "[{\"property\":\"dateCreated\",\"value\":\"20150606\",\"operator\":\"le\"},{\"property\":\"traderGroupType\",\"value\":\"San Francisco\",\"operator\":\"eq\"}]")
+        ).andExpect(status().is2xxSuccessful());
     }
 }

@@ -3,8 +3,6 @@ package com.extspeeder.example.financialdemo.db.order.generated;
 import com.extspeeder.example.financialdemo.db.order.Order;
 import com.extspeeder.example.financialdemo.extra.BuySell;
 import com.extspeeder.example.financialdemo.extra.BuySellMapper;
-import com.extspeeder.example.financialdemo.extra.CohortType;
-import com.extspeeder.example.financialdemo.extra.CohortTypeMapper;
 import com.extspeeder.example.financialdemo.extra.DateIntToShortMapper;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.OrderTypeMapper;
@@ -174,11 +172,11 @@ public interface GeneratedOrder {
      * This Field corresponds to the {@link Order} field that can be obtained
      * using the {@link Order#getTraderGroupType()} method.
      */
-    final ComparableField<Order, String, CohortType> TRADER_GROUP_TYPE = ComparableField.create(
+    final StringField<Order, String> TRADER_GROUP_TYPE = StringField.create(
         Identifier.TRADER_GROUP_TYPE,
         Order::getTraderGroupType,
         Order::setTraderGroupType,
-        new CohortTypeMapper(), 
+        TypeMapper.identity(), 
         false
     );
     /**
@@ -318,7 +316,7 @@ public interface GeneratedOrder {
      * 
      * @return the traderGroupType of this Order
      */
-    CohortType getTraderGroupType();
+    String getTraderGroupType();
     
     /**
      * Returns the price of this Order. The price field corresponds to the
@@ -459,7 +457,7 @@ public interface GeneratedOrder {
      * @param traderGroupType to set of this Order
      * @return                this Order instance
      */
-    Order setTraderGroupType(CohortType traderGroupType);
+    Order setTraderGroupType(String traderGroupType);
     
     /**
      * Sets the price of this Order. The price field corresponds to the database

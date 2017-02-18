@@ -2,7 +2,6 @@ package com.extspeeder.example.financialdemo.db.order.generated;
 
 import com.extspeeder.example.financialdemo.db.order.Order;
 import com.extspeeder.example.financialdemo.extra.BuySell;
-import com.extspeeder.example.financialdemo.extra.CohortType;
 import com.extspeeder.example.financialdemo.extra.OrderType;
 import com.extspeeder.example.financialdemo.extra.Status;
 import com.speedment.runtime.core.util.OptionalUtil;
@@ -35,7 +34,7 @@ public abstract class GeneratedOrderImpl implements Order {
     private String instrumentIndustry;
     private String traderName;
     private String traderGroup;
-    private CohortType traderGroupType;
+    private String traderGroupType;
     private float price;
     private short dateExecuted;
     private String instrumentName;
@@ -105,7 +104,7 @@ public abstract class GeneratedOrderImpl implements Order {
     }
     
     @Override
-    public CohortType getTraderGroupType() {
+    public String getTraderGroupType() {
         return traderGroupType;
     }
     
@@ -197,7 +196,7 @@ public abstract class GeneratedOrderImpl implements Order {
     }
     
     @Override
-    public Order setTraderGroupType(CohortType traderGroupType) {
+    public Order setTraderGroupType(String traderGroupType) {
         this.traderGroupType = traderGroupType;
         return this;
     }
