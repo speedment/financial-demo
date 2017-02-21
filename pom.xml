@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.extspeeder.example</groupId>
     <artifactId>financialdemo</artifactId>
-    <version>1.1.17-SNAPSHOT</version>
+    <version>1.1.17</version>
     <packaging>war</packaging>
     
     <name>Financial Demo</name>
@@ -26,8 +26,8 @@
         <start-class>com.extspeeder.example.financialdemo.MainApp</start-class>
         <java.version>1.8</java.version>
         
-        <speedment.version>3.0.3</speedment.version>
-        <speedment.enterprise.version>1.1.1</speedment.enterprise.version>
+        <speedment.version>3.0.4-SNAPSHOT</speedment.version>
+        <speedment.enterprise.version>1.1.2-SNAPSHOT</speedment.enterprise.version>
         
         <db.groupId>mysql</db.groupId>
         <db.artifactId>mysql-connector-java</db.artifactId>

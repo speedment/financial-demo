@@ -66,7 +66,7 @@ abstract class AbstractEnumTypeSerializer<E extends Enum<E>> extends AbstractTyp
         return newConstantSizeDeserializer(column)
             .add("switch (" + PARAM_IN + ".get" + bufferMethodName() + "(" + offset.cellOffset() + " + " + PARAM_ROW_OFFSET + ")) " + block(
                 Stream.of(values)
-                    .map(value -> "case " + value.ordinal() + " : return " + enumClass.getSimpleName() + "." + value.name() + ";")
+                    .map(value -> "case " + value.ordinal() + " \t: return " + enumClass.getSimpleName() + "." + value.name() + ";")
             ), "throw new IllegalStateException(\"Unexpected " + enumClass.getSimpleName() + " ordinal in serialized data.\");");
     }
 
@@ -82,7 +82,7 @@ abstract class AbstractEnumTypeSerializer<E extends Enum<E>> extends AbstractTyp
     private String serializeConstant(AllocationOffset offset, E value) {
         final String name  = value.name();
         
-        return "case " + name + " : " + 
+        return "case " + name + " \t: " + 
             PARAM_OUT + ".put" + bufferMethodName() + "(" + offset.cellOffset() + " + " + PARAM_ROW_OFFSET + ", " + conversion() + value.ordinal() + "); return;"
         ;
     }

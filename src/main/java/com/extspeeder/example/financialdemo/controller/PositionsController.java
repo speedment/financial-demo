@@ -8,6 +8,9 @@ import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
 import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
 import com.speedment.enterprise.datastore.runtime.function.EntityFunction;
 import com.speedment.runtime.core.internal.util.testing.Stopwatch;
+import com.speedment.runtime.field.StringField;
+import com.speedment.runtime.field.trait.HasIntValue;
+import com.speedment.runtime.field.trait.HasReferenceValue;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
@@ -89,6 +92,9 @@ public class PositionsController {
 
         final Function<RawPosition, String> identifier =
             identifier(groups, usedGroups);
+        
+        final ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier =
+            refIdentifier(groups, usedGroups);
 
         try {
             if (classifier == null) {
@@ -98,13 +104,13 @@ public class PositionsController {
                         public LongFunction<PositionResult> asReferenceFunction(
                                 EntityStore<RawPosition> store) {
                             
-                            return ref -> new PositionResult(identifier)
-                                .aggregate(store, ref);
+                            return ref -> new PositionResult(refIdentifier, identifier)
+                                .aggregateRef(store, ref);
                         }
 
                         @Override
                         public PositionResult apply(RawPosition pos) {
-                            return new PositionResult(identifier)
+                            return new PositionResult(refIdentifier, identifier)
                                 .aggregate(pos);
                         }
                     })
@@ -113,6 +119,7 @@ public class PositionsController {
             } else {
                 return positions.collect(new RawPositionToConcurrentMap<>(
                     refClassifier,
+                    refIdentifier,
                     identifier
                 )).values();
             }
@@ -221,6 +228,93 @@ public class PositionsController {
         }
     }
     
+    private static ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier(
+            String[] groups, int limit) {
+        
+        switch (limit) {
+            case 0 : return (store, ref) -> "";
+            case 1 : return (store, ref) -> String.valueOf(refClassifier(groups[0]).apply(store, ref));
+            case 2 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref);
+            }
+            case 3 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f2 = refClassifier(groups[2]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref) + SEPARATOR +
+                                       f2.apply(store, ref);
+            }
+            case 4 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f2 = refClassifier(groups[2]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f3 = refClassifier(groups[3]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref) + SEPARATOR +
+                                       f2.apply(store, ref) + SEPARATOR +
+                                       f3.apply(store, ref);
+            }
+            case 5 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f2 = refClassifier(groups[2]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f3 = refClassifier(groups[3]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f4 = refClassifier(groups[4]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref) + SEPARATOR +
+                                       f2.apply(store, ref) + SEPARATOR +
+                                       f3.apply(store, ref) + SEPARATOR +
+                                       f4.apply(store, ref);
+            }
+            case 6 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f2 = refClassifier(groups[2]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f3 = refClassifier(groups[3]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f4 = refClassifier(groups[4]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f5 = refClassifier(groups[5]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref) + SEPARATOR +
+                                       f2.apply(store, ref) + SEPARATOR +
+                                       f3.apply(store, ref) + SEPARATOR +
+                                       f4.apply(store, ref) + SEPARATOR +
+                                       f5.apply(store, ref);
+            }
+            case 7 : {
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f0 = refClassifier(groups[0]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f1 = refClassifier(groups[1]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f2 = refClassifier(groups[2]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f3 = refClassifier(groups[3]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f4 = refClassifier(groups[4]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f5 = refClassifier(groups[5]);
+                final ObjLongFunction<EntityStore<RawPosition>, Object> f6 = refClassifier(groups[6]);
+                return (store, ref) -> f0.apply(store, ref) + SEPARATOR + 
+                                       f1.apply(store, ref) + SEPARATOR +
+                                       f2.apply(store, ref) + SEPARATOR +
+                                       f3.apply(store, ref) + SEPARATOR +
+                                       f4.apply(store, ref) + SEPARATOR +
+                                       f5.apply(store, ref) + SEPARATOR +
+                                       f6.apply(store, ref);
+            }
+            default : {
+                final List<ObjLongFunction<EntityStore<RawPosition>, Object>> f 
+                    = Stream.of(groups)
+                        .limit(limit)
+                        .map(PositionsController::refClassifier)
+                        .collect(toList());
+                
+                return (store, ref) -> f.stream()
+                    .map(c -> c.apply(store, ref))
+                    .map(Object::toString)
+                    .collect(joining(SEPARATOR));
+            }
+        }
+    }
+    
     private static Function<RawPosition, Object> classifier(String group) {
         switch (group) {
             case "valueDate"          : return RawPosition::getValueDate;
@@ -239,14 +333,14 @@ public class PositionsController {
     
     private static ObjLongFunction<EntityStore<RawPosition>, Object> refClassifier(String group) {
         switch (group) {
-            case "valueDate"          : return (store, ref) -> store.deserializeInt(ref, RawPosition.VALUE_DATE);
-            case "traderName"         : return (store, ref) -> store.deserialize(ref, RawPosition.TRADER_NAME);
-            case "traderGroup"        : return (store, ref) -> store.deserialize(ref, RawPosition.TRADER_GROUP);
-            case "traderGroupType"    : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.TRADER_GROUP_TYPE));   // Nullable
-            case "instrumentName"     : return (store, ref) -> store.deserialize(ref, RawPosition.INSTRUMENT_NAME);
-            case "instrumentSymbol"   : return (store, ref) -> store.deserialize(ref, RawPosition.INSTRUMENT_SYMBOL);
-            case "instrumentSector"   : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.INSTRUMENT_SECTOR));
-            case "instrumentIndustry" : return (store, ref) -> orEmpty(store.deserialize(ref, RawPosition.INSTRUMENT_INDUSTRY));
+            case "valueDate"          : return intDeserializer(RawPosition.VALUE_DATE);
+            case "traderName"         : return stringDeserializer(RawPosition.TRADER_NAME);
+            case "traderGroup"        : return stringDeserializer(RawPosition.TRADER_GROUP);
+            case "traderGroupType"    : return stringDeserializer(RawPosition.TRADER_GROUP_TYPE);
+            case "instrumentName"     : return nullableDeserializer(RawPosition.INSTRUMENT_NAME, "");
+            case "instrumentSymbol"   : return stringDeserializer(RawPosition.INSTRUMENT_SYMBOL);
+            case "instrumentSector"   : return nullableDeserializer(RawPosition.INSTRUMENT_SECTOR, "");
+            case "instrumentIndustry" : return nullableDeserializer(RawPosition.INSTRUMENT_INDUSTRY, "");
             default : throw new IllegalArgumentException(
                 "Unknown group '" + group + "'."
             );
@@ -269,8 +363,18 @@ public class PositionsController {
         }
     }
     
-    private static String orEmpty(String value) {
-        if (value == null) return ""; 
-        else return value;
+    private static ObjLongFunction<EntityStore<RawPosition>, Object> stringDeserializer(StringField<RawPosition, ?> field) {
+        return (store, ref) -> store.deserialize(ref, field);
+    }
+    
+    private static ObjLongFunction<EntityStore<RawPosition>, Object> nullableDeserializer(HasReferenceValue<RawPosition, ?, ?> field, Object defaultValue) {
+        return (store, ref) -> 
+            store.isNull(ref, field)
+                ? defaultValue
+                : store.deserialize(ref, field);
+    }
+    
+    private static ObjLongFunction<EntityStore<RawPosition>, Object> intDeserializer(HasIntValue<RawPosition, ?> field) {
+        return (store, ref) -> store.deserializeInt(ref, field);
     }
 }

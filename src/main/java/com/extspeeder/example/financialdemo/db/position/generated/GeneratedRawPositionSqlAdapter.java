@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.annotation.Generated;
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -55,10 +54,10 @@ public abstract class GeneratedRawPositionSqlAdapter {
             entity.setTraderName(             resultSet.getString(6)                                     );
             entity.setTraderGroup(            resultSet.getString(7)                                     );
             entity.setTraderGroupType(        resultSet.getString(8)                                     );
-            entity.setInstrumentName(         getString(resultSet, 9)                                    );
+            entity.setInstrumentName(         resultSet.getString(9)                                     );
             entity.setInstrumentSymbol(       resultSet.getString(10)                                    );
-            entity.setInstrumentSector(       getString(resultSet, 11)                                   );
-            entity.setInstrumentIndustry(     getString(resultSet, 12)                                   );
+            entity.setInstrumentSector(       resultSet.getString(11)                                    );
+            entity.setInstrumentIndustry(     resultSet.getString(12)                                    );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }

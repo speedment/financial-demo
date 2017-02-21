@@ -1,5 +1,6 @@
 package com.extspeeder.example.financialdemo.aggregator;
 
+import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap.ObjLongFunction;
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
 import com.speedment.enterprise.datastore.runtime.function.EntityCollector;
@@ -22,15 +23,20 @@ import java.util.stream.Collector.Characteristics;
 public final class AggregateRawPositions
 implements EntityCollector<RawPosition, PositionResult> {
     
+    private final ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier;
     private final Function<RawPosition, String> identifier;
     
-    public AggregateRawPositions(Function<RawPosition, String> identifier) {
-        this.identifier = requireNonNull(identifier);
+    public AggregateRawPositions(
+            ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier,
+            Function<RawPosition, String> identifier) {
+        
+        this.refIdentifier = requireNonNull(refIdentifier);
+        this.identifier    = requireNonNull(identifier);
     }
     
     @Override
     public Supplier<PositionResult> supplier() {
-        return () -> new PositionResult(identifier);
+        return () -> new PositionResult(refIdentifier, identifier);
     }
 
     @Override
@@ -42,7 +48,7 @@ implements EntityCollector<RawPosition, PositionResult> {
     public ObjLongConsumer<PositionResult> referenceAccumulator(
             EntityStore<RawPosition> store) {
         
-        return (res, ref) -> res.aggregate(store, ref);
+        return (res, ref) -> res.aggregateRef(store, ref);
     }
 
     @Override

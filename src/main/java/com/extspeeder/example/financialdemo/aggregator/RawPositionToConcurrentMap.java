@@ -30,13 +30,16 @@ implements EntityCollector<RawPosition, Map<K, PositionResult>> {
     }
 
     private final ObjLongFunction<EntityStore<RawPosition>, K> refClassifier;
+    private final ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier;
     private final Function<RawPosition, String> identifier;
 
     public RawPositionToConcurrentMap(
             ObjLongFunction<EntityStore<RawPosition>, K> refClassifier,
+            ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier,
             Function<RawPosition, String> identifier) {
         
         this.refClassifier = requireNonNull(refClassifier);
+        this.refIdentifier = requireNonNull(refIdentifier);
         this.identifier    = requireNonNull(identifier);
     }
     
@@ -56,8 +59,8 @@ implements EntityCollector<RawPosition, Map<K, PositionResult>> {
         
         return (result, ref) -> result.computeIfAbsent(
             refClassifier.apply(store, ref), 
-            k -> new PositionResult(identifier)
-        ).aggregate(store, ref);
+            k -> new PositionResult(refIdentifier, identifier)
+        ).aggregateRef(store, ref);
     }
 
     @Override

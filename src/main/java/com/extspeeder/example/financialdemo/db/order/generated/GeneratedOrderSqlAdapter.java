@@ -64,14 +64,14 @@ public abstract class GeneratedOrderSqlAdapter {
             entity.setStatus(             statusHelper.apply(resultSet.getString(6))           );
             entity.setLimitPrice(         limitPriceHelper.apply(getDouble(resultSet, 7))      );
             entity.setInstrumentSymbol(   resultSet.getString(8)                               );
-            entity.setInstrumentSector(   getString(resultSet, 9)                              );
-            entity.setInstrumentIndustry( getString(resultSet, 10)                             );
+            entity.setInstrumentSector(   resultSet.getString(9)                               );
+            entity.setInstrumentIndustry( resultSet.getString(10)                              );
             entity.setTraderName(         resultSet.getString(11)                              );
             entity.setTraderGroup(        resultSet.getString(12)                              );
             entity.setTraderGroupType(    traderGroupTypeHelper.apply(resultSet.getString(13)) );
             entity.setPrice(              priceHelper.apply(resultSet.getDouble(14))           );
             entity.setDateExecuted(       dateExecutedHelper.apply(resultSet.getInt(15))       );
-            entity.setInstrumentName(     getString(resultSet, 16)                             );
+            entity.setInstrumentName(     resultSet.getString(16)                              );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }

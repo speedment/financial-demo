@@ -88,10 +88,10 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeTraderGroupType(ByteBuffer out, int rowOffset, CohortType value) {
         switch (value) {
-            case BOSTON : out.put(0 + rowOffset, (byte) 0); return;
-            case WASHINGTON : out.put(0 + rowOffset, (byte) 1); return;
-            case NEW_YORK : out.put(0 + rowOffset, (byte) 2); return;
-            case QUANT_MODELS : out.put(0 + rowOffset, (byte) 3); return;
+            case BOSTON        : out.put(0 + rowOffset, (byte) 0); return;
+            case WASHINGTON    : out.put(0 + rowOffset, (byte) 1); return;
+            case NEW_YORK      : out.put(0 + rowOffset, (byte) 2); return;
+            case QUANT_MODELS  : out.put(0 + rowOffset, (byte) 3); return;
             case SAN_FRANSISCO : out.put(0 + rowOffset, (byte) 4); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
@@ -215,7 +215,7 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeDirection(ByteBuffer out, int rowOffset, BuySell value) {
         switch (value) {
-            case BUY : out.put(17 + rowOffset, (byte) 0); return;
+            case BUY  : out.put(17 + rowOffset, (byte) 0); return;
             case SELL : out.put(17 + rowOffset, (byte) 1); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
@@ -247,8 +247,8 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
     protected void serializeOrderType(ByteBuffer out, int rowOffset, OrderType value) {
         switch (value) {
             case MARKET : out.put(18 + rowOffset, (byte) 0); return;
-            case LIMIT : out.put(18 + rowOffset, (byte) 1); return;
-            case STOP : out.put(18 + rowOffset, (byte) 2); return;
+            case LIMIT  : out.put(18 + rowOffset, (byte) 1); return;
+            case STOP   : out.put(18 + rowOffset, (byte) 2); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }
@@ -300,11 +300,11 @@ public class GeneratedOrderEntityStoreSerializerImpl implements EntityStoreSeria
      */
     protected void serializeStatus(ByteBuffer out, int rowOffset, Status value) {
         switch (value) {
-            case FILLED : out.put(23 + rowOffset, (byte) 0); return;
+            case FILLED    : out.put(23 + rowOffset, (byte) 0); return;
             case CANCELLED : out.put(23 + rowOffset, (byte) 1); return;
-            case EXPIRED : out.put(23 + rowOffset, (byte) 2); return;
-            case OPEN : out.put(23 + rowOffset, (byte) 3); return;
-            case REJECTED : out.put(23 + rowOffset, (byte) 4); return;
+            case EXPIRED   : out.put(23 + rowOffset, (byte) 2); return;
+            case OPEN      : out.put(23 + rowOffset, (byte) 3); return;
+            case REJECTED  : out.put(23 + rowOffset, (byte) 4); return;
         }
         throw new IllegalStateException("Unexpected enum constant '" + value + "'.");
     }

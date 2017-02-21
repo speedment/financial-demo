@@ -1,5 +1,6 @@
 package com.extspeeder.example.financialdemo.aggregator;
 
+import com.extspeeder.example.financialdemo.aggregator.RawPositionToConcurrentMap.ObjLongFunction;
 import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.speedment.enterprise.datastore.runtime.entitystore.EntityStore;
 import com.speedment.enterprise.datastore.runtime.entitystore.StringSelection;
@@ -13,6 +14,7 @@ import java.util.function.Function;
  */
 public final class PositionResult {
 
+    private final ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier;
     private final Function<RawPosition, String> identifier;
     
     private String id;
@@ -25,8 +27,12 @@ public final class PositionResult {
     
     private boolean instrumentNameSet = false;
     
-    public PositionResult(Function<RawPosition, String> identifier) {
-        this.identifier = requireNonNull(identifier);
+    public PositionResult(
+            ObjLongFunction<EntityStore<RawPosition>, String> refIdentifier,
+            Function<RawPosition, String> identifier) {
+        
+        this.refIdentifier = requireNonNull(refIdentifier);
+        this.identifier    = requireNonNull(identifier);
     }
 
     public String getId() {
@@ -61,10 +67,10 @@ public final class PositionResult {
         return instrumentNameSet;
     }
     
-    public PositionResult aggregate(EntityStore<RawPosition> store, long reference) {
+    public PositionResult aggregateRef(EntityStore<RawPosition> store, long reference) {
         if (id == null) {
-            final RawPosition deserialized = store.deserialize(reference);
-            return aggregate(deserialized);
+            id = refIdentifier.apply(store, reference);
+            
         } else {
             initiateTradingMktValue  += store.deserializeFloat(reference, RawPosition.INITIATE_TRADING_MKT_VAL);
             liquidateTradingMktValue += store.deserializeFloat(reference, RawPosition.LIQUIDATE_TRADING_MKT_VAL);
@@ -76,7 +82,11 @@ public final class PositionResult {
 
             if (instrumentNameSet) {
                 if (instrumentName == null) {
-                    instrumentName = store.deserialize(reference, RawPosition.INSTRUMENT_NAME);
+                    if (store.isNull(reference, RawPosition.INSTRUMENT_NAME)) {
+                        instrumentName = null;
+                    } else {
+                        instrumentName = store.deserialize(reference, RawPosition.INSTRUMENT_NAME);
+                    }
                 } else {
                     if (store.isNull(reference, RawPosition.INSTRUMENT_NAME)
                     ||  store.selectString(reference, RawPosition.INSTRUMENT_NAME)
@@ -85,14 +95,18 @@ public final class PositionResult {
                     }
                 }
             } else {
-                instrumentName = store.deserialize(reference, RawPosition.INSTRUMENT_NAME);
-                instrumentNameSet = true;
+                if (store.isNull(reference, RawPosition.INSTRUMENT_NAME)) {
+                    instrumentName = null;
+                } else {
+                    instrumentName = store.deserialize(reference, RawPosition.INSTRUMENT_NAME);
+                    instrumentNameSet = true;
+                }
             }
         }
         
         return this;
     }
-    
+//    
     public PositionResult aggregate(RawPosition rawPosition) {
         if (id == null) {
             id = identifier.apply(rawPosition);

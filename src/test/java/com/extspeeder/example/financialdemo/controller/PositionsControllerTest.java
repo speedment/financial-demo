@@ -2,8 +2,11 @@ package com.extspeeder.example.financialdemo.controller;
 
 import com.extspeeder.example.financialdemo.config.DemoConfig;
 import com.extspeeder.example.financialdemo.controller.har.HarTester;
+import com.extspeeder.example.financialdemo.db.position.RawPosition;
 import com.extspeeder.example.financialdemo.db.position.RawPositionManager;
+import com.speedment.runtime.field.StringField;
 import java.net.URISyntaxException;
+import java.util.concurrent.atomic.AtomicLong;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,5 +58,31 @@ public class PositionsControllerTest extends AbstractSpeedmentTest {
                 System.out.println("Testing " + test.getRequest().getMethod() + ": " + test.getRequest().getPath() + " " + test.getRequest().getParams());
                 test.execute(mockMvc);
             });
+    }
+    
+    @Test
+    public void verifyInvalidUtf8Bug() throws Exception {
+        count(RawPosition.INSTRUMENT_INDUSTRY);
+        count(RawPosition.INSTRUMENT_NAME);
+        count(RawPosition.INSTRUMENT_SECTOR);
+        count(RawPosition.INSTRUMENT_SYMBOL);
+        count(RawPosition.TRADER_GROUP);
+        count(RawPosition.TRADER_GROUP_TYPE);
+        count(RawPosition.TRADER_NAME);
+    }
+    
+    
+    private void count(StringField<RawPosition, ?> field) {
+        final AtomicLong counter = new AtomicLong();
+        
+        manager.stream()
+            .filter(field.contains("abc"))
+            .forEachOrdered(e -> counter.incrementAndGet());
+        
+        System.out.format(
+            "%40s: %,d matches.%n", 
+            field.identifier(), 
+            counter.get()
+        );
     }
 }
